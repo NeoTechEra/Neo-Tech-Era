@@ -1,0 +1,6 @@
+{
+  "name": "Neo Tech Era - Digital Products & The Nabaa Tankers",
+  "description": "Premium SaaS showcase for Neo Tech Era featuring flagship water delivery platform The Nabaa Tankers, Pix Shield, Price Post Pulser, and E-Commerce Post Builder.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

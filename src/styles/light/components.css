@@ -1,0 +1,369 @@
+/* ==========================================================================
+   LIGHT MODE DESIGN SYSTEM (LOCKED)
+   Clean, refined, high-contrast, beautiful architectural light palette.
+   DO NOT MODIFY OR CHANGE.
+   ========================================================================== */
+
+html.light,
+html.light-theme,
+html.light body,
+body.light,
+body.light-theme,
+.light,
+.light-theme {
+  color-scheme: light;
+  background-color: #f8fafc !important;
+  color: #0f172a !important;
+}
+
+/* Light Mode Scrollbars */
+html.light ::-webkit-scrollbar-track,
+.light ::-webkit-scrollbar-track,
+.light-theme ::-webkit-scrollbar-track {
+  background: #f1f5f9;
+}
+html.light ::-webkit-scrollbar-thumb,
+.light ::-webkit-scrollbar-thumb,
+.light-theme ::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 4px;
+}
+html.light ::-webkit-scrollbar-thumb:hover,
+.light ::-webkit-scrollbar-thumb:hover,
+.light-theme ::-webkit-scrollbar-thumb:hover {
+  background: #0284c7;
+}
+
+/* Light mode structural surfaces & backgrounds */
+.light .bg-slate-950,
+.light.bg-slate-950,
+.light .bg-slate-950\/95,
+.light .bg-slate-950\/90,
+.light .bg-slate-950\/85,
+.light .bg-slate-950\/80,
+.light-theme .bg-slate-950 {
+  background-color: #ffffff !important;
+}
+
+.light .bg-slate-950\/75,
+.light .bg-slate-950\/70,
+.light .bg-slate-950\/60,
+.light .bg-slate-950\/50,
+.light .bg-slate-950\/40 {
+  background-color: #f8fafc !important;
+}
+
+.light .bg-slate-900,
+.light.bg-slate-900,
+.light .bg-slate-900\/95,
+.light .bg-slate-900\/90,
+.light .bg-slate-900\/85,
+.light .bg-slate-900\/80,
+.light-theme .bg-slate-900 {
+  background-color: #ffffff !important;
+}
+
+.light .bg-slate-900\/75,
+.light .bg-slate-900\/70,
+.light .bg-slate-900\/60,
+.light .bg-slate-900\/50,
+.light .bg-slate-900\/40,
+.light .bg-slate-900\/30 {
+  background-color: rgba(241, 245, 249, 0.75) !important;
+}
+
+.light .bg-slate-800,
+.light .bg-slate-800\/90 {
+  background-color: #f1f5f9 !important;
+}
+
+.light .bg-slate-800\/80,
+.light .bg-slate-800\/60,
+.light .bg-slate-800\/50,
+.light .bg-slate-800\/40,
+.light .bg-slate-800\/30 {
+  background-color: rgba(241, 245, 249, 0.65) !important;
+}
+
+.light .hover\:bg-slate-800:hover {
+  background-color: #e2e8f0 !important;
+}
+.light .hover\:bg-slate-800\/80:hover,
+.light .hover\:bg-slate-800\/50:hover {
+  background-color: rgba(226, 232, 240, 0.8) !important;
+}
+
+.light .bg-cyan-950,
+.light .bg-cyan-950\/70,
+.light .bg-cyan-950\/60,
+.light .bg-cyan-950\/50,
+.light .bg-cyan-950\/40,
+.light .bg-cyan-950\/30 {
+  background-color: #f0f9ff !important;
+}
+
+.light .bg-blue-950,
+.light .bg-blue-950\/80,
+.light .bg-blue-950\/60,
+.light .bg-blue-950\/40 {
+  background-color: #f0f7ff !important;
+}
+
+.light .bg-emerald-950,
+.light .bg-emerald-950\/60,
+.light .bg-emerald-950\/40 {
+  background-color: #ecfdf5 !important;
+}
+
+.light .bg-purple-950,
+.light .bg-purple-950\/60,
+.light .bg-purple-950\/40 {
+  background-color: #faf5ff !important;
+}
+
+/* Light mode section background gradients */
+.light .from-slate-950.via-slate-900.to-slate-950 {
+  background-image: linear-gradient(to bottom, #f8fafc, #f1f5f9, #f8fafc) !important;
+}
+
+.light .bg-cyan-500\/30 {
+  background-color: rgba(14, 165, 233, 0.08) !important;
+  border-color: rgba(14, 165, 233, 0.25) !important;
+}
+
+.light .bg-cyan-400\/20,
+.light .bg-cyan-500\/20,
+.light .bg-cyan-500\/10 {
+  background-color: #f0f9ff !important;
+  border-color: #bae6fd !important;
+}
+
+/* Light mode borders */
+.light .border-slate-800,
+.light .border-slate-800\/80,
+.light .border-slate-800\/50 {
+  border-color: #e2e8f0 !important;
+}
+
+.light .border-slate-700,
+.light .border-slate-700\/80,
+.light .border-slate-700\/50 {
+  border-color: #cbd5e1 !important;
+}
+
+.light .border-cyan-800,
+.light .border-cyan-900,
+.light .border-cyan-500\/30,
+.light .border-cyan-500\/20 {
+  border-color: #bae6fd !important;
+}
+
+.light .border-blue-800,
+.light .border-blue-500\/30 {
+  border-color: #bfdbfe !important;
+}
+
+.light .border-purple-800,
+.light .border-purple-500\/30 {
+  border-color: #e9d5ff !important;
+}
+
+.light .border-emerald-800,
+.light .border-emerald-500\/30 {
+  border-color: #a7f3d0 !important;
+}
+
+/* Light mode text colors */
+.light .text-white {
+  color: #0f172a !important;
+}
+
+.light .text-slate-100 {
+  color: #0f172a !important;
+}
+
+.light .text-slate-200 {
+  color: #1e293b !important;
+}
+
+.light .text-slate-300 {
+  color: #334155 !important;
+}
+
+.light .text-slate-400 {
+  color: #64748b !important;
+}
+
+.light .text-slate-500 {
+  color: #64748b !important;
+}
+
+/* Accent texts with high WCAG AA contrast in light mode */
+.light .text-cyan-400,
+.light .text-cyan-300,
+.light .text-cyan-200,
+.light .text-cyan-200\/90,
+.light .text-cyan-200\/80,
+.light .text-sky-300,
+.light .text-sky-200 {
+  color: #0369a1 !important;
+}
+.light .text-blue-400,
+.light .text-blue-300,
+.light .text-blue-200 {
+  color: #1d4ed8 !important;
+}
+.light .text-purple-400,
+.light .text-purple-300,
+.light .text-purple-200 {
+  color: #6d28d9 !important;
+}
+.light .text-emerald-400,
+.light .text-emerald-300,
+.light .text-emerald-200 {
+  color: #047857 !important;
+}
+
+/* Keep dark text on bright solid buttons and flagship items */
+.light .text-slate-950,
+.light .fill-slate-950,
+.light button .text-slate-950 {
+  color: #020617 !important;
+}
+
+/* Hero Headline gradient in Light Mode */
+.light .bg-gradient-to-r.from-cyan-300.via-blue-300.to-indigo-200,
+.light .from-cyan-300.via-blue-300.to-indigo-200,
+.light .from-cyan-300.via-sky-200.to-blue-400 {
+  background-image: linear-gradient(to right, #0284c7, #2563eb, #4f46e5) !important;
+}
+
+/* Light mode Glass Panels */
+.light .glass-panel {
+  background: rgba(255, 255, 255, 0.95) !important;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(226, 232, 240, 0.9) !important;
+  box-shadow: 0 10px 30px -5px rgba(15, 23, 42, 0.05), 0 4px 6px -2px rgba(15, 23, 42, 0.02) !important;
+}
+
+.light .glass-panel-water {
+  background: #ffffff !important;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(14, 165, 233, 0.25) !important;
+  box-shadow: 0 10px 30px -5px rgba(15, 23, 42, 0.06), 0 2px 4px -2px rgba(14, 165, 233, 0.04) !important;
+}
+
+.light .glass-card-hover:hover {
+  transform: translateY(-4px);
+  border-color: rgba(2, 132, 199, 0.5) !important;
+  box-shadow: 0 20px 40px -15px rgba(2, 132, 199, 0.15) !important;
+}
+
+/* Phone Simulator mockup frame in Light Mode */
+.light .from-slate-700.via-slate-800.to-slate-900 {
+  background-image: linear-gradient(to bottom, #e2e8f0, #cbd5e1, #94a3b8) !important;
+  border-color: #cbd5e1 !important;
+  box-shadow: 0 25px 50px -12px rgba(15, 23, 42, 0.18) !important;
+}
+
+/* Light mode inputs and form controls */
+.light input,
+.light select,
+.light textarea {
+  background-color: #ffffff !important;
+  border-color: #cbd5e1 !important;
+  color: #0f172a !important;
+}
+.light input::placeholder,
+.light textarea::placeholder {
+  color: #94a3b8 !important;
+}
+
+/* Modals & Dialogs */
+.light .fixed.inset-0.bg-slate-950\/80 {
+  background-color: rgba(15, 23, 42, 0.45) !important;
+}
+
+/* ==========================================================================
+   Asset & Canvas Isolation (Light Mode):
+   Preserve intended dark colors, brilliant typography, and contrast for
+   interactive previews, simulated photos, and rendered social post graphics.
+   ========================================================================== */
+.light .asset-canvas .text-white,
+.asset-canvas .text-white {
+  color: #ffffff !important;
+}
+
+.light .asset-canvas .text-slate-100,
+.asset-canvas .text-slate-100 {
+  color: #f8fafc !important;
+}
+
+.light .asset-canvas .text-slate-200,
+.asset-canvas .text-slate-200 {
+  color: #e2e8f0 !important;
+}
+
+.light .asset-canvas .text-slate-300,
+.asset-canvas .text-slate-300 {
+  color: #cbd5e1 !important;
+}
+
+.light .asset-canvas .text-slate-400,
+.asset-canvas .text-slate-400 {
+  color: #94a3b8 !important;
+}
+
+.light .asset-canvas .text-slate-500,
+.asset-canvas .text-slate-500 {
+  color: #64748b !important;
+}
+
+.light .asset-canvas .text-cyan-300,
+.asset-canvas .text-cyan-300 {
+  color: #67e8f9 !important;
+}
+
+.light .asset-canvas .text-cyan-200,
+.asset-canvas .text-cyan-200 {
+  color: #bae6fd !important;
+}
+
+.light .asset-canvas .text-purple-300,
+.asset-canvas .text-purple-300 {
+  color: #d8b4fe !important;
+}
+
+.light .asset-canvas .text-purple-200,
+.asset-canvas .text-purple-200 {
+  color: #e9d5ff !important;
+}
+
+.light .asset-canvas .text-emerald-300,
+.asset-canvas .text-emerald-300 {
+  color: #6ee7b7 !important;
+}
+
+.light .asset-canvas .text-emerald-200,
+.asset-canvas .text-emerald-200 {
+  color: #a7f3d0 !important;
+}
+
+.light .asset-canvas .bg-slate-950\/40,
+.asset-canvas .bg-slate-950\/40 {
+  background-color: rgba(15, 23, 42, 0.4) !important;
+}
+
+.light .asset-canvas .bg-slate-900\/60,
+.asset-canvas .bg-slate-900\/60 {
+  background-color: rgba(15, 23, 42, 0.6) !important;
+}
+
+.light .asset-canvas .bg-cyan-500\/10,
+.light .asset-canvas .bg-cyan-500\/15,
+.asset-canvas .bg-cyan-500\/10,
+.asset-canvas .bg-cyan-500\/15 {
+  background-color: rgba(6, 182, 212, 0.15) !important;
+}

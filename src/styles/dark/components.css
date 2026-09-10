@@ -1,0 +1,644 @@
+/* ==========================================================================
+   DARK MODE DESIGN SYSTEM (COMPLETE MASTER REBUILD)
+   Visual reference: First Section / Hero Section (#070B14 / #0A101C / #111927)
+   Strictly scoped to .dark, .dark-theme, html.dark, and body.dark.
+   LIGHT MODE IS 100% LOCKED AND UNTOUCHED.
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. GLOBAL DARK CANVAS & TYPOGRAPHY DEFAULTS
+   -------------------------------------------------------------------------- */
+html.dark,
+html.dark-theme,
+html.dark body,
+body.dark,
+body.dark-theme,
+.dark,
+.dark-theme {
+  color-scheme: dark;
+  background-color: #070B14 !important; /* PAGE BACKGROUND: #070B14 */
+  color: #AAB7C9 !important;            /* SECONDARY TEXT / Body: #AAB7C9 */
+}
+
+/* Dark Mode Scrollbars */
+html.dark ::-webkit-scrollbar,
+.dark ::-webkit-scrollbar,
+.dark-theme ::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+html.dark ::-webkit-scrollbar-track,
+.dark ::-webkit-scrollbar-track,
+.dark-theme ::-webkit-scrollbar-track {
+  background: #070B14;
+}
+html.dark ::-webkit-scrollbar-thumb,
+.dark ::-webkit-scrollbar-thumb,
+.dark-theme ::-webkit-scrollbar-thumb {
+  background: #1B293B;
+  border-radius: 4px;
+}
+html.dark ::-webkit-scrollbar-thumb:hover,
+.dark ::-webkit-scrollbar-thumb:hover,
+.dark-theme ::-webkit-scrollbar-thumb:hover {
+  background: #19B9E8;
+}
+
+/* --------------------------------------------------------------------------
+   2. SECTION BACKGROUNDS & TRANSITIONS (DARK NAVY FAMILY ONLY)
+   Page: #070B14 | Primary Section: #0A101C | Secondary Section: #0D1422
+   Ambient Glow: radial-gradient(circle at 50% 0%, rgba(25,185,232,0.08), transparent 45%)
+   -------------------------------------------------------------------------- */
+
+/* Hero Section (Master Reference) */
+.dark #hero-section,
+.dark .hero-section {
+  background-color: #070B14 !important;
+  background-image: radial-gradient(circle at 50% 0%, rgba(25, 185, 232, 0.12), transparent 45%) !important;
+}
+
+/* Products Overview Section (Top 3 Cards Master Reference) */
+.dark #products-overview,
+.dark #products-overview-section {
+  background-color: #070B14 !important;
+}
+
+/* Complete Water Delivery Section (Featured Nabaa) */
+.dark #featured-nabaa-section {
+  background-color: #0A101C !important;
+  background-image: radial-gradient(circle at 50% 0%, rgba(25, 185, 232, 0.08), transparent 45%) !important;
+  border-top: 1px solid #1B293B !important;
+}
+
+/* Admin Web Dashboard Section (Nabaa Platform Overview) */
+.dark #nabaa-platform-overview {
+  background-color: #070B14 !important;
+  background-image: radial-gradient(circle at 50% 0%, rgba(25, 185, 232, 0.07), transparent 45%) !important;
+  border-top: 1px solid #1B293B !important;
+}
+
+/* Customer Mobile App Section */
+.dark #customer-app-section {
+  background-color: #0A101C !important;
+  background-image: radial-gradient(circle at 50% 0%, rgba(25, 185, 232, 0.08), transparent 45%) !important;
+  border-top: 1px solid #1B293B !important;
+}
+
+/* Driver Logistics Section */
+.dark #driver-app-section {
+  background-color: #0D1422 !important;
+  background-image: radial-gradient(circle at 50% 0%, rgba(155, 124, 255, 0.06), transparent 45%) !important;
+  border-top: 1px solid #1B293B !important;
+}
+
+/* Connected Order Journey Section */
+.dark #connected-order-journey {
+  background-color: #0A101C !important;
+  background-image: radial-gradient(circle at 50% 0%, rgba(25, 185, 232, 0.08), transparent 45%) !important;
+  border-top: 1px solid #1B293B !important;
+}
+
+/* Why The Nabaa Tankers Section */
+.dark #why-nabaa-tankers,
+.dark #why-nabaa-section {
+  background-color: #0D1422 !important;
+  background-image: radial-gradient(circle at 50% 0%, rgba(25, 185, 232, 0.07), transparent 45%) !important;
+  border-top: 1px solid #1B293B !important;
+}
+
+/* Other Products Section */
+.dark #other-products,
+.dark #other-products-section {
+  background-color: #0A101C !important;
+  background-image: radial-gradient(circle at 50% 0%, rgba(25, 185, 232, 0.06), transparent 45%) !important;
+  border-top: 1px solid #1B293B !important;
+}
+
+/* Company Section (Built by Neo Tech Era) */
+.dark #company-section {
+  background-color: #0D1422 !important;
+  background-image: radial-gradient(circle at 50% 0%, rgba(25, 185, 232, 0.06), transparent 45%) !important;
+  border-top: 1px solid #1B293B !important;
+}
+
+/* Final CTA Section */
+.dark #final-cta,
+.dark #final-cta-section {
+  background-color: #070B14 !important;
+  background-image: radial-gradient(circle at 50% 0%, rgba(25, 185, 232, 0.12), transparent 45%) !important;
+  border-top: 1px solid #1B293B !important;
+}
+
+/* Detail Pages */
+.dark #nabaa-detail-page,
+.dark #pix-shield-detail-page,
+.dark #price-pulser-detail-page,
+.dark #ecommerce-builder-detail-page {
+  background-color: #070B14 !important;
+}
+
+/* Universal Section Overrides (Preventing Light Mode gray leaks) */
+.dark section.bg-slate-50,
+.dark section.bg-slate-100,
+.dark section.bg-slate-100\/70,
+.dark section.bg-gray-50,
+.dark section.bg-gray-100 {
+  background-color: #0A101C !important;
+  border-top-color: #1B293B !important;
+}
+
+/* --------------------------------------------------------------------------
+   3. CARD SYSTEM (FOLLOWING FIRST SECTION'S MASTER CARD STYLE)
+   Standard Card: #111927 | Border: #263449
+   Elevated Card: #151F2E | Active Glow Border: rgba(25, 185, 232, 0.5)
+   Inner Card / Sub-Panel: #0C1523 | Subtle Border: #1B293B
+   -------------------------------------------------------------------------- */
+
+/* Standard Card Surfaces */
+.dark .bg-slate-900,
+.dark.bg-slate-900,
+.dark .bg-slate-900\/95,
+.dark .bg-slate-900\/90,
+.dark .bg-slate-900\/85,
+.dark .bg-slate-900\/80,
+.dark .bg-white,
+.dark .bg-white\/95,
+.dark .bg-white\/90,
+.dark .bg-white\/85,
+.dark .bg-white\/80,
+.dark .bg-white\/70,
+.dark .dark\:from-\[\#091e33\],
+.dark .dark\:from-\[\#0b243b\],
+.dark .dark\:from-\[\#08182b\],
+.dark .dark\:from-\[\#0d1e45\],
+.dark .dark\:from-\[\#091530\],
+.dark .dark\:from-\[\#191542\],
+.dark .dark\:from-\[\#110e2e\],
+.dark .dark\:from-\[\#071326\]\/90,
+.dark .dark\:from-\[\#0a1e35\],
+.dark .dark\:from-\[\#092233\],
+.dark .dark\:from-\[\#0c2045\],
+.dark .dark\:from-\[\#09262f\],
+.dark .dark\:from-\[\#1b1642\],
+.dark .dark\:from-\[\#2b0f42\],
+.dark .dark\:from-\[\#2d1b09\],
+.dark .dark\:from-\[\#092520\],
+.dark .dark\:from-\[\#0a291b\],
+.dark .dark\:from-\[\#0e223d\],
+.dark .dark\:from-\[\#050b16\],
+.dark .dark\:from-\[\#060b17\] {
+  background-image: none !important;
+  background-color: #111927 !important;
+  border-color: #263449 !important;
+}
+
+/* Elevated Cards & Floating Panels */
+.dark .bg-slate-800,
+.dark .bg-slate-800\/90,
+.dark .bg-slate-800\/80,
+.dark .card-elevated,
+.dark .dark\:from-\[\#0e354f\],
+.dark .dark\:from-\[\#13326d\],
+.dark .dark\:from-\[\#2a2267\] {
+  background-image: none !important;
+  background-color: #151F2E !important;
+  border-color: rgba(25, 185, 232, 0.5) !important;
+  box-shadow: 0 10px 28px -6px rgba(7, 11, 20, 0.7) !important;
+}
+
+/* Hover States on Cards */
+.dark .hover\:bg-slate-800:hover,
+.dark .hover\:bg-slate-900:hover {
+  background-color: #151F2E !important;
+  border-color: #263449 !important;
+}
+
+/* Inner Cards, Micro-Mockups, Recessed Panels */
+.dark .bg-slate-50,
+.dark .bg-slate-100,
+.dark .bg-slate-100\/80,
+.dark .bg-slate-100\/70,
+.dark .bg-slate-200\/50,
+.dark .dark\:bg-\[\#060e1a\],
+.dark .dark\:bg-\[\#060d1d\],
+.dark .dark\:bg-\[\#0a081a\],
+.dark .dark\:bg-\[\#050c18\],
+.dark .dark\:bg-\[\#071324\],
+.dark .dark\:bg-\[\#081329\],
+.dark .dark\:bg-\[\#140b24\],
+.dark .dark\:bg-\[\#05141f\],
+.dark .dark\:bg-\[\#061025\],
+.dark .dark\:bg-\[\#04141a\],
+.dark .dark\:bg-\[\#0e0c24\],
+.dark .dark\:bg-\[\#170e04\],
+.dark .dark\:bg-\[\#05150d\],
+.dark .dark\:bg-\[\#071322\],
+.dark .inner-card {
+  background-image: none !important;
+  background-color: #0C1523 !important;
+  border-color: #1B293B !important;
+}
+
+/* --------------------------------------------------------------------------
+   4. GLASSMORPHISM (CONSISTENT WITH FIRST SECTION)
+   background: rgba(17, 25, 39, 0.72)
+   border: #263449 (or rgba(255, 255, 255, 0.08))
+   backdrop-filter: blur(16px)
+   -------------------------------------------------------------------------- */
+.dark .glass-panel {
+  background: rgba(17, 25, 39, 0.72) !important;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid #263449 !important;
+  box-shadow: 0 10px 30px -10px rgba(7, 11, 20, 0.6) !important;
+}
+
+.dark .glass-panel-water {
+  background: linear-gradient(135deg, rgba(13, 20, 34, 0.95) 0%, rgba(17, 25, 39, 0.9) 100%) !important;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(25, 185, 232, 0.35) !important;
+  box-shadow: 0 12px 36px -10px rgba(7, 11, 20, 0.7) !important;
+}
+
+.dark .glass-card-hover:hover {
+  transform: translateY(-4px);
+  border-color: #19B9E8 !important;
+  box-shadow: 0 20px 40px -15px rgba(25, 185, 232, 0.15) !important;
+}
+
+/* --------------------------------------------------------------------------
+   5. TYPOGRAPHY & TEXT CONTRAST
+   H1/H2: #F5F9FF | H3: #E8F0FA | Body: #AAB7C9 | Muted: #718096
+   -------------------------------------------------------------------------- */
+.dark h1,
+.dark h2,
+.dark .font-display,
+.dark .text-slate-900,
+.dark .text-white {
+  color: #F5F9FF !important;
+}
+
+.dark h3,
+.dark h4,
+.dark .text-slate-100 {
+  color: #E8F0FA !important;
+}
+
+.dark p,
+.dark .text-slate-600,
+.dark .text-slate-700,
+.dark .text-slate-200,
+.dark .text-slate-300 {
+  color: #AAB7C9 !important;
+}
+
+.dark .text-slate-400,
+.dark .text-slate-500 {
+  color: #718096 !important;
+}
+
+/* Gradient Headings */
+.dark .from-cyan-600.via-sky-600.to-blue-600,
+.dark .from-cyan-300.via-sky-200.to-blue-400 {
+  background-image: linear-gradient(135deg, #42D8EA 0%, #19B9E8 100%) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+}
+
+/* --------------------------------------------------------------------------
+   6. BORDERS & DIVIDERS
+   Standard: #263449 | Subtle: #1B293B
+   -------------------------------------------------------------------------- */
+.dark .border,
+.dark .border-slate-800,
+.dark .border-slate-700,
+.dark .border-slate-600,
+.dark .border-slate-200,
+.dark .border-slate-300 {
+  border-color: #263449 !important;
+}
+
+.dark .border-t,
+.dark .border-b,
+.dark .border-slate-800\/80,
+.dark .border-slate-700\/80,
+.dark .border-slate-200\/80,
+.dark .divide-slate-800,
+.dark .divide-slate-700,
+.dark .divide-slate-200 {
+  border-color: #1B293B !important;
+}
+
+/* --------------------------------------------------------------------------
+   7. BRAND ACCENTS & STATUS COLORS
+   Primary Brand: #19B9E8 | Hover: #29C7F4 | Cyan Highlight: #42D8EA
+   Success: #20C997 | Purple: #9B7CFF | Warning: #F5B942 | Error: #FF6B7A
+   -------------------------------------------------------------------------- */
+.dark .text-cyan-600,
+.dark .text-cyan-500,
+.dark .text-cyan-400,
+.dark .text-cyan-300,
+.dark .text-cyan-200,
+.dark .text-sky-400,
+.dark .text-sky-300 {
+  color: #42D8EA !important;
+}
+
+.dark .text-blue-600,
+.dark .text-blue-500,
+.dark .text-blue-400,
+.dark .text-blue-300 {
+  color: #19B9E8 !important;
+}
+
+.dark .text-emerald-600,
+.dark .text-emerald-500,
+.dark .text-emerald-400,
+.dark .text-emerald-300 {
+  color: #20C997 !important;
+}
+
+.dark .text-purple-600,
+.dark .text-purple-500,
+.dark .text-purple-400,
+.dark .text-purple-300,
+.dark .text-indigo-600,
+.dark .text-indigo-400,
+.dark .text-indigo-300 {
+  color: #9B7CFF !important;
+}
+
+.dark .text-amber-500,
+.dark .text-amber-400,
+.dark .text-amber-300 {
+  color: #F5B942 !important;
+}
+
+.dark .text-red-500,
+.dark .text-red-400 {
+  color: #FF6B7A !important;
+}
+
+/* --------------------------------------------------------------------------
+   8. BUTTONS
+   Primary: #19B9E8 | Text: #061018 | Hover: #29C7F4
+   Secondary: Transparent + #263449 border + #F5F9FF text
+   -------------------------------------------------------------------------- */
+.dark button.bg-cyan-500,
+.dark a.bg-cyan-500,
+.dark .btn-primary,
+.dark #final-cta-btn,
+.dark #hero-primary-cta,
+.dark #cta-explore-nabaa,
+.dark #final-cta-nabaa-btn {
+  background-image: none !important;
+  background-color: #19B9E8 !important;
+  color: #061018 !important;
+  border-color: transparent !important;
+  font-weight: 700 !important;
+}
+
+.dark button.bg-cyan-500:hover,
+.dark a.bg-cyan-500:hover,
+.dark .btn-primary:hover,
+.dark #final-cta-btn:hover,
+.dark #hero-primary-cta:hover,
+.dark #cta-explore-nabaa:hover,
+.dark #final-cta-nabaa-btn:hover {
+  background-color: #29C7F4 !important;
+}
+
+/* Secondary Buttons */
+.dark .btn-secondary,
+.dark #hero-secondary-cta,
+.dark #final-cta-products-btn,
+.dark button.border-slate-300,
+.dark button.border-slate-700 {
+  background-color: transparent !important;
+  border: 1px solid #263449 !important;
+  color: #F5F9FF !important;
+}
+
+.dark .btn-secondary:hover,
+.dark #hero-secondary-cta:hover,
+.dark #final-cta-products-btn:hover,
+.dark button.border-slate-300:hover,
+.dark button.border-slate-700:hover {
+  border-color: #19B9E8 !important;
+  color: #42D8EA !important;
+  background-color: #151F2E !important;
+}
+
+/* --------------------------------------------------------------------------
+   9. BADGES & CHIPS (SUBTLE TINTED BACKGROUNDS, NEVER FLOODED)
+   Blue: rgba(25, 185, 232, 0.12) | Border: rgba(25, 185, 232, 0.3)
+   Green: rgba(32, 201, 151, 0.12) | Border: rgba(32, 201, 151, 0.3)
+   Purple: rgba(155, 124, 255, 0.12) | Border: rgba(155, 124, 255, 0.3)
+   -------------------------------------------------------------------------- */
+/* Blue/Cyan Badges */
+.dark .bg-cyan-50,
+.dark .bg-cyan-100,
+.dark .bg-cyan-950,
+.dark .bg-cyan-950\/80,
+.dark .bg-cyan-500\/10,
+.dark .bg-cyan-500\/15,
+.dark .bg-cyan-500\/20,
+.dark .bg-blue-50,
+.dark .bg-blue-100,
+.dark .bg-blue-950,
+.dark .bg-blue-950\/80,
+.dark .badge-blue {
+  background-color: rgba(25, 185, 232, 0.12) !important;
+  border-color: rgba(25, 185, 232, 0.30) !important;
+  color: #42D8EA !important;
+}
+
+/* Green Badges */
+.dark .bg-emerald-50,
+.dark .bg-emerald-100,
+.dark .bg-emerald-950,
+.dark .bg-emerald-950\/80,
+.dark .bg-emerald-500\/10,
+.dark .bg-emerald-500\/15,
+.dark .bg-emerald-500\/20,
+.dark .badge-green {
+  background-color: rgba(32, 201, 151, 0.12) !important;
+  border-color: rgba(32, 201, 151, 0.30) !important;
+  color: #20C997 !important;
+}
+
+/* Purple Badges */
+.dark .bg-purple-50,
+.dark .bg-purple-100,
+.dark .bg-purple-950,
+.dark .bg-purple-950\/80,
+.dark .bg-purple-500\/10,
+.dark .bg-purple-500\/15,
+.dark .bg-purple-500\/20,
+.dark .bg-indigo-50,
+.dark .bg-indigo-950,
+.dark .badge-purple {
+  background-color: rgba(155, 124, 255, 0.12) !important;
+  border-color: rgba(155, 124, 255, 0.30) !important;
+  color: #9B7CFF !important;
+}
+
+/* Amber/Warning Badges */
+.dark .bg-amber-50,
+.dark .bg-amber-100,
+.dark .bg-amber-950,
+.dark .bg-amber-950\/80,
+.dark .badge-warning {
+  background-color: rgba(245, 185, 66, 0.12) !important;
+  border-color: rgba(245, 185, 66, 0.30) !important;
+  color: #F5B942 !important;
+}
+
+/* --------------------------------------------------------------------------
+   10. NAVIGATION (#main-navigation)
+   Background: #070B14 | Border: #1B293B | Text: #AAB7C9 | Active: #F5F9FF
+   -------------------------------------------------------------------------- */
+.dark #main-navigation {
+  background-color: #070B14 !important;
+  border-bottom: 1px solid #1B293B !important;
+}
+
+.dark #main-navigation nav {
+  background-color: #0A101C !important;
+  border-color: #1B293B !important;
+}
+
+.dark #main-navigation a,
+.dark #main-navigation button {
+  color: #AAB7C9 !important;
+}
+
+.dark #main-navigation a:hover,
+.dark #main-navigation button:hover {
+  color: #F5F9FF !important;
+}
+
+.dark #main-navigation a.text-cyan-700,
+.dark #main-navigation a.text-cyan-300,
+.dark #main-navigation a.bg-cyan-500\/10 {
+  color: #42D8EA !important;
+  background-color: rgba(25, 185, 232, 0.12) !important;
+  border-color: rgba(25, 185, 232, 0.3) !important;
+}
+
+/* --------------------------------------------------------------------------
+   11. FOOTER (#main-footer)
+   Background: #070B14 | Border-top: #1B293B | Headings: #F5F9FF | Links: #AAB7C9
+   -------------------------------------------------------------------------- */
+.dark #main-footer {
+  background-color: #070B14 !important;
+  border-top: 1px solid #1B293B !important;
+  color: #718096 !important;
+}
+
+.dark #main-footer h4 {
+  color: #F5F9FF !important;
+}
+
+.dark #main-footer button,
+.dark #main-footer a {
+  color: #AAB7C9 !important;
+}
+
+.dark #main-footer button:hover,
+.dark #main-footer a:hover {
+  color: #19B9E8 !important;
+}
+
+/* --------------------------------------------------------------------------
+   12. FORM CONTROLS & INPUTS (SURFACE: #0C1523)
+   -------------------------------------------------------------------------- */
+.dark input,
+.dark select,
+.dark textarea {
+  background-color: #0C1523 !important;
+  border: 1px solid #263449 !important;
+  color: #F5F9FF !important;
+}
+
+.dark input::placeholder,
+.dark textarea::placeholder {
+  color: #718096 !important;
+}
+
+.dark input:focus,
+.dark select:focus,
+.dark textarea:focus {
+  border-color: #19B9E8 !important;
+  box-shadow: 0 0 0 1px #19B9E8 !important;
+  outline: none !important;
+}
+
+/* --------------------------------------------------------------------------
+   13. FLAGSHIP & PRODUCT CARDS (THE NABAA TANKERS & PORTFOLIO)
+   -------------------------------------------------------------------------- */
+/* Flagship Card in Products Overview */
+.dark .nabaa-flagship-card {
+  background-color: #111927 !important;
+  border: 2px solid rgba(25, 185, 232, 0.4) !important;
+  box-shadow: 0 14px 40px -10px rgba(7, 11, 20, 0.8) !important;
+}
+
+/* Pix Shield Card */
+.dark .pix-shield-card {
+  background-color: #111927 !important;
+  border: 1px solid #263449 !important;
+}
+.dark .pix-shield-card:hover {
+  border-color: rgba(25, 185, 232, 0.5) !important;
+}
+
+/* Price Pulser Card */
+.dark .price-pulser-card {
+  background-color: #111927 !important;
+  border: 1px solid #263449 !important;
+}
+.dark .price-pulser-card:hover {
+  border-color: rgba(155, 124, 255, 0.5) !important;
+}
+
+/* Ecommerce Builder Card */
+.dark .ecommerce-builder-card {
+  background-color: #111927 !important;
+  border: 1px solid #263449 !important;
+}
+.dark .ecommerce-builder-card:hover {
+  border-color: rgba(32, 201, 151, 0.5) !important;
+}
+
+/* --------------------------------------------------------------------------
+   14. SPECIFIC SECTIONS REFINEMENTS
+   -------------------------------------------------------------------------- */
+
+/* Complete Water Delivery (FeaturedNabaa) Interactive Tabs */
+.dark #featured-nabaa-section .bg-white\/90,
+.dark #featured-nabaa-section .dark\:bg-slate-900\/90 {
+  background-color: #0C1523 !important;
+  border-color: #1B293B !important;
+}
+
+/* Driver Logistics Section (#driver-app-section)
+   Keep purple as an ACCENT on icons/badges, NOT the whole section background! */
+.dark #driver-app-section .rounded-3xl {
+  background-color: #111927 !important;
+  border-color: #263449 !important;
+}
+
+.dark #driver-app-section .inner-card,
+.dark #driver-app-section .bg-slate-50,
+.dark #driver-app-section .bg-slate-100 {
+  background-color: #0C1523 !important;
+  border-color: #1B293B !important;
+}
+
+/* Modals & Dialogs */
+.dark .fixed.inset-0.bg-slate-950\/80,
+.dark .fixed.inset-0.bg-black\/60 {
+  background-color: rgba(7, 11, 20, 0.82) !important;
+}
