@@ -5,6 +5,11 @@
 
 import React, { useState, useEffect } from 'react';
 import { PageView } from './types';
+import { 
+  matchPathToView, 
+  getViewCanonicalPath, 
+  updateDocumentSEO 
+} from './utils/seoRouter';
 import { Navbar } from './components/Navbar';
 import { Hero } from './components/Hero';
 import { ProductsOverview } from './components/ProductsOverview';
@@ -26,18 +31,44 @@ import { ContactModal } from './components/ContactModal';
 import { ThemeProvider, useTheme } from './styles/theme/ThemeProvider';
 
 function AppContent() {
-  const [currentView, setCurrentView] = useState<PageView>('home');
+  // Initialize view based on current browser URL path (supports deep-linking)
+  const [currentView, setCurrentView] = useState<PageView>(() => {
+    if (typeof window !== 'undefined') {
+      return matchPathToView(window.location.pathname);
+    }
+    return 'home';
+  });
   const [isContactOpen, setIsContactOpen] = useState<boolean>(false);
   const [contactProduct, setContactProduct] = useState<string>('The Nabaa Tankers (Flagship)');
   const { theme, toggleTheme } = useTheme();
 
-  // Scroll to top upon view change
+  // Listen for browser Back & Forward button events (popstate)
   useEffect(() => {
+    const handlePopState = () => {
+      const matched = matchPathToView(window.location.pathname);
+      setCurrentView(matched);
+    };
+
+    window.addEventListener('popstate', handlePopState);
+    return () => window.removeEventListener('popstate', handlePopState);
+  }, []);
+
+  // Synchronize dynamic SEO metadata, canonical link, and Schema.org JSON-LD whenever view changes
+  useEffect(() => {
+    updateDocumentSEO(currentView);
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }, [currentView]);
 
-  const handleNavigate = (view: PageView) => {
+  // Navigate with browser history pushState so every product has a distinct SEO/AEO URL
+  const handleNavigate = (view: PageView, pushHistory: boolean = true) => {
     setCurrentView(view);
+
+    if (pushHistory && typeof window !== 'undefined') {
+      const targetPath = getViewCanonicalPath(view);
+      if (window.location.pathname !== targetPath) {
+        window.history.pushState({ view }, '', targetPath);
+      }
+    }
   };
 
   const handleOpenContact = (productName?: string) => {
@@ -49,7 +80,7 @@ function AppContent() {
 
   const handleExploreProducts = () => {
     if (currentView !== 'home') {
-      setCurrentView('home');
+      handleNavigate('home');
       setTimeout(() => {
         document.getElementById('products-overview')?.scrollIntoView({ behavior: 'smooth' });
       }, 100);

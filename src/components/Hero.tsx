@@ -13,6 +13,7 @@ import {
   Truck
 } from 'lucide-react';
 import { PageView } from '../types';
+import { getViewCanonicalPath } from '../utils/seoRouter';
 
 interface HeroProps {
   onNavigate?: (view: PageView) => void;
@@ -86,9 +87,13 @@ export const Hero: React.FC<HeroProps> = ({ onNavigate, onExploreProducts, onExp
           <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4">
             
             {/* Primary Flagship CTA */}
-            <button
+            <a
               id="hero-nabaa-cta-btn"
-              onClick={() => navigateTo('nabaa-detail')}
+              href={getViewCanonicalPath('nabaa-detail')}
+              onClick={(e) => {
+                e.preventDefault();
+                navigateTo('nabaa-detail');
+              }}
               className="w-full sm:w-auto px-7 py-3.5 rounded-xl bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-bold text-base shadow-lg shadow-cyan-500/20 hover:shadow-cyan-400/30 transition-all flex items-center justify-center gap-3 group active:scale-95"
             >
               <Droplets className="w-5 h-5 text-slate-950 fill-slate-950/20" />
@@ -97,17 +102,23 @@ export const Hero: React.FC<HeroProps> = ({ onNavigate, onExploreProducts, onExp
                 Flagship
               </span>
               <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-            </button>
+            </a>
 
             {/* Explore Products Button */}
-            <button
+            <a
               id="hero-explore-products-btn"
-              onClick={onExploreProducts}
+              href="/#products"
+              onClick={(e) => {
+                e.preventDefault();
+                if (onExploreProducts) {
+                  onExploreProducts();
+                }
+              }}
               className="w-full sm:w-auto px-7 py-3.5 rounded-xl bg-slate-900/90 hover:bg-slate-800/90 text-slate-100 font-semibold text-base border border-slate-700/80 hover:border-slate-600 transition-all flex items-center justify-center gap-2.5 backdrop-blur-md active:scale-95"
             >
               <Layers className="w-4 h-4 text-cyan-400" />
               <span>Explore Products</span>
-            </button>
+            </a>
           </div>
         </div>
 

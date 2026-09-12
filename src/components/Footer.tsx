@@ -11,6 +11,7 @@ import {
   Moon
 } from 'lucide-react';
 import { PageView } from '../types';
+import { getViewCanonicalPath } from '../utils/seoRouter';
 
 interface FooterProps {
   onNavigate?: (view: PageView) => void;
@@ -72,37 +73,53 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenContact, theme
             </h4>
             <ul className="space-y-2 text-sm">
               <li>
-                <button 
-                  onClick={() => handleNav('home')} 
+                <a 
+                  href={getViewCanonicalPath('home')}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    handleNav('home');
+                  }}
                   className="hover:text-cyan-400 transition-colors"
                 >
                   Home
-                </button>
+                </a>
               </li>
               <li>
-                <button 
-                  onClick={() => handleNav('home', 'products-overview')} 
+                <a 
+                  href="/#products"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    handleNav('home', 'products-overview');
+                  }}
                   className="hover:text-cyan-400 transition-colors"
                 >
                   Products
-                </button>
+                </a>
               </li>
               <li>
-                <button 
-                  onClick={() => handleNav('nabaa-detail')} 
+                <a 
+                  href={getViewCanonicalPath('nabaa-detail')}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    handleNav('nabaa-detail');
+                  }}
                   className="text-cyan-300 hover:text-cyan-200 font-semibold flex items-center gap-1.5 transition-colors"
                 >
                   <Droplets className="w-3.5 h-3.5 text-cyan-400" />
                   The Nabaa (Flagship)
-                </button>
+                </a>
               </li>
               <li>
-                <button 
-                  onClick={() => handleNav('home', 'company-section')} 
+                <a 
+                  href="/#company"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    handleNav('home', 'company-section');
+                  }}
                   className="hover:text-cyan-400 transition-colors"
                 >
                   About
-                </button>
+                </a>
               </li>
               <li>
                 <button 
@@ -122,8 +139,12 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenContact, theme
             </h4>
             <ul className="space-y-2 text-sm">
               <li>
-                <button 
-                  onClick={() => handleNav('nabaa-detail')} 
+                <a 
+                  href={getViewCanonicalPath('nabaa-detail')}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    handleNav('nabaa-detail');
+                  }}
                   className="hover:text-cyan-400 transition-colors flex items-center justify-between w-full text-left group"
                 >
                   <span className="flex items-center gap-2">
@@ -133,34 +154,46 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenContact, theme
                   <span className="text-[10px] bg-cyan-950 text-cyan-300 px-2 py-0.5 rounded border border-cyan-800">
                     Flagship
                   </span>
-                </button>
+                </a>
               </li>
               <li>
-                <button 
-                  onClick={() => handleNav('pix-shield-detail')} 
+                <a 
+                  href={getViewCanonicalPath('pix-shield-detail')}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    handleNav('pix-shield-detail');
+                  }}
                   className="hover:text-cyan-400 transition-colors flex items-center gap-2"
                 >
                   <ShieldCheck className="w-4 h-4 text-blue-400" />
                   Pix Shield
-                </button>
+                </a>
               </li>
               <li>
-                <button 
-                  onClick={() => handleNav('price-pulser-detail')} 
+                <a 
+                  href={getViewCanonicalPath('price-pulser-detail')}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    handleNav('price-pulser-detail');
+                  }}
                   className="hover:text-purple-400 transition-colors flex items-center gap-2"
                 >
                   <Zap className="w-4 h-4 text-purple-400" />
                   Price Post Pulser
-                </button>
+                </a>
               </li>
               <li>
-                <button 
-                  onClick={() => handleNav('ecommerce-builder-detail')} 
+                <a 
+                  href={getViewCanonicalPath('ecommerce-builder-detail')}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    handleNav('ecommerce-builder-detail');
+                  }}
                   className="hover:text-emerald-400 transition-colors flex items-center gap-2"
                 >
                   <ShoppingBag className="w-4 h-4 text-emerald-400" />
                   E-Commerce Post Builder
-                </button>
+                </a>
               </li>
             </ul>
           </div>

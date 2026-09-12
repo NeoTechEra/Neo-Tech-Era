@@ -11,6 +11,7 @@ import {
   Layers
 } from 'lucide-react';
 import { PageView } from '../types';
+import { getViewCanonicalPath } from '../utils/seoRouter';
 
 interface ProductsOverviewProps {
   onNavigate?: (view: PageView) => void;
@@ -112,15 +113,19 @@ export const ProductsOverview: React.FC<ProductsOverviewProps> = ({ onNavigate, 
 
                     {/* Action Button */}
                     <div className="pt-4 flex flex-wrap items-center gap-4">
-                      <button
+                      <a
                         id="overview-explore-nabaa-btn"
-                        onClick={() => handleNav('nabaa-detail')}
+                        href={getViewCanonicalPath('nabaa-detail')}
+                        onClick={(e) => {
+                          e.preventDefault();
+                          handleNav('nabaa-detail');
+                        }}
                         className="px-8 py-3.5 rounded-xl bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-bold text-sm sm:text-base shadow-lg shadow-cyan-500/20 transition-all flex items-center gap-2.5 group active:scale-95"
                       >
                         <Droplets className="w-5 h-5 text-slate-950 fill-slate-950" />
                         <span>Explore The Nabaa</span>
                         <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                      </button>
+                      </a>
 
                       <span className="text-xs text-slate-500 dark:text-slate-300 font-mono">
                         Includes Admin, Customer & Driver apps
@@ -248,14 +253,18 @@ export const ProductsOverview: React.FC<ProductsOverviewProps> = ({ onNavigate, 
               </div>
 
               <div className="mt-6 pt-4">
-                <button
+                <a
                   id="overview-pix-shield-btn"
-                  onClick={() => handleNav('pix-shield-detail')}
+                  href={getViewCanonicalPath('pix-shield-detail')}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    handleNav('pix-shield-detail');
+                  }}
                   className="w-full py-2.5 px-4 rounded-xl bg-slate-900 hover:bg-slate-800 text-slate-100 font-semibold text-xs sm:text-sm border border-slate-700/80 dark:border-cyan-500/40 hover:dark:border-cyan-400 dark:bg-[#071727] dark:hover:bg-[#0b243d] transition-all flex items-center justify-center gap-2 group-hover:text-cyan-300"
                 >
                   <span>View All Details</span>
                   <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
-                </button>
+                </a>
               </div>
             </div>
           </div>
@@ -309,14 +318,18 @@ export const ProductsOverview: React.FC<ProductsOverviewProps> = ({ onNavigate, 
               </div>
 
               <div className="mt-6 pt-4">
-                <button
+                <a
                   id="overview-price-pulser-btn"
-                  onClick={() => handleNav('price-pulser-detail')}
+                  href={getViewCanonicalPath('price-pulser-detail')}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    handleNav('price-pulser-detail');
+                  }}
                   className="w-full py-2.5 px-4 rounded-xl bg-slate-900 hover:bg-slate-800 text-slate-100 font-semibold text-xs sm:text-sm border border-slate-700/80 dark:border-purple-500/40 hover:dark:border-purple-400 dark:bg-[#1a082b] dark:hover:bg-[#280d42] transition-all flex items-center justify-center gap-2 group-hover:text-purple-300"
                 >
                   <span>View All Details</span>
                   <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
-                </button>
+                </a>
               </div>
             </div>
           </div>
@@ -370,14 +383,18 @@ export const ProductsOverview: React.FC<ProductsOverviewProps> = ({ onNavigate, 
               </div>
 
               <div className="mt-6 pt-4">
-                <button
+                <a
                   id="overview-ecommerce-builder-btn"
-                  onClick={() => handleNav('ecommerce-builder-detail')}
+                  href={getViewCanonicalPath('ecommerce-builder-detail')}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    handleNav('ecommerce-builder-detail');
+                  }}
                   className="w-full py-2.5 px-4 rounded-xl bg-slate-900 hover:bg-slate-800 text-slate-100 font-semibold text-xs sm:text-sm border border-slate-700/80 dark:border-emerald-500/40 hover:dark:border-emerald-400 dark:bg-[#071c12] dark:hover:bg-[#0d2d1d] transition-all flex items-center justify-center gap-2 group-hover:text-emerald-300"
                 >
                   <span>View All Details</span>
                   <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
-                </button>
+                </a>
               </div>
             </div>
           </div>

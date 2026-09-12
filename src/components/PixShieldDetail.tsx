@@ -14,6 +14,7 @@ import {
   FileCheck
 } from 'lucide-react';
 import { PageView } from '../types';
+import { Breadcrumb } from './Breadcrumb';
 
 interface PixShieldDetailProps {
   onBack: () => void;
@@ -31,14 +32,21 @@ export const PixShieldDetail: React.FC<PixShieldDetailProps> = ({ onBack, onOpen
     <div className="min-h-screen pt-28 pb-20 bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
-        {/* Top Back Navigation */}
-        <button
-          onClick={onBack}
-          className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-white dark:bg-slate-900 hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white border border-slate-200 dark:border-slate-800 shadow-sm transition-all text-xs font-semibold mb-8 group"
-        >
-          <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" />
-          Back to Overview
-        </button>
+        {/* Breadcrumbs & Back Navigation */}
+        <div className="flex flex-wrap items-center justify-between gap-4 mb-8">
+          <Breadcrumb currentView="pix-shield-detail" onNavigateHome={onBack} />
+          <a
+            href="/"
+            onClick={(e) => {
+              e.preventDefault();
+              onBack();
+            }}
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-white dark:bg-slate-900 hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white border border-slate-200 dark:border-slate-800 shadow-sm transition-all text-xs font-semibold group"
+          >
+            <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" />
+            Back to Overview
+          </a>
+        </div>
 
         {/* Hero Section */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center mb-16">

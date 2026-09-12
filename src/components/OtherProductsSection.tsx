@@ -8,6 +8,7 @@ import {
   Check
 } from 'lucide-react';
 import { PageView } from '../types';
+import { getViewCanonicalPath } from '../utils/seoRouter';
 
 interface OtherProductsProps {
   onNavigate?: (view: PageView) => void;
@@ -85,14 +86,18 @@ export const OtherProductsSection: React.FC<OtherProductsProps> = ({ onNavigate 
             </div>
 
             <div className="mt-8 pt-4">
-              <button
+              <a
                 id="other-products-pix-shield-btn"
-                onClick={() => handleNav('pix-shield-detail')}
+                href={getViewCanonicalPath('pix-shield-detail')}
+                onClick={(e) => {
+                  e.preventDefault();
+                  handleNav('pix-shield-detail');
+                }}
                 className="w-full py-3 px-4 rounded-xl bg-white dark:bg-cyan-500/20 hover:bg-slate-100 dark:hover:bg-cyan-500/30 text-slate-800 dark:text-cyan-200 font-bold text-sm border border-slate-200 dark:border-cyan-500/40 hover:border-cyan-500/50 transition-all flex items-center justify-center gap-2 group-hover:text-cyan-600 dark:group-hover:text-cyan-200 shadow-sm active:scale-95"
               >
                 <span>View All Details</span>
                 <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-              </button>
+              </a>
             </div>
           </div>
 
@@ -136,14 +141,18 @@ export const OtherProductsSection: React.FC<OtherProductsProps> = ({ onNavigate 
             </div>
 
             <div className="mt-8 pt-4">
-              <button
+              <a
                 id="other-products-price-pulser-btn"
-                onClick={() => handleNav('price-pulser-detail')}
+                href={getViewCanonicalPath('price-pulser-detail')}
+                onClick={(e) => {
+                  e.preventDefault();
+                  handleNav('price-pulser-detail');
+                }}
                 className="w-full py-3 px-4 rounded-xl bg-white dark:bg-purple-500/20 hover:bg-slate-100 dark:hover:bg-purple-500/30 text-slate-800 dark:text-purple-200 font-bold text-sm border border-slate-200 dark:border-purple-500/40 hover:border-purple-500/50 transition-all flex items-center justify-center gap-2 group-hover:text-purple-600 dark:group-hover:text-purple-200 shadow-sm active:scale-95"
               >
                 <span>View All Details</span>
                 <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-              </button>
+              </a>
             </div>
           </div>
 
@@ -187,14 +196,18 @@ export const OtherProductsSection: React.FC<OtherProductsProps> = ({ onNavigate 
             </div>
 
             <div className="mt-8 pt-4">
-              <button
+              <a
                 id="other-products-ecommerce-builder-btn"
-                onClick={() => handleNav('ecommerce-builder-detail')}
+                href={getViewCanonicalPath('ecommerce-builder-detail')}
+                onClick={(e) => {
+                  e.preventDefault();
+                  handleNav('ecommerce-builder-detail');
+                }}
                 className="w-full py-3 px-4 rounded-xl bg-white dark:bg-emerald-500/20 hover:bg-slate-100 dark:hover:bg-emerald-500/30 text-slate-800 dark:text-emerald-200 font-bold text-sm border border-slate-200 dark:border-emerald-500/40 hover:border-emerald-500/50 transition-all flex items-center justify-center gap-2 group-hover:text-emerald-600 dark:group-hover:text-emerald-200 shadow-sm active:scale-95"
               >
                 <span>View All Details</span>
                 <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-              </button>
+              </a>
             </div>
           </div>
 

@@ -7,12 +7,13 @@ import {
   ChevronRight, 
   ShieldCheck, 
   Zap, 
-  ShoppingBag,
+  ShoppingBag, 
   ArrowUpRight,
   Sun,
   Moon
 } from 'lucide-react';
 import { PageView } from '../types';
+import { getViewCanonicalPath } from '../utils/seoRouter';
 
 interface NavbarProps {
   currentView: PageView;
@@ -76,9 +77,13 @@ export const Navbar: React.FC<NavbarProps> = ({
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
         
         {/* Brand Logo */}
-        <button 
+        <a 
           id="nav-logo-btn"
-          onClick={() => handleNavClick('home')}
+          href="/"
+          onClick={(e) => {
+            e.preventDefault();
+            handleNavClick('home');
+          }}
           className="flex items-center gap-3 group text-left focus:outline-none"
         >
           <div className="relative w-10 h-10 rounded-xl bg-gradient-to-br from-cyan-500 via-blue-600 to-indigo-800 p-[1px] shadow-lg shadow-cyan-500/20 group-hover:shadow-cyan-500/40 transition-shadow">
@@ -99,13 +104,17 @@ export const Navbar: React.FC<NavbarProps> = ({
               Practical Software Solutions
             </p>
           </div>
-        </button>
+        </a>
 
         {/* Desktop Navigation Links */}
         <nav id="desktop-nav-menu" className="hidden md:flex items-center gap-1 bg-slate-100/90 dark:bg-slate-900/60 backdrop-blur-md px-3 py-1.5 rounded-full border border-slate-200 dark:border-slate-800/80 shadow-inner">
-          <button
+          <a
             id="nav-link-home"
-            onClick={() => handleNavClick('home')}
+            href="/"
+            onClick={(e) => {
+              e.preventDefault();
+              handleNavClick('home');
+            }}
             className={`px-4 py-2 rounded-full text-sm font-medium transition-all ${
               currentView === 'home'
                 ? 'bg-cyan-100 dark:bg-blue-600/20 text-cyan-900 dark:text-cyan-300 shadow-sm border border-cyan-300 dark:border-cyan-500/30 font-semibold'
@@ -113,7 +122,7 @@ export const Navbar: React.FC<NavbarProps> = ({
             }`}
           >
             Home
-          </button>
+          </a>
 
           {/* Products Dropdown */}
           <div className="relative">
@@ -137,9 +146,13 @@ export const Navbar: React.FC<NavbarProps> = ({
                 </div>
                 
                 {/* The Nabaa - Flagship Item */}
-                <button
+                <a
                   id="dropdown-item-nabaa"
-                  onClick={() => handleNavClick('nabaa-detail')}
+                  href={getViewCanonicalPath('nabaa-detail')}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    handleNavClick('nabaa-detail');
+                  }}
                   className="w-full text-left p-2.5 rounded-xl bg-cyan-50 dark:bg-cyan-950/40 hover:bg-cyan-100 dark:hover:bg-cyan-900/50 border border-cyan-200 dark:border-cyan-500/30 transition-all flex items-start gap-3 group"
                 >
                   <div className="p-2 rounded-lg bg-cyan-500/20 text-cyan-700 dark:text-cyan-300 group-hover:bg-cyan-500/30">
@@ -152,11 +165,15 @@ export const Navbar: React.FC<NavbarProps> = ({
                     </div>
                     <p className="text-xs text-slate-500 dark:text-slate-400">Complete water delivery ecosystem</p>
                   </div>
-                </button>
+                </a>
 
-                <button
+                <a
                   id="dropdown-item-pixshield"
-                  onClick={() => handleNavClick('pix-shield-detail')}
+                  href={getViewCanonicalPath('pix-shield-detail')}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    handleNavClick('pix-shield-detail');
+                  }}
                   className="w-full text-left p-2 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800/80 transition-all flex items-start gap-3 group"
                 >
                   <div className="p-2 rounded-lg bg-blue-500/10 text-blue-600 dark:text-blue-400 group-hover:bg-blue-500/20">
@@ -166,11 +183,15 @@ export const Navbar: React.FC<NavbarProps> = ({
                     <span className="text-sm font-medium text-slate-800 dark:text-slate-200 group-hover:text-slate-950 dark:group-hover:text-white block">Pix Shield</span>
                     <p className="text-xs text-slate-500 dark:text-slate-400">Smart image protection & watermark</p>
                   </div>
-                </button>
+                </a>
 
-                <button
+                <a
                   id="dropdown-item-pricepulser"
-                  onClick={() => handleNavClick('price-pulser-detail')}
+                  href={getViewCanonicalPath('price-pulser-detail')}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    handleNavClick('price-pulser-detail');
+                  }}
                   className="w-full text-left p-2 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800/80 transition-all flex items-start gap-3 group"
                 >
                   <div className="p-2 rounded-lg bg-purple-500/10 text-purple-600 dark:text-purple-400 group-hover:bg-purple-500/20">
@@ -180,11 +201,15 @@ export const Navbar: React.FC<NavbarProps> = ({
                     <span className="text-sm font-medium text-slate-800 dark:text-slate-200 group-hover:text-slate-950 dark:group-hover:text-white block">Price Post Pulser</span>
                     <p className="text-xs text-slate-500 dark:text-slate-400">Professional pricing posts in seconds</p>
                   </div>
-                </button>
+                </a>
 
-                <button
+                <a
                   id="dropdown-item-ecommerce"
-                  onClick={() => handleNavClick('ecommerce-builder-detail')}
+                  href={getViewCanonicalPath('ecommerce-builder-detail')}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    handleNavClick('ecommerce-builder-detail');
+                  }}
                   className="w-full text-left p-2 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800/80 transition-all flex items-start gap-3 group"
                 >
                   <div className="p-2 rounded-lg bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 group-hover:bg-emerald-500/20">
@@ -194,15 +219,19 @@ export const Navbar: React.FC<NavbarProps> = ({
                     <span className="text-sm font-medium text-slate-800 dark:text-slate-200 group-hover:text-slate-950 dark:group-hover:text-white block">E-Commerce Post Builder</span>
                     <p className="text-xs text-slate-500 dark:text-slate-400">High-converting social product cards</p>
                   </div>
-                </button>
+                </a>
               </div>
             )}
           </div>
 
           {/* Direct Flagship Link */}
-          <button
+          <a
             id="nav-link-nabaa"
-            onClick={() => handleNavClick('nabaa-detail')}
+            href={getViewCanonicalPath('nabaa-detail')}
+            onClick={(e) => {
+              e.preventDefault();
+              handleNavClick('nabaa-detail');
+            }}
             className={`px-4 py-2 rounded-full text-sm font-semibold transition-all flex items-center gap-1.5 ${
               currentView === 'nabaa-detail'
                 ? 'bg-cyan-100 dark:bg-cyan-500/25 text-cyan-900 dark:text-cyan-300 border border-cyan-300 dark:border-cyan-400/40 shadow-sm'
@@ -212,15 +241,19 @@ export const Navbar: React.FC<NavbarProps> = ({
             <Droplets className="w-3.5 h-3.5 text-cyan-600 dark:text-cyan-400" />
             The Nabaa
             <span className="w-1.5 h-1.5 rounded-full bg-cyan-500 animate-ping"></span>
-          </button>
+          </a>
 
-          <button
+          <a
             id="nav-link-about"
-            onClick={() => handleNavClick('home', 'company-section')}
+            href="/#about"
+            onClick={(e) => {
+              e.preventDefault();
+              handleNavClick('home', 'company-section');
+            }}
             className="px-4 py-2 rounded-full text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white hover:bg-slate-200/60 dark:hover:bg-slate-800/50 transition-all"
           >
             About
-          </button>
+          </a>
 
           <button
             id="nav-link-contact"
@@ -300,21 +333,33 @@ export const Navbar: React.FC<NavbarProps> = ({
               </button>
             )}
 
-            <button
-              onClick={() => handleNavClick('home')}
-              className="text-left px-4 py-3 rounded-xl bg-slate-50 dark:bg-slate-900/60 text-slate-800 dark:text-slate-200 font-medium hover:bg-slate-100 dark:hover:bg-slate-800 border border-slate-200 dark:border-transparent"
+            <a
+              href="/"
+              onClick={(e) => {
+                e.preventDefault();
+                handleNavClick('home');
+              }}
+              className="text-left px-4 py-3 rounded-xl bg-slate-50 dark:bg-slate-900/60 text-slate-800 dark:text-slate-200 font-medium hover:bg-slate-100 dark:hover:bg-slate-800 border border-slate-200 dark:border-transparent block"
             >
               Home
-            </button>
-            <button
-              onClick={() => handleNavClick('home', 'products-overview')}
+            </a>
+            <a
+              href="/#products"
+              onClick={(e) => {
+                e.preventDefault();
+                handleNavClick('home', 'products-overview');
+              }}
               className="text-left px-4 py-3 rounded-xl bg-slate-50 dark:bg-slate-900/60 text-slate-800 dark:text-slate-200 font-medium hover:bg-slate-100 dark:hover:bg-slate-800 flex justify-between items-center border border-slate-200 dark:border-transparent"
             >
-              Products Overview
+              <span>Products Overview</span>
               <ChevronRight className="w-4 h-4 text-slate-400" />
-            </button>
-            <button
-              onClick={() => handleNavClick('nabaa-detail')}
+            </a>
+            <a
+              href={getViewCanonicalPath('nabaa-detail')}
+              onClick={(e) => {
+                e.preventDefault();
+                handleNavClick('nabaa-detail');
+              }}
               className="text-left px-4 py-3 rounded-xl bg-cyan-50 dark:bg-cyan-950/50 border border-cyan-200 dark:border-cyan-500/30 text-cyan-800 dark:text-cyan-300 font-semibold flex justify-between items-center"
             >
               <span className="flex items-center gap-2">
@@ -322,49 +367,69 @@ export const Navbar: React.FC<NavbarProps> = ({
                 The Nabaa Tankers (Flagship)
               </span>
               <span className="text-xs bg-cyan-100 dark:bg-cyan-500/20 px-2 py-0.5 rounded text-cyan-800 dark:text-cyan-300 font-bold">Explore</span>
-            </button>
-            <button
-              onClick={() => handleNavClick('pix-shield-detail')}
+            </a>
+            <a
+              href={getViewCanonicalPath('pix-shield-detail')}
+              onClick={(e) => {
+                e.preventDefault();
+                handleNavClick('pix-shield-detail');
+              }}
               className="text-left px-4 py-2.5 rounded-xl text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-900 flex items-center gap-2 text-sm pl-6"
             >
               <ShieldCheck className="w-4 h-4 text-blue-600 dark:text-blue-400" />
               Pix Shield
-            </button>
-            <button
-              onClick={() => handleNavClick('price-pulser-detail')}
+            </a>
+            <a
+              href={getViewCanonicalPath('price-pulser-detail')}
+              onClick={(e) => {
+                e.preventDefault();
+                handleNavClick('price-pulser-detail');
+              }}
               className="text-left px-4 py-2.5 rounded-xl text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-900 flex items-center gap-2 text-sm pl-6"
             >
               <Zap className="w-4 h-4 text-purple-600 dark:text-purple-400" />
               Price Post Pulser
-            </button>
-            <button
-              onClick={() => handleNavClick('ecommerce-builder-detail')}
+            </a>
+            <a
+              href={getViewCanonicalPath('ecommerce-builder-detail')}
+              onClick={(e) => {
+                e.preventDefault();
+                handleNavClick('ecommerce-builder-detail');
+              }}
               className="text-left px-4 py-2.5 rounded-xl text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-900 flex items-center gap-2 text-sm pl-6"
             >
               <ShoppingBag className="w-4 h-4 text-emerald-600 dark:text-emerald-400" />
               E-Commerce Post Builder
-            </button>
-            <button
-              onClick={() => handleNavClick('home', 'company-section')}
-              className="text-left px-4 py-3 rounded-xl bg-slate-50 dark:bg-slate-900/60 text-slate-800 dark:text-slate-200 font-medium hover:bg-slate-100 dark:hover:bg-slate-800 border border-slate-200 dark:border-transparent"
+            </a>
+            <a
+              href="/#about"
+              onClick={(e) => {
+                e.preventDefault();
+                handleNavClick('home', 'company-section');
+              }}
+              className="text-left px-4 py-3 rounded-xl bg-slate-50 dark:bg-slate-900/60 text-slate-800 dark:text-slate-200 font-medium hover:bg-slate-100 dark:hover:bg-slate-800 border border-slate-200 dark:border-transparent block"
             >
               About Neo Tech Era
-            </button>
+            </a>
             <button
-              onClick={() => { setMobileMenuOpen(false); onOpenContact(); }}
-              className="text-left px-4 py-3 rounded-xl bg-slate-50 dark:bg-slate-900/60 text-slate-800 dark:text-slate-200 font-medium hover:bg-slate-100 dark:hover:bg-slate-800 border border-slate-200 dark:border-transparent"
+              onClick={() => { setMobileMenuOpen(false); onOpenContact?.(); }}
+              className="text-left px-4 py-3 rounded-xl bg-slate-50 dark:bg-slate-900/60 text-slate-800 dark:text-slate-200 font-medium hover:bg-slate-100 dark:hover:bg-slate-800 border border-slate-200 dark:border-transparent w-full"
             >
               Contact & Inquiries
             </button>
           </div>
 
-          <button
-            onClick={() => handleNavClick('home', 'products-overview')}
+          <a
+            href="/#products"
+            onClick={(e) => {
+              e.preventDefault();
+              handleNavClick('home', 'products-overview');
+            }}
             className="w-full py-3 rounded-xl bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-bold text-center flex items-center justify-center gap-2 shadow-md transition-all active:scale-95"
           >
-            Explore Our Products
+            <span>Explore Our Products</span>
             <ArrowUpRight className="w-4 h-4" />
-          </button>
+          </a>
         </div>
       )}
     </header>
