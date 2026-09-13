@@ -15,11 +15,6 @@ import { Navbar } from './components/Navbar';
 import { Hero } from './components/Hero';
 import { ProductsOverview } from './components/ProductsOverview';
 import { FeaturedNabaa } from './components/FeaturedNabaa';
-import { NabaaPlatformOverview } from './components/NabaaPlatformOverview';
-import { CustomerAppSection } from './components/CustomerAppSection';
-import { DriverAppSection } from './components/DriverAppSection';
-import { ConnectedOrderJourney } from './components/ConnectedOrderJourney';
-import { WhyNabaaTankers } from './components/WhyNabaaTankers';
 import { OtherProductsSection } from './components/OtherProductsSection';
 import { CompanySection } from './components/CompanySection';
 import { FinalCTA } from './components/FinalCTA';
@@ -133,29 +128,14 @@ function AppContent() {
               onSelectNabaa={() => handleNavigate('nabaa-detail')}
             />
 
-            {/* The Nabaa Tankers: Flagship Showcase (Admin, Driver, Customer) */}
+            {/* The Nabaa Tankers: Concise Flagship Introduction */}
             <FeaturedNabaa 
               onExplorePlatform={() => handleNavigate('nabaa-detail')}
               onExploreFullPlatform={() => handleNavigate('nabaa-detail')}
               onNavigate={handleNavigate}
             />
 
-            {/* Admin Web Dashboard Subsystems */}
-            <NabaaPlatformOverview />
-
-            {/* Customer Mobile App & Interactive Step-by-Step Order Simulator */}
-            <CustomerAppSection />
-
-            {/* Driver Mobile App & Interactive Driver Console */}
-            <DriverAppSection />
-
-            {/* Connected Order Journey: Cross-App Flow */}
-            <ConnectedOrderJourney />
-
-            {/* Why The Nabaa Tankers: 8 Feature Bento Cards */}
-            <WhyNabaaTankers />
-
-            {/* Concise Other Products Section with View All Details buttons */}
+            {/* Other Products Section */}
             <OtherProductsSection onNavigate={handleNavigate} />
 
             {/* Company Section: Built by Neo Tech Era */}

@@ -86,11 +86,13 @@ export interface TranslationDictionary {
     badge: string;
     headingLine1: string;
     headingLine2: string;
+    tagline?: string;
     description: string;
     flowStep0: string;
     flowStep1: string;
     flowStep2: string;
     explorePlatformBtn: string;
+    viewDetailsBtn?: string;
     adminTab: {
       badge: string;
       title: string;

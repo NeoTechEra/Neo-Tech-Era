@@ -21,9 +21,9 @@ export const ROUTE_DEFINITIONS: Record<PageView, RouteDefinition> = {
   },
   'nabaa-detail': {
     view: 'nabaa-detail',
-    slug: 'products/nabaa-tankers',
+    slug: 'the-nabaa',
     aliases: [
-      'the-nabaa',
+      'products/nabaa-tankers',
       'the-nabaa-tankers',
       'nabaa',
       'products/the-nabaa',
@@ -191,7 +191,7 @@ export const ROUTES_CONFIG = {
   },
   'nabaa-detail': {
     breadcrumbName: 'The Nabaa Tankers',
-    path: '/en/products/nabaa-tankers'
+    path: '/en/the-nabaa'
   },
   'pix-shield-detail': {
     breadcrumbName: 'Pix Shield',
