@@ -1,7 +1,8 @@
 import React from 'react';
 import { Home, ChevronRight } from 'lucide-react';
 import { PageView } from '../types';
-import { ROUTES_CONFIG } from '../utils/seoRouter';
+import { getRouteMeta, getViewCanonicalPath } from '../utils/seoRouter';
+import { useLanguage } from '../i18n';
 
 interface BreadcrumbProps {
   currentView: PageView;
@@ -9,7 +10,8 @@ interface BreadcrumbProps {
 }
 
 export const Breadcrumb: React.FC<BreadcrumbProps> = ({ currentView, onNavigateHome }) => {
-  const currentRoute = ROUTES_CONFIG[currentView];
+  const { language, isRTL, t } = useLanguage();
+  const meta = getRouteMeta(currentView, language);
 
   return (
     <nav 
@@ -17,7 +19,7 @@ export const Breadcrumb: React.FC<BreadcrumbProps> = ({ currentView, onNavigateH
       className="inline-flex items-center gap-2 px-3 py-1.5 rounded-xl bg-white/80 dark:bg-slate-900/80 backdrop-blur-md border border-slate-200 dark:border-slate-800 text-xs text-slate-600 dark:text-slate-400 mb-6 shadow-sm"
     >
       <a
-        href="/"
+        href={getViewCanonicalPath('home', language)}
         onClick={(e) => {
           e.preventDefault();
           onNavigateHome();
@@ -25,13 +27,13 @@ export const Breadcrumb: React.FC<BreadcrumbProps> = ({ currentView, onNavigateH
         className="inline-flex items-center gap-1.5 hover:text-cyan-600 dark:hover:text-cyan-400 font-medium transition-colors"
       >
         <Home className="w-3.5 h-3.5 text-slate-400 dark:text-slate-500" />
-        <span>Home</span>
+        <span>{t.breadcrumb.home}</span>
       </a>
 
-      <ChevronRight className="w-3.5 h-3.5 text-slate-300 dark:text-slate-600" />
+      <ChevronRight className={`w-3.5 h-3.5 text-slate-300 dark:text-slate-600 ${isRTL ? 'rotate-180' : ''}`} />
 
       <a
-        href="/#products"
+        href={`/${language}/#products`}
         onClick={(e) => {
           e.preventDefault();
           onNavigateHome();
@@ -41,13 +43,13 @@ export const Breadcrumb: React.FC<BreadcrumbProps> = ({ currentView, onNavigateH
         }}
         className="hover:text-cyan-600 dark:hover:text-cyan-400 font-medium transition-colors"
       >
-        Products
+        {t.breadcrumb.products}
       </a>
 
-      <ChevronRight className="w-3.5 h-3.5 text-slate-300 dark:text-slate-600" />
+      <ChevronRight className={`w-3.5 h-3.5 text-slate-300 dark:text-slate-600 ${isRTL ? 'rotate-180' : ''}`} />
 
       <span className="font-semibold text-slate-900 dark:text-white truncate max-w-[200px] sm:max-w-none">
-        {currentRoute?.breadcrumbName || 'Product Details'}
+        {meta.breadcrumbName || t.breadcrumb.productDetails}
       </span>
     </nav>
   );

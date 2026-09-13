@@ -10,7 +10,26 @@
   h1, h2, h3, h4, .font-display {
     font-family: 'Outfit', 'Plus Jakarta Sans', sans-serif;
   }
+
+  /* RTL typography and font overrides */
+  [dir="rtl"], [dir="rtl"] body {
+    font-family: 'Tajawal', 'IBM Plex Sans Arabic', -apple-system, BlinkMacSystemFont, sans-serif;
+  }
+
+  [dir="rtl"] h1,
+  [dir="rtl"] h2,
+  [dir="rtl"] h3,
+  [dir="rtl"] h4,
+  [dir="rtl"] .font-display {
+    font-family: 'Tajawal', 'IBM Plex Sans Arabic', sans-serif;
+  }
 }
+
+/* Logical icon transformations for RTL */
+[dir="rtl"] .rtl-flip {
+  transform: scaleX(-1);
+}
+
 
 /* Base effects */
 .glass-panel {

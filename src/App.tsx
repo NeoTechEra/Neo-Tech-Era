@@ -6,6 +6,7 @@
 import React, { useState, useEffect } from 'react';
 import { PageView } from './types';
 import { 
+  matchPathToRoute,
   matchPathToView, 
   getViewCanonicalPath, 
   updateDocumentSEO 
@@ -29,8 +30,11 @@ import { EcommerceBuilderDetail } from './components/EcommerceBuilderDetail';
 import { NabaaDetail } from './components/NabaaDetail';
 import { ContactModal } from './components/ContactModal';
 import { ThemeProvider, useTheme } from './styles/theme/ThemeProvider';
+import { LanguageProvider, useLanguage } from './i18n';
 
 function AppContent() {
+  const { language, isRTL, t } = useLanguage();
+
   // Initialize view based on current browser URL path (supports deep-linking)
   const [currentView, setCurrentView] = useState<PageView>(() => {
     if (typeof window !== 'undefined') {
@@ -42,29 +46,40 @@ function AppContent() {
   const [contactProduct, setContactProduct] = useState<string>('The Nabaa Tankers (Flagship)');
   const { theme, toggleTheme } = useTheme();
 
+  // Redirect root domain "/" or "" to default language prefix "/en" (or "/ar" if preferred)
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const pathname = window.location.pathname;
+      if (pathname === '/' || pathname === '') {
+        const defaultPath = language === 'ar' ? '/ar' : '/en';
+        window.history.replaceState({ view: 'home' }, '', defaultPath + window.location.search + window.location.hash);
+      }
+    }
+  }, [language]);
+
   // Listen for browser Back & Forward button events (popstate)
   useEffect(() => {
     const handlePopState = () => {
-      const matched = matchPathToView(window.location.pathname);
-      setCurrentView(matched);
+      const route = matchPathToRoute(window.location.pathname);
+      setCurrentView(route.view);
     };
 
     window.addEventListener('popstate', handlePopState);
     return () => window.removeEventListener('popstate', handlePopState);
   }, []);
 
-  // Synchronize dynamic SEO metadata, canonical link, and Schema.org JSON-LD whenever view changes
+  // Synchronize dynamic SEO metadata, canonical link, hreflang, and Schema.org JSON-LD whenever view or language changes
   useEffect(() => {
-    updateDocumentSEO(currentView);
+    updateDocumentSEO(currentView, language);
     window.scrollTo({ top: 0, behavior: 'smooth' });
-  }, [currentView]);
+  }, [currentView, language]);
 
   // Navigate with browser history pushState so every product has a distinct SEO/AEO URL
   const handleNavigate = (view: PageView, pushHistory: boolean = true) => {
     setCurrentView(view);
 
     if (pushHistory && typeof window !== 'undefined') {
-      const targetPath = getViewCanonicalPath(view);
+      const targetPath = getViewCanonicalPath(view, language);
       if (window.location.pathname !== targetPath) {
         window.history.pushState({ view }, '', targetPath);
       }
@@ -208,8 +223,10 @@ function AppContent() {
 
 export default function App() {
   return (
-    <ThemeProvider>
-      <AppContent />
-    </ThemeProvider>
+    <LanguageProvider>
+      <ThemeProvider>
+        <AppContent />
+      </ThemeProvider>
+    </LanguageProvider>
   );
 }

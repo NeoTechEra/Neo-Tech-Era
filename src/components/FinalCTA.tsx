@@ -3,10 +3,10 @@ import {
   Droplets, 
   Layers, 
   ArrowRight, 
-  Sparkles,
-  Zap
+  Sparkles 
 } from 'lucide-react';
 import { PageView } from '../types';
+import { useLanguage } from '../i18n';
 
 interface FinalCTAProps {
   onNavigate?: (view: PageView) => void;
@@ -14,6 +14,8 @@ interface FinalCTAProps {
 }
 
 export const FinalCTA: React.FC<FinalCTAProps> = ({ onNavigate, onExploreProducts }) => {
+  const { isRTL, t } = useLanguage();
+
   return (
     <section id="final-cta" className="py-28 relative overflow-hidden bg-slate-50 dark:bg-gradient-to-b dark:from-[#050b16] dark:to-[#02060c] border-t border-slate-200 dark:border-slate-800">
       
@@ -29,15 +31,15 @@ export const FinalCTA: React.FC<FinalCTAProps> = ({ onNavigate, onExploreProduct
             
             <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-cyan-50 dark:bg-cyan-950/80 border border-cyan-200 dark:border-cyan-400/40 text-cyan-800 dark:text-cyan-300 text-xs font-mono font-bold uppercase tracking-wider mb-6">
               <Sparkles className="w-4 h-4 text-cyan-600 dark:text-cyan-400" />
-              Neo Tech Era Software Ecosystem
+              {t.finalCta.badge}
             </div>
 
             <h2 className="text-3xl sm:text-5xl lg:text-6xl font-extrabold text-slate-900 dark:text-white tracking-tight font-display max-w-3xl mx-auto">
-              Explore What We Are Building.
+              {t.finalCta.heading}
             </h2>
 
             <p className="mt-5 text-base sm:text-xl text-slate-600 dark:text-slate-200 max-w-2xl mx-auto font-normal">
-              Discover practical digital products built by Neo Tech Era. Transform how your business coordinates fleet logistics, protects assets, and converts customers.
+              {t.finalCta.description}
             </p>
 
             <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
@@ -49,11 +51,11 @@ export const FinalCTA: React.FC<FinalCTAProps> = ({ onNavigate, onExploreProduct
                 className="w-full sm:w-auto px-8 py-4 rounded-xl bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-bold text-base shadow-lg shadow-cyan-500/25 transition-all flex items-center justify-center gap-3 group active:scale-95"
               >
                 <Droplets className="w-5 h-5 text-slate-950 fill-slate-950" />
-                <span>Explore The Nabaa Tankers</span>
+                <span>{t.finalCta.exploreNabaa}</span>
                 <span className="px-2 py-0.5 rounded bg-slate-950/15 text-slate-950 text-xs font-black uppercase">
-                  Flagship
+                  {t.finalCta.flagshipBadge}
                 </span>
-                <ArrowRight className="w-4 h-4 group-hover:translate-x-1.5 transition-transform" />
+                <ArrowRight className={`w-4 h-4 transition-transform ${isRTL ? 'rotate-180 group-hover:-translate-x-1.5' : 'group-hover:translate-x-1.5'}`} />
               </button>
 
               {/* View All Products Button */}
@@ -63,15 +65,15 @@ export const FinalCTA: React.FC<FinalCTAProps> = ({ onNavigate, onExploreProduct
                 className="w-full sm:w-auto px-8 py-4 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-800 dark:bg-slate-900/90 dark:hover:bg-slate-800 dark:text-white font-bold text-base border border-slate-200 dark:border-cyan-500/40 hover:border-slate-300 dark:hover:border-cyan-400 transition-all flex items-center justify-center gap-2.5 active:scale-95 shadow-md"
               >
                 <Layers className="w-4 h-4 text-cyan-600 dark:text-cyan-400" />
-                <span>View All Products</span>
+                <span>{t.finalCta.viewAllProducts}</span>
               </button>
 
             </div>
 
             <div className="mt-8 pt-6 border-t border-slate-200 dark:border-white/10 max-w-xl mx-auto flex items-center justify-center gap-6 text-xs text-slate-500 dark:text-slate-300">
-              <span>● Production Tested</span>
-              <span>● Enterprise Scalability</span>
-              <span>● Instant Deployment</span>
+              <span>● {isRTL ? 'بنية نظام متكاملة' : 'Unified Architecture'}</span>
+              <span>● {isRTL ? 'لوجستيات الأسطول الحية' : 'Fleet Telematics'}</span>
+              <span>● {isRTL ? 'تطبيقات متصلة' : 'Synchronized Apps'}</span>
             </div>
 
           </div>

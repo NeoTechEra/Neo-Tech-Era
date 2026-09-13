@@ -4,22 +4,26 @@ import {
   Zap, 
   ShoppingBag, 
   ArrowRight, 
-  Sparkles,
-  Check
+  Sparkles, 
+  Check 
 } from 'lucide-react';
 import { PageView } from '../types';
 import { getViewCanonicalPath } from '../utils/seoRouter';
+import { useLanguage } from '../i18n';
 
 interface OtherProductsProps {
   onNavigate?: (view: PageView) => void;
 }
 
 export const OtherProductsSection: React.FC<OtherProductsProps> = ({ onNavigate }) => {
+  const { language, isRTL, t } = useLanguage();
+
   const handleNav = (view: PageView) => {
     if (onNavigate) {
       onNavigate(view);
     }
   };
+
   return (
     <section id="other-products" className="py-24 relative bg-slate-100/70 dark:bg-[#060b16] border-t border-slate-200 dark:border-slate-800/80">
       
@@ -33,18 +37,18 @@ export const OtherProductsSection: React.FC<OtherProductsProps> = ({ onNavigate 
         <div className="text-center max-w-3xl mx-auto mb-16">
           <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-cyan-100 dark:bg-cyan-950/80 border border-cyan-200 dark:border-cyan-500/40 text-xs font-mono text-cyan-800 dark:text-cyan-300 mb-3 shadow-sm">
             <Sparkles className="w-3.5 h-3.5 text-cyan-600 dark:text-cyan-400" />
-            Digital Productivity Suite
+            {t.otherProducts.badge}
           </div>
           <h2 className="text-3xl sm:text-5xl font-extrabold text-slate-900 dark:text-white tracking-tight font-display">
-            More Tools by Neo Tech Era
+            {t.otherProducts.heading}
           </h2>
           <p className="mt-4 text-base sm:text-lg text-slate-600 dark:text-slate-200 font-normal">
-            Practical software designed to eliminate repetitive bottlenecks, protect creative output, and generate high-converting visual assets.
+            {t.otherProducts.subheading}
           </p>
         </div>
 
         {/* Clean, Concise Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-start">
           
           {/* PIX SHIELD */}
           <div className="p-7 rounded-3xl border border-slate-200 dark:border-cyan-500/40 hover:dark:border-cyan-300 transition-all duration-300 flex flex-col justify-between group bg-white/90 dark:bg-gradient-to-b dark:from-[#092233] dark:to-[#05141f] shadow-sm dark:shadow-xl dark:shadow-cyan-950/40">
@@ -54,7 +58,7 @@ export const OtherProductsSection: React.FC<OtherProductsProps> = ({ onNavigate 
                   <ShieldCheck className="w-6 h-6" />
                 </div>
                 <span className="text-[11px] font-mono text-cyan-800 dark:text-cyan-300 px-2.5 py-1 rounded-full bg-cyan-100 dark:bg-cyan-950/80 border border-cyan-300 dark:border-cyan-500/40 font-bold">
-                  Visual Protection
+                  {t.otherProducts.pixShield.badge}
                 </span>
               </div>
 
@@ -63,20 +67,15 @@ export const OtherProductsSection: React.FC<OtherProductsProps> = ({ onNavigate 
               </h3>
               
               <p className="text-xs font-semibold text-cyan-700 dark:text-cyan-300 mt-1">
-                Sign 🖋️ & Shield Your Pixels.
+                {t.otherProducts.pixShield.tagline}
               </p>
 
               <p className="text-slate-600 dark:text-slate-100 text-sm mt-3 leading-relaxed font-normal">
-                Protect and watermark your images. A smart tool designed to help creators, photographers, and agencies safeguard their digital work with automated batch watermarking.
+                {t.otherProducts.pixShield.description}
               </p>
 
               <div className="mt-6 pt-4 border-t border-slate-200 dark:border-white/10 space-y-2">
-                {[
-                  'Add custom watermarks',
-                  'Protect original images',
-                  'Branding support',
-                  'Fast and simple image processing'
-                ].map((cap, i) => (
+                {t.otherProducts.pixShield.capabilities.map((cap, i) => (
                   <div key={i} className="flex items-center gap-2 text-xs text-slate-700 dark:text-slate-200">
                     <Check className="w-3.5 h-3.5 text-cyan-600 dark:text-cyan-300 shrink-0" />
                     <span>{cap}</span>
@@ -88,15 +87,15 @@ export const OtherProductsSection: React.FC<OtherProductsProps> = ({ onNavigate 
             <div className="mt-8 pt-4">
               <a
                 id="other-products-pix-shield-btn"
-                href={getViewCanonicalPath('pix-shield-detail')}
+                href={getViewCanonicalPath('pix-shield-detail', language)}
                 onClick={(e) => {
                   e.preventDefault();
                   handleNav('pix-shield-detail');
                 }}
                 className="w-full py-3 px-4 rounded-xl bg-white dark:bg-cyan-500/20 hover:bg-slate-100 dark:hover:bg-cyan-500/30 text-slate-800 dark:text-cyan-200 font-bold text-sm border border-slate-200 dark:border-cyan-500/40 hover:border-cyan-500/50 transition-all flex items-center justify-center gap-2 group-hover:text-cyan-600 dark:group-hover:text-cyan-200 shadow-sm active:scale-95"
               >
-                <span>View All Details</span>
-                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                <span>{t.common.viewDetails}</span>
+                <ArrowRight className={`w-4 h-4 transition-transform ${isRTL ? 'rotate-180 group-hover:-translate-x-1' : 'group-hover:translate-x-1'}`} />
               </a>
             </div>
           </div>
@@ -109,7 +108,7 @@ export const OtherProductsSection: React.FC<OtherProductsProps> = ({ onNavigate 
                   <Zap className="w-6 h-6" />
                 </div>
                 <span className="text-[11px] font-mono text-purple-800 dark:text-purple-300 px-2.5 py-1 rounded-full bg-purple-100 dark:bg-purple-950/80 border border-purple-300 dark:border-purple-500/40 font-bold">
-                  Marketing Graphics
+                  {t.otherProducts.pricePulser.badge}
                 </span>
               </div>
 
@@ -118,20 +117,15 @@ export const OtherProductsSection: React.FC<OtherProductsProps> = ({ onNavigate 
               </h3>
 
               <p className="text-xs font-semibold text-purple-700 dark:text-purple-300 mt-1">
-                Turn Pricing Data into Visual Posts.
+                {t.otherProducts.pricePulser.tagline}
               </p>
 
               <p className="text-slate-600 dark:text-slate-100 text-sm mt-3 leading-relaxed font-normal">
-                Create professional pricing posts faster. It helps businesses turn raw product prices and discount information into ready-to-share social visuals in seconds.
+                {t.otherProducts.pricePulser.description}
               </p>
 
               <div className="mt-6 pt-4 border-t border-slate-200 dark:border-white/10 space-y-2">
-                {[
-                  'Create pricing posts quickly',
-                  'Professional ready-made layouts',
-                  'Product and price customization',
-                  'Designed for social media and marketing use'
-                ].map((cap, i) => (
+                {t.otherProducts.pricePulser.capabilities.map((cap, i) => (
                   <div key={i} className="flex items-center gap-2 text-xs text-slate-700 dark:text-slate-200">
                     <Check className="w-3.5 h-3.5 text-purple-600 dark:text-purple-300 shrink-0" />
                     <span>{cap}</span>
@@ -143,15 +137,15 @@ export const OtherProductsSection: React.FC<OtherProductsProps> = ({ onNavigate 
             <div className="mt-8 pt-4">
               <a
                 id="other-products-price-pulser-btn"
-                href={getViewCanonicalPath('price-pulser-detail')}
+                href={getViewCanonicalPath('price-pulser-detail', language)}
                 onClick={(e) => {
                   e.preventDefault();
                   handleNav('price-pulser-detail');
                 }}
                 className="w-full py-3 px-4 rounded-xl bg-white dark:bg-purple-500/20 hover:bg-slate-100 dark:hover:bg-purple-500/30 text-slate-800 dark:text-purple-200 font-bold text-sm border border-slate-200 dark:border-purple-500/40 hover:border-purple-500/50 transition-all flex items-center justify-center gap-2 group-hover:text-purple-600 dark:group-hover:text-purple-200 shadow-sm active:scale-95"
               >
-                <span>View All Details</span>
-                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                <span>{t.common.viewDetails}</span>
+                <ArrowRight className={`w-4 h-4 transition-transform ${isRTL ? 'rotate-180 group-hover:-translate-x-1' : 'group-hover:translate-x-1'}`} />
               </a>
             </div>
           </div>
@@ -164,7 +158,7 @@ export const OtherProductsSection: React.FC<OtherProductsProps> = ({ onNavigate 
                   <ShoppingBag className="w-6 h-6" />
                 </div>
                 <span className="text-[11px] font-mono text-emerald-800 dark:text-emerald-300 px-2.5 py-1 rounded-full bg-emerald-100 dark:bg-emerald-950/80 border border-emerald-300 dark:border-emerald-500/40 font-bold">
-                  Seller Visuals
+                  {t.otherProducts.ecommerceBuilder.badge}
                 </span>
               </div>
 
@@ -173,20 +167,15 @@ export const OtherProductsSection: React.FC<OtherProductsProps> = ({ onNavigate 
               </h3>
 
               <p className="text-xs font-semibold text-emerald-700 dark:text-emerald-300 mt-1">
-                High-Converting Online Store Visuals.
+                {t.otherProducts.ecommerceBuilder.tagline}
               </p>
 
               <p className="text-slate-600 dark:text-slate-100 text-sm mt-3 leading-relaxed font-normal">
-                Create attractive product and promotional posts for your online store. Designed for online sellers who want to create product marketing content faster.
+                {t.otherProducts.ecommerceBuilder.description}
               </p>
 
               <div className="mt-6 pt-4 border-t border-slate-200 dark:border-white/10 space-y-2">
-                {[
-                  'Product-focused post creation',
-                  'Add product images and details',
-                  'Add pricing and promotional information',
-                  'Create attractive marketing visuals'
-                ].map((cap, i) => (
+                {t.otherProducts.ecommerceBuilder.capabilities.map((cap, i) => (
                   <div key={i} className="flex items-center gap-2 text-xs text-slate-700 dark:text-slate-200">
                     <Check className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-300 shrink-0" />
                     <span>{cap}</span>
@@ -198,15 +187,15 @@ export const OtherProductsSection: React.FC<OtherProductsProps> = ({ onNavigate 
             <div className="mt-8 pt-4">
               <a
                 id="other-products-ecommerce-builder-btn"
-                href={getViewCanonicalPath('ecommerce-builder-detail')}
+                href={getViewCanonicalPath('ecommerce-builder-detail', language)}
                 onClick={(e) => {
                   e.preventDefault();
                   handleNav('ecommerce-builder-detail');
                 }}
                 className="w-full py-3 px-4 rounded-xl bg-white dark:bg-emerald-500/20 hover:bg-slate-100 dark:hover:bg-emerald-500/30 text-slate-800 dark:text-emerald-200 font-bold text-sm border border-slate-200 dark:border-emerald-500/40 hover:border-emerald-500/50 transition-all flex items-center justify-center gap-2 group-hover:text-emerald-600 dark:group-hover:text-emerald-200 shadow-sm active:scale-95"
               >
-                <span>View All Details</span>
-                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                <span>{t.common.viewDetails}</span>
+                <ArrowRight className={`w-4 h-4 transition-transform ${isRTL ? 'rotate-180 group-hover:-translate-x-1' : 'group-hover:translate-x-1'}`} />
               </a>
             </div>
           </div>

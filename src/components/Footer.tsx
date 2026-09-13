@@ -6,12 +6,13 @@ import {
   ShoppingBag, 
   ArrowUp,
   Mail,
-  ExternalLink,
   Sun,
-  Moon
+  Moon,
+  Globe
 } from 'lucide-react';
 import { PageView } from '../types';
 import { getViewCanonicalPath } from '../utils/seoRouter';
+import { useLanguage } from '../i18n';
 
 interface FooterProps {
   onNavigate?: (view: PageView) => void;
@@ -21,6 +22,8 @@ interface FooterProps {
 }
 
 export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenContact, theme = 'light', onToggleTheme }) => {
+  const { language, switchLanguage, isRTL, t } = useLanguage();
+
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
@@ -43,7 +46,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenContact, theme
         <div className="grid grid-cols-1 md:grid-cols-12 gap-10 pb-12 border-b border-slate-800/80">
           
           {/* Brand Info */}
-          <div className="md:col-span-5 space-y-4">
+          <div className="md:col-span-5 space-y-4 text-start">
             <div className="flex items-center gap-3">
               <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-cyan-500 via-blue-600 to-indigo-800 p-[1px] shadow-lg shadow-cyan-500/20">
                 <div className="w-full h-full bg-slate-950 rounded-[11px] flex items-center justify-center">
@@ -53,52 +56,85 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenContact, theme
                 </div>
               </div>
               <span className="text-xl font-extrabold text-white tracking-tight font-display">
-                Neo Tech Era
+                {t.common.brandName}
               </span>
             </div>
 
             <p className="text-slate-400 text-sm max-w-sm leading-relaxed">
-              Neo Tech Era builds practical software, digital tools, and business solutions designed to simplify work and create better digital experiences.
+              {t.footer.brandDescription}
             </p>
 
             <div className="pt-2 text-xs font-mono text-slate-500">
-              Enterprise Water Logistics • Visual Security • Social Commerce
+              {t.footer.taglineBullets}
+            </div>
+
+            {/* Language Switcher in Footer */}
+            <div className="pt-3 flex items-center gap-3">
+              <span className="text-xs text-slate-400 flex items-center gap-1.5 font-medium">
+                <Globe className="w-3.5 h-3.5 text-cyan-400" />
+                {t.footer.languageLabel}:
+              </span>
+              <div className="inline-flex items-center rounded-full bg-slate-900 border border-slate-800 p-0.5 text-xs font-semibold">
+                <button
+                  onClick={() => switchLanguage('en')}
+                  className={`px-2.5 py-0.5 rounded-full transition-all text-xs font-mono font-bold ${
+                    language === 'en'
+                      ? 'bg-cyan-500 text-slate-950 shadow-sm'
+                      : 'text-slate-400 hover:text-white'
+                  }`}
+                  aria-label="Switch to English"
+                >
+                  EN
+                </button>
+                <span className="text-slate-700 px-1 select-none">|</span>
+                <button
+                  onClick={() => switchLanguage('ar')}
+                  className={`px-2.5 py-0.5 rounded-full transition-all text-xs font-display font-bold ${
+                    language === 'ar'
+                      ? 'bg-cyan-500 text-slate-950 shadow-sm'
+                      : 'text-slate-400 hover:text-white'
+                  }`}
+                  aria-label="التبديل إلى العربية"
+                >
+                  العربية
+                </button>
+              </div>
             </div>
           </div>
 
           {/* Navigation Links */}
-          <div className="md:col-span-3 space-y-3">
+          <div className="md:col-span-3 space-y-3 text-start">
             <h4 className="text-xs font-mono uppercase tracking-wider text-slate-300 font-bold">
-              Navigation
+              {t.footer.navHeading}
             </h4>
             <ul className="space-y-2 text-sm">
               <li>
                 <a 
-                  href={getViewCanonicalPath('home')}
+                  href={getViewCanonicalPath('home', language)}
                   onClick={(e) => {
                     e.preventDefault();
                     handleNav('home');
                   }}
                   className="hover:text-cyan-400 transition-colors"
                 >
-                  Home
+                  {t.nav.home}
                 </a>
               </li>
               <li>
                 <a 
-                  href="/#products"
+                  href={`/${language}/#products`}
                   onClick={(e) => {
                     e.preventDefault();
                     handleNav('home', 'products-overview');
                   }}
                   className="hover:text-cyan-400 transition-colors"
                 >
-                  Products
+                  {t.nav.products}
                 </a>
               </li>
               <li>
                 <a 
-                  href={getViewCanonicalPath('nabaa-detail')}
+                  href={getViewCanonicalPath('nabaa-detail', language)}
                   onClick={(e) => {
                     e.preventDefault();
                     handleNav('nabaa-detail');
@@ -106,19 +142,19 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenContact, theme
                   className="text-cyan-300 hover:text-cyan-200 font-semibold flex items-center gap-1.5 transition-colors"
                 >
                   <Droplets className="w-3.5 h-3.5 text-cyan-400" />
-                  The Nabaa (Flagship)
+                  {t.nav.nabaa} ({t.finalCta.flagshipBadge})
                 </a>
               </li>
               <li>
                 <a 
-                  href="/#company"
+                  href={`/${language}/about`}
                   onClick={(e) => {
                     e.preventDefault();
                     handleNav('home', 'company-section');
                   }}
                   className="hover:text-cyan-400 transition-colors"
                 >
-                  About
+                  {t.nav.about}
                 </a>
               </li>
               <li>
@@ -126,39 +162,39 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenContact, theme
                   onClick={onOpenContact} 
                   className="hover:text-cyan-400 transition-colors"
                 >
-                  Contact
+                  {t.nav.contact}
                 </button>
               </li>
             </ul>
           </div>
 
           {/* Product Links */}
-          <div className="md:col-span-4 space-y-3">
+          <div className="md:col-span-4 space-y-3 text-start">
             <h4 className="text-xs font-mono uppercase tracking-wider text-slate-300 font-bold">
-              Product Portfolio
+              {t.footer.productsHeading}
             </h4>
             <ul className="space-y-2 text-sm">
               <li>
                 <a 
-                  href={getViewCanonicalPath('nabaa-detail')}
+                  href={getViewCanonicalPath('nabaa-detail', language)}
                   onClick={(e) => {
                     e.preventDefault();
                     handleNav('nabaa-detail');
                   }}
-                  className="hover:text-cyan-400 transition-colors flex items-center justify-between w-full text-left group"
+                  className="hover:text-cyan-400 transition-colors flex items-center justify-between w-full text-start group"
                 >
                   <span className="flex items-center gap-2">
                     <Droplets className="w-4 h-4 text-cyan-400" />
                     The Nabaa Tankers
                   </span>
                   <span className="text-[10px] bg-cyan-950 text-cyan-300 px-2 py-0.5 rounded border border-cyan-800">
-                    Flagship
+                    {t.finalCta.flagshipBadge}
                   </span>
                 </a>
               </li>
               <li>
                 <a 
-                  href={getViewCanonicalPath('pix-shield-detail')}
+                  href={getViewCanonicalPath('pix-shield-detail', language)}
                   onClick={(e) => {
                     e.preventDefault();
                     handleNav('pix-shield-detail');
@@ -171,7 +207,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenContact, theme
               </li>
               <li>
                 <a 
-                  href={getViewCanonicalPath('price-pulser-detail')}
+                  href={getViewCanonicalPath('price-pulser-detail', language)}
                   onClick={(e) => {
                     e.preventDefault();
                     handleNav('price-pulser-detail');
@@ -184,7 +220,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenContact, theme
               </li>
               <li>
                 <a 
-                  href={getViewCanonicalPath('ecommerce-builder-detail')}
+                  href={getViewCanonicalPath('ecommerce-builder-detail', language)}
                   onClick={(e) => {
                     e.preventDefault();
                     handleNav('ecommerce-builder-detail');
@@ -202,7 +238,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenContact, theme
 
         {/* Bottom Bar & Copyright */}
         <div className="mt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-400">
-          <p>© {new Date().getFullYear()} Neo Tech Era. All rights reserved.</p>
+          <p>© {new Date().getFullYear()} Neo Tech Era. {t.footer.allRightsReserved}</p>
 
           <div className="flex items-center gap-4">
             <button 
@@ -217,17 +253,17 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenContact, theme
                 id="footer-theme-toggle-btn"
                 onClick={onToggleTheme}
                 className="px-3 py-1.5 rounded-lg bg-slate-900 hover:bg-slate-800 text-slate-300 hover:text-white transition-all border border-slate-800 flex items-center gap-2 text-xs"
-                title={theme === 'light' ? 'Switch to Dark mode' : 'Switch to Light mode'}
+                title={theme === 'light' ? t.nav.switchDark : t.nav.switchLight}
               >
                 {theme === 'light' ? (
                   <>
-                    <Moon className="w-3.5 h-3.5 text-slate-600" />
-                    <span>Dark mode</span>
+                    <Moon className="w-3.5 h-3.5 text-slate-400" />
+                    <span>{t.nav.darkMode}</span>
                   </>
                 ) : (
                   <>
                     <Sun className="w-3.5 h-3.5 text-amber-400" />
-                    <span>Light mode</span>
+                    <span>{t.nav.lightMode}</span>
                   </>
                 )}
               </button>
@@ -235,7 +271,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenContact, theme
             <button
               onClick={scrollToTop}
               className="p-2 rounded-lg bg-slate-900 hover:bg-slate-800 text-slate-300 hover:text-white transition-all border border-slate-800 flex items-center gap-1"
-              aria-label="Back to top"
+              aria-label={isRTL ? 'العودة للأعلى' : 'Back to top'}
             >
               <ArrowUp className="w-4 h-4" />
             </button>

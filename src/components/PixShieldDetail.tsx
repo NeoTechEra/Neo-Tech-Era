@@ -15,6 +15,7 @@ import {
 } from 'lucide-react';
 import { PageView } from '../types';
 import { Breadcrumb } from './Breadcrumb';
+import { useLanguage } from '../i18n';
 
 interface PixShieldDetailProps {
   onBack: () => void;
@@ -22,29 +23,56 @@ interface PixShieldDetailProps {
 }
 
 export const PixShieldDetail: React.FC<PixShieldDetailProps> = ({ onBack, onOpenContact }) => {
+  const { t, isRTL, language } = useLanguage();
+
   // Live Interactive Watermark Sandbox State
-  const [watermarkText, setWatermarkText] = useState<string>('© Neo Tech Era • Confidential');
+  const [watermarkText, setWatermarkText] = useState<string>(
+    language === 'ar' ? '© نيو تك إيرا • سري ومحمي' : '© Neo Tech Era • Confidential'
+  );
   const [watermarkPosition, setWatermarkPosition] = useState<'bottom-right' | 'center' | 'diagonal' | 'top-left'>('bottom-right');
   const [opacity, setOpacity] = useState<number>(75);
-  const [sampleImage, setSampleImage] = useState<string>('landscape');
+
+  const capabilities = isRTL ? [
+    'إضافة علامات مائية مخصصة (نصوص، تواقيع، وشعارات فيكتور)',
+    'حماية الصور الأصلية بعلامات رقمية ذكية غير مرئية',
+    'دعم متكامل للهوية التجارية مع تحجيم وتخصيص آلي متعدد',
+    'معالجة فائقة السرعة للصور محلياً وفي السحابة'
+  ] : [
+    'Add custom watermarks (text, signatures, vector logos)',
+    'Protect original images with invisible digital markers',
+    'Branding support with automated batch scaling',
+    'Fast and simple image processing in browser & cloud'
+  ];
+
+  const positions = isRTL ? [
+    { id: 'bottom-right', label: 'أسفل اليمين' },
+    { id: 'center', label: 'المنتصف' },
+    { id: 'top-left', label: 'أعلى اليسار' },
+    { id: 'diagonal', label: 'قطري كامل' }
+  ] : [
+    { id: 'bottom-right', label: 'Bottom Right' },
+    { id: 'center', label: 'Center' },
+    { id: 'top-left', label: 'Top Left' },
+    { id: 'diagonal', label: 'Full Diagonal' }
+  ];
 
   return (
-    <div className="min-h-screen pt-28 pb-20 bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100">
+    <div className="min-h-screen pt-28 pb-20 bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100 text-start">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Breadcrumbs & Back Navigation */}
         <div className="flex flex-wrap items-center justify-between gap-4 mb-8">
           <Breadcrumb currentView="pix-shield-detail" onNavigateHome={onBack} />
           <a
-            href="/"
+            href={language === 'ar' ? '/ar' : '/en'}
             onClick={(e) => {
               e.preventDefault();
               onBack();
             }}
             className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-white dark:bg-slate-900 hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white border border-slate-200 dark:border-slate-800 shadow-sm transition-all text-xs font-semibold group"
           >
-            <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" />
-            Back to Overview
+            <ArrowLeft className={`w-4 h-4 transition-transform ${isRTL ? 'rotate-180 group-hover:translate-x-1' : 'group-hover:-translate-x-1'}`} />
+            {t.pixShieldDetail.backToOverview}
           </a>
         </div>
 
@@ -53,29 +81,24 @@ export const PixShieldDetail: React.FC<PixShieldDetailProps> = ({ onBack, onOpen
           <div className="lg:col-span-7 space-y-5">
             <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-cyan-50 dark:bg-cyan-950 border border-cyan-200 dark:border-cyan-800 text-xs font-mono text-cyan-800 dark:text-cyan-300">
               <ShieldCheck className="w-4 h-4 text-cyan-600 dark:text-cyan-400" />
-              Digital Asset Copyright & Protection
+              {t.pixShieldDetail.badge}
             </div>
 
             <h1 className="text-4xl sm:text-6xl font-extrabold text-slate-900 dark:text-white tracking-tight font-display">
-              Pix Shield
+              {t.pixShieldDetail.title}
             </h1>
 
             <p className="text-xl sm:text-2xl font-bold text-cyan-700 dark:text-cyan-400">
-              Sign 🖋️ & Shield Your Pixels.
+              {t.pixShieldDetail.tagline}
             </p>
 
             <p className="text-base sm:text-lg text-slate-600 dark:text-slate-300 leading-relaxed max-w-2xl">
-              A smart image protection and watermarking tool designed to help creators, photographers, digital agencies, and businesses protect their visual content from unauthorized reuse.
+              {t.pixShieldDetail.description}
             </p>
 
             {/* Main capabilities */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
-              {[
-                'Add custom watermarks (text, signatures, vector logos)',
-                'Protect original images with invisible digital markers',
-                'Branding support with automated batch scaling',
-                'Fast and simple image processing in browser & cloud'
-              ].map((cap, i) => (
+              {capabilities.map((cap, i) => (
                 <div key={i} className="flex items-start gap-2.5 text-sm text-slate-700 dark:text-slate-200">
                   <div className="w-5 h-5 rounded-full bg-cyan-500/20 border border-cyan-500/40 flex items-center justify-center shrink-0 mt-0.5">
                     <Check className="w-3 h-3 text-cyan-600 dark:text-cyan-300" />
@@ -90,33 +113,33 @@ export const PixShieldDetail: React.FC<PixShieldDetailProps> = ({ onBack, onOpen
                 onClick={onOpenContact}
                 className="px-7 py-3.5 rounded-xl bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-bold text-sm shadow-lg shadow-cyan-500/20 transition-all active:scale-95"
               >
-                Inquire & Request Pix Shield Access
+                {t.pixShieldDetail.inquireBtn}
               </button>
             </div>
           </div>
 
           <div className="lg:col-span-5">
-            <div className="glass-panel p-6 rounded-3xl border border-slate-200 dark:border-cyan-500/30 space-y-4 bg-white/90 dark:bg-slate-900/60 shadow-md">
+            <div className="p-6 rounded-3xl border border-slate-200 dark:border-cyan-500/30 space-y-4 bg-white/90 dark:bg-slate-900/60 shadow-md">
               <div className="text-xs font-mono text-cyan-700 dark:text-cyan-300 uppercase font-bold flex justify-between">
-                <span>Product Specifications</span>
+                <span>{isRTL ? 'المواصفات الفنية للمنتج' : 'Product Specifications'}</span>
                 <span>v2.4 Pro</span>
               </div>
               <div className="space-y-2 text-xs text-slate-600 dark:text-slate-300">
                 <div className="flex justify-between p-2.5 rounded-xl bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800">
-                  <span className="text-slate-500 dark:text-slate-400">Supported Formats:</span>
+                  <span className="text-slate-500 dark:text-slate-400">{isRTL ? 'الصيغ المدعومة:' : 'Supported Formats:'}</span>
                   <span className="font-mono text-slate-900 dark:text-white font-semibold">PNG, JPG, WebP, TIFF, SVG</span>
                 </div>
                 <div className="flex justify-between p-2.5 rounded-xl bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800">
-                  <span className="text-slate-500 dark:text-slate-400">Processing Speed:</span>
-                  <span className="font-mono text-emerald-600 dark:text-emerald-400 font-semibold">Under 180ms / photo</span>
+                  <span className="text-slate-500 dark:text-slate-400">{isRTL ? 'سرعة المعالجة:' : 'Processing Speed:'}</span>
+                  <span className="font-mono text-emerald-600 dark:text-emerald-400 font-semibold">{isRTL ? 'أقل من 180ms / صورة' : 'Under 180ms / photo'}</span>
                 </div>
                 <div className="flex justify-between p-2.5 rounded-xl bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800">
-                  <span className="text-slate-500 dark:text-slate-400">Batch Processing:</span>
-                  <span className="font-mono text-slate-900 dark:text-white font-semibold">Up to 500 images / batch</span>
+                  <span className="text-slate-500 dark:text-slate-400">{isRTL ? 'المعالجة الدفعية:' : 'Batch Processing:'}</span>
+                  <span className="font-mono text-slate-900 dark:text-white font-semibold">{isRTL ? 'حتى 500 صورة دفعة واحدة' : 'Up to 500 images / batch'}</span>
                 </div>
                 <div className="flex justify-between p-2.5 rounded-xl bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800">
-                  <span className="text-slate-500 dark:text-slate-400">EXIF Metadata:</span>
-                  <span className="font-mono text-cyan-700 dark:text-cyan-300 font-semibold">Preserved or Sanitized</span>
+                  <span className="text-slate-500 dark:text-slate-400">{isRTL ? 'بيانات EXIF المدمجة:' : 'EXIF Metadata:'}</span>
+                  <span className="font-mono text-cyan-700 dark:text-cyan-300 font-semibold">{isRTL ? 'حفظ أو تنظيف آمن' : 'Preserved or Sanitized'}</span>
                 </div>
               </div>
             </div>
@@ -128,14 +151,14 @@ export const PixShieldDetail: React.FC<PixShieldDetailProps> = ({ onBack, onOpen
           <div className="flex items-center justify-between mb-8 pb-4 border-b border-slate-200 dark:border-slate-800">
             <div>
               <h2 className="text-2xl font-bold text-slate-900 dark:text-white font-display">
-                Interactive Watermark Studio Preview
+                {t.pixShieldDetail.previewTitle}
               </h2>
               <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-400">
-                Experience Pix Shield’s precision positioning, opacity blending, and real-time canvas rendering.
+                {t.pixShieldDetail.previewSubtitle}
               </p>
             </div>
             <span className="text-xs font-mono px-3 py-1 rounded-full bg-cyan-100 dark:bg-cyan-950 border border-cyan-300 dark:border-cyan-800 text-cyan-800 dark:text-cyan-300">
-              Live Demo
+              {isRTL ? 'تجربة حية' : 'Live Demo'}
             </span>
           </div>
 
@@ -145,7 +168,7 @@ export const PixShieldDetail: React.FC<PixShieldDetailProps> = ({ onBack, onOpen
             <div className="lg:col-span-5 space-y-5">
               <div>
                 <label className="text-xs font-mono text-slate-700 dark:text-slate-300 uppercase block mb-1">
-                  Watermark Text / Signature:
+                  {isRTL ? 'نص العلامة المائية / التوقيع:' : 'Watermark Text / Signature:'}
                 </label>
                 <div className="relative">
                   <input
@@ -154,21 +177,16 @@ export const PixShieldDetail: React.FC<PixShieldDetailProps> = ({ onBack, onOpen
                     onChange={(e) => setWatermarkText(e.target.value)}
                     className="w-full px-3.5 py-2.5 rounded-xl bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-700 text-sm text-slate-900 dark:text-white font-medium focus:border-cyan-500 focus:outline-none"
                   />
-                  <Type className="w-4 h-4 text-slate-400 dark:text-slate-500 absolute right-3 top-3" />
+                  <Type className={`w-4 h-4 text-slate-400 dark:text-slate-500 absolute top-3 ${isRTL ? 'left-3' : 'right-3'}`} />
                 </div>
               </div>
 
               <div>
                 <label className="text-xs font-mono text-slate-700 dark:text-slate-300 uppercase block mb-1">
-                  Positioning:
+                  {isRTL ? 'موقع العلامة المائية:' : 'Positioning:'}
                 </label>
                 <div className="grid grid-cols-2 gap-2">
-                  {[
-                    { id: 'bottom-right', label: 'Bottom Right' },
-                    { id: 'center', label: 'Center' },
-                    { id: 'top-left', label: 'Top Left' },
-                    { id: 'diagonal', label: 'Full Diagonal' }
-                  ].map((pos) => (
+                  {positions.map((pos) => (
                     <button
                       key={pos.id}
                       onClick={() => setWatermarkPosition(pos.id as any)}
@@ -186,7 +204,7 @@ export const PixShieldDetail: React.FC<PixShieldDetailProps> = ({ onBack, onOpen
 
               <div>
                 <div className="flex justify-between text-xs font-mono text-slate-700 dark:text-slate-300 mb-1">
-                  <span>Watermark Opacity:</span>
+                  <span>{isRTL ? 'درجة الشفافية:' : 'Watermark Opacity:'}</span>
                   <span className="font-bold text-cyan-600 dark:text-cyan-400">{opacity}%</span>
                 </div>
                 <input
@@ -201,10 +219,10 @@ export const PixShieldDetail: React.FC<PixShieldDetailProps> = ({ onBack, onOpen
 
               <div className="pt-2">
                 <button
-                  onClick={() => alert(`Watermark "${watermarkText}" applied successfully! In production, the file downloads instantly.`)}
+                  onClick={() => alert(isRTL ? `تم تطبيق العلامة المائية "${watermarkText}" بنجاح! في بيئة العمل يتم تحميل الصورة المحمية فورياً.` : `Watermark "${watermarkText}" applied successfully! In production, the file downloads instantly.`)}
                   className="w-full py-3 rounded-xl bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-bold text-xs flex items-center justify-center gap-2 shadow-lg shadow-cyan-500/20"
                 >
-                  <Download className="w-4 h-4" /> Download Protected Asset
+                  <Download className="w-4 h-4" /> {isRTL ? 'تحميل الصورة المحمية' : 'Download Protected Asset'}
                 </button>
               </div>
             </div>
@@ -227,10 +245,10 @@ export const PixShieldDetail: React.FC<PixShieldDetailProps> = ({ onBack, onOpen
                     <Camera className="w-8 h-8 text-cyan-300" />
                   </div>
                   <div className="text-xl font-extrabold font-display tracking-tight text-white drop-shadow-md" style={{ color: '#ffffff' }}>
-                    Premium Visual Asset
+                    {isRTL ? 'أصل رقمي عالي الجودة' : 'Premium Visual Asset'}
                   </div>
                   <div className="text-xs font-mono mt-1 font-medium" style={{ color: '#bae6fd' }}>
-                    High-Resolution Studio Master • 3840 x 2160 • RAW
+                    {isRTL ? 'تصوير فوتوغرافي استوديو احترافي • 3840 x 2160 • RAW' : 'High-Resolution Studio Master • 3840 x 2160 • RAW'}
                   </div>
                 </div>
 

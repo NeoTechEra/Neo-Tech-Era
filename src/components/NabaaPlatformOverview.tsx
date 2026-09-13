@@ -20,8 +20,11 @@ import {
   Fuel
 } from 'lucide-react';
 import { NABAA_PROMOTIONS, NABAA_TANKER_SIZES, SAMPLE_DRIVERS } from '../data/products';
+import { useLanguage } from '../i18n';
 
 export const NabaaPlatformOverview: React.FC = () => {
+  const { t, isRTL } = useLanguage();
+
   const [activeAdminTab, setActiveAdminTab] = useState<
     'business' | 'drivers' | 'tankers' | 'orders' | 'promotions' | 'promocodes' | 'insights'
   >('business');
@@ -30,21 +33,31 @@ export const NabaaPlatformOverview: React.FC = () => {
   const [simulatedCommissionType, setSimulatedCommissionType] = useState<'percentage' | 'fixed'>('percentage');
   const [simulatedCommissionValue, setSimulatedCommissionValue] = useState<number>(15);
 
+  const adminTabs = [
+    { id: 'business', label: t.nabaaPlatform.subsystems.business.name, icon: Layers },
+    { id: 'drivers', label: t.nabaaPlatform.subsystems.drivers.name, icon: Users },
+    { id: 'tankers', label: t.nabaaPlatform.subsystems.tankers.name, icon: Truck },
+    { id: 'orders', label: t.nabaaPlatform.subsystems.orders.name, icon: Clock },
+    { id: 'promotions', label: t.nabaaPlatform.subsystems.promotions.name, icon: Tag },
+    { id: 'promocodes', label: t.nabaaPlatform.subsystems.promocodes.name, icon: Ticket },
+    { id: 'insights', label: t.nabaaPlatform.subsystems.insights.name, icon: BarChart3 }
+  ];
+
   return (
     <section id="nabaa-platform-overview" className="py-24 relative bg-slate-100/70 dark:bg-gradient-to-b dark:from-[#060b17] dark:via-[#09152b] dark:to-[#060b17] border-t border-slate-200 dark:border-slate-800/80">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Section Header */}
-        <div className="max-w-3xl mb-12">
+        <div className="max-w-3xl mb-12 text-start">
           <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-cyan-50 dark:bg-cyan-950/80 border border-cyan-200 dark:border-cyan-500/40 text-xs font-mono text-cyan-800 dark:text-cyan-300 mb-3 shadow-sm">
             <Monitor className="w-3.5 h-3.5 text-cyan-600 dark:text-cyan-400" />
-            Control Center Architecture
+            {t.nabaaPlatform.sectionBadge}
           </div>
           <h2 className="text-3xl sm:text-5xl font-extrabold text-slate-900 dark:text-white tracking-tight font-display">
-            One Business. Three Connected Applications.
+            {t.nabaaPlatform.sectionHeading}
           </h2>
           <p className="mt-4 text-lg text-slate-600 dark:text-slate-200 font-normal">
-            The Nabaa Tankers is not just a customer ordering app. It is a complete, enterprise-grade water delivery management ecosystem engineered for logistics precision.
+            {t.nabaaPlatform.sectionSubheading}
           </p>
         </div>
 
@@ -57,12 +70,12 @@ export const NabaaPlatformOverview: React.FC = () => {
                 <div className="p-3 rounded-2xl bg-cyan-100 dark:bg-cyan-500/20 text-cyan-700 dark:text-cyan-300 border border-cyan-300 dark:border-cyan-500/40">
                   <Monitor className="w-7 h-7" />
                 </div>
-                <div>
+                <div className="text-start">
                   <h3 className="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white font-display">
-                    1. ADMIN WEB DASHBOARD
+                    {t.nabaaPlatform.adminHeaderTitle}
                   </h3>
                   <p className="text-sm text-cyan-700 dark:text-cyan-300 font-semibold">
-                    The Control Center for the Complete Water Delivery Business
+                    {t.nabaaPlatform.adminHeaderSubtitle}
                   </p>
                 </div>
               </div>
@@ -70,32 +83,36 @@ export const NabaaPlatformOverview: React.FC = () => {
 
             {/* Quick KPI stats */}
             <div className="flex flex-wrap items-center gap-3">
-              <div className="px-4 py-2 rounded-xl bg-slate-100 dark:bg-[#050c18] border border-slate-200 dark:border-cyan-500/30 text-left">
-                <div className="text-[10px] text-slate-500 dark:text-slate-300 uppercase font-mono">Today's Fleet Capacity</div>
-                <div className="text-lg font-extrabold text-slate-900 dark:text-white">420,000 L</div>
+              <div className="px-4 py-2 rounded-xl bg-slate-100 dark:bg-[#050c18] border border-slate-200 dark:border-cyan-500/30 text-start">
+                <div className="text-[10px] text-slate-500 dark:text-slate-300 uppercase font-mono">
+                  {t.nabaaPlatform.kpiCapacityLabel}
+                </div>
+                <div className="text-lg font-extrabold text-slate-900 dark:text-white">
+                  {t.nabaaPlatform.kpiCapacityVal}
+                </div>
               </div>
-              <div className="px-4 py-2 rounded-xl bg-slate-100 dark:bg-[#050c18] border border-slate-200 dark:border-cyan-500/30 text-left">
-                <div className="text-[10px] text-slate-500 dark:text-slate-300 uppercase font-mono">Avg Dispatch Time</div>
-                <div className="text-lg font-extrabold text-cyan-600 dark:text-cyan-300 font-mono">4.2 min</div>
+              <div className="px-4 py-2 rounded-xl bg-slate-100 dark:bg-[#050c18] border border-slate-200 dark:border-cyan-500/30 text-start">
+                <div className="text-[10px] text-slate-500 dark:text-slate-300 uppercase font-mono">
+                  {t.nabaaPlatform.kpiDispatchLabel}
+                </div>
+                <div className="text-lg font-extrabold text-cyan-600 dark:text-cyan-300 font-mono">
+                  {t.nabaaPlatform.kpiDispatchVal}
+                </div>
               </div>
-              <div className="px-4 py-2 rounded-xl bg-slate-100 dark:bg-[#050c18] border border-slate-200 dark:border-cyan-500/30 text-left">
-                <div className="text-[10px] text-slate-500 dark:text-slate-300 uppercase font-mono">Order Success</div>
-                <div className="text-lg font-extrabold text-emerald-600 dark:text-emerald-300 font-mono">99.4%</div>
+              <div className="px-4 py-2 rounded-xl bg-slate-100 dark:bg-[#050c18] border border-slate-200 dark:border-cyan-500/30 text-start">
+                <div className="text-[10px] text-slate-500 dark:text-slate-300 uppercase font-mono">
+                  {isRTL ? 'نسبة نجاح التوصيل' : 'Order Success'}
+                </div>
+                <div className="text-lg font-extrabold text-emerald-600 dark:text-emerald-300 font-mono">
+                  99.4%
+                </div>
               </div>
             </div>
           </div>
 
           {/* Tab Navigation for Admin Sub-systems */}
           <div className="mt-8 flex flex-wrap gap-2 pb-4 border-b border-slate-200 dark:border-white/10">
-            {[
-              { id: 'business', label: 'Business Management', icon: Layers },
-              { id: 'drivers', label: 'Driver Management', icon: Users },
-              { id: 'tankers', label: 'Tanker Management', icon: Truck },
-              { id: 'orders', label: 'Order Lifecycle', icon: Clock },
-              { id: 'promotions', label: 'Promotions & Offers', icon: Tag },
-              { id: 'promocodes', label: 'Promo Codes', icon: Ticket },
-              { id: 'insights', label: 'Business Insights', icon: BarChart3 }
-            ].map((tab) => {
+            {adminTabs.map((tab) => {
               const Icon = tab.icon;
               const isActive = activeAdminTab === tab.id;
               return (
@@ -117,19 +134,29 @@ export const NabaaPlatformOverview: React.FC = () => {
           </div>
 
           {/* Tab Content Display */}
-          <div className="mt-8">
+          <div className="mt-8 text-start">
             
             {/* 1. Business Management */}
             {activeAdminTab === 'business' && (
               <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center animate-in fade-in duration-200">
                 <div className="lg:col-span-6 space-y-4">
-                  <h4 className="text-xl font-bold text-white">Central Operations & Entity Directory</h4>
-                  <p className="text-slate-300 text-sm leading-relaxed">
-                    The business administrator oversees all vital business nodes in real-time. Control geographical service areas, customer accounts, fleet compliance, and active dispatch protocols.
+                  <h4 className="text-xl font-bold text-slate-900 dark:text-white">
+                    {t.nabaaPlatform.businessView.title}
+                  </h4>
+                  <p className="text-slate-600 dark:text-slate-300 text-sm leading-relaxed">
+                    {t.nabaaPlatform.businessView.desc}
                   </p>
                   
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
-                    {[
+                    {(isRTL ? [
+                      'إدارة ملفات وبيانات العملاء',
+                      'التحقق من وثائق وتراخيص السائقين',
+                      'إدارة أسطول الشاحنات ورخص الفحص',
+                      'تحديد أحجام وسعات الصهاريج والتسعير',
+                      'مراقبة الطلبات الحية وحالات التوصيل',
+                      'تحديد النطاقات الجغرافية ومناطق التغطية',
+                      'متابعة العمليات اللوجستية على مدار الساعة'
+                    ] : [
                       'Manage customers & profiles',
                       'Manage driver verification',
                       'Manage tanker vehicles & licenses',
@@ -137,9 +164,9 @@ export const NabaaPlatformOverview: React.FC = () => {
                       'Manage live orders & status',
                       'Manage service zones & geofences',
                       'Manage delivery operations 24/7'
-                    ].map((item, idx) => (
-                      <div key={idx} className="flex items-center gap-2 text-xs sm:text-sm text-slate-200">
-                        <CheckCircle2 className="w-4 h-4 text-cyan-400 shrink-0" />
+                    ]).map((item, idx) => (
+                      <div key={idx} className="flex items-center gap-2 text-xs sm:text-sm text-slate-700 dark:text-slate-200">
+                        <CheckCircle2 className="w-4 h-4 text-cyan-600 dark:text-cyan-400 shrink-0" />
                         <span>{item}</span>
                       </div>
                     ))}
@@ -147,24 +174,33 @@ export const NabaaPlatformOverview: React.FC = () => {
                 </div>
 
                 <div className="lg:col-span-6">
-                  <div className="glass-panel p-5 rounded-2xl border border-slate-800 space-y-3">
-                    <div className="flex items-center justify-between text-xs text-slate-400 font-mono pb-2 border-b border-slate-800">
-                      <span>Live Service Zones (Geofenced)</span>
-                      <span className="text-cyan-400">4 Active Districts</span>
+                  <div className="p-5 rounded-2xl bg-slate-50 dark:bg-slate-950/80 border border-slate-200 dark:border-slate-800 space-y-3">
+                    <div className="flex items-center justify-between text-xs text-slate-500 dark:text-slate-400 font-mono pb-2 border-b border-slate-200 dark:border-slate-800">
+                      <span>{isRTL ? 'مناطق التغطية النشطة (سياج جغرافي)' : 'Live Service Zones (Geofenced)'}</span>
+                      <span className="text-cyan-600 dark:text-cyan-400">{isRTL ? '4 أحياء مفعلة' : '4 Active Districts'}</span>
                     </div>
 
-                    {[
+                    {(isRTL ? [
+                      { name: 'القطاع الشمالي (الملقا، الصحافة، العقيق)', tankers: 12, orders: 28, status: 'طلب مرتفع' },
+                      { name: 'المنطقة التجارية المركزية (العليا، السليمانية)', tankers: 8, orders: 14, status: 'مستقر' },
+                      { name: 'القطاع السكني الشرقي (اليرموك، الروضة)', tankers: 11, orders: 19, status: 'مستقر' },
+                      { name: 'القطاع الغربي والمشاريع الإنشائية', tankers: 9, orders: 8, status: 'توجيه سريع' }
+                    ] : [
                       { name: 'North District (Al-Malqa, Al-Sahafa)', tankers: 12, orders: 28, status: 'High Demand' },
                       { name: 'Central Commercial Area (Al-Olaya)', tankers: 8, orders: 14, status: 'Optimal' },
                       { name: 'East Residential (Al-Yarmouk)', tankers: 11, orders: 19, status: 'Optimal' },
                       { name: 'West Industrial & Construction', tankers: 9, orders: 8, status: 'Fast Dispatch' }
-                    ].map((zone, i) => (
-                      <div key={i} className="p-3 rounded-xl bg-slate-950/70 border border-slate-800/80 flex items-center justify-between text-xs">
+                    ]).map((zone, i) => (
+                      <div key={i} className="p-3 rounded-xl bg-white dark:bg-slate-900/70 border border-slate-200 dark:border-slate-800/80 flex items-center justify-between text-xs">
                         <div>
-                          <div className="font-semibold text-white">{zone.name}</div>
-                          <div className="text-[11px] text-slate-400">{zone.tankers} Tankers assigned • {zone.orders} active deliveries</div>
+                          <div className="font-semibold text-slate-900 dark:text-white">{zone.name}</div>
+                          <div className="text-[11px] text-slate-500 dark:text-slate-400">
+                            {isRTL 
+                              ? `${zone.tankers} صهريج معين • ${zone.orders} طلب نشط`
+                              : `${zone.tankers} Tankers assigned • ${zone.orders} active deliveries`}
+                          </div>
                         </div>
-                        <span className="px-2 py-0.5 rounded text-[10px] font-mono bg-cyan-950 text-cyan-300 border border-cyan-800">
+                        <span className="px-2 py-0.5 rounded text-[10px] font-mono bg-cyan-100 dark:bg-cyan-950 text-cyan-800 dark:text-cyan-300 border border-cyan-300 dark:border-cyan-800">
                           {zone.status}
                         </span>
                       </div>
@@ -178,14 +214,16 @@ export const NabaaPlatformOverview: React.FC = () => {
             {activeAdminTab === 'drivers' && (
               <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start animate-in fade-in duration-200">
                 <div className="lg:col-span-6 space-y-4">
-                  <h4 className="text-xl font-bold text-white">Driver Logistics & Commission Controls</h4>
-                  <p className="text-slate-300 text-sm leading-relaxed">
-                    Administrators have flexible tools to onboard drivers, monitor real-time availability, assign emergency dispatches, and configure commission rules with precision.
+                  <h4 className="text-xl font-bold text-slate-900 dark:text-white">
+                    {t.nabaaPlatform.driversView.title}
+                  </h4>
+                  <p className="text-slate-600 dark:text-slate-300 text-sm leading-relaxed">
+                    {t.nabaaPlatform.driversView.desc}
                   </p>
 
-                  <div className="p-4 rounded-2xl bg-slate-950/80 border border-slate-800 space-y-4">
-                    <div className="text-xs font-mono text-cyan-300 uppercase font-bold">
-                      Interactive Commission Engine
+                  <div className="p-4 rounded-2xl bg-slate-50 dark:bg-slate-950/80 border border-slate-200 dark:border-slate-800 space-y-4">
+                    <div className="text-xs font-mono text-cyan-700 dark:text-cyan-300 uppercase font-bold">
+                      {isRTL ? 'محرك تسعير وتخصيص عمولة السائق' : 'Interactive Commission Engine'}
                     </div>
 
                     <div className="flex items-center gap-3">
@@ -193,74 +231,83 @@ export const NabaaPlatformOverview: React.FC = () => {
                         onClick={() => { setSimulatedCommissionType('percentage'); setSimulatedCommissionValue(15); }}
                         className={`flex-1 py-2 rounded-xl text-xs font-semibold border ${
                           simulatedCommissionType === 'percentage'
-                            ? 'bg-cyan-500/20 text-cyan-300 border-cyan-400'
-                            : 'bg-slate-900 text-slate-400 border-slate-800'
+                            ? 'bg-cyan-100 dark:bg-cyan-500/20 text-cyan-800 dark:text-cyan-300 border-cyan-400'
+                            : 'bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-400 border-slate-200 dark:border-slate-800'
                         }`}
                       >
-                        Percentage (%)
+                        {isRTL ? 'نسبة مئوية (%)' : 'Percentage (%)'}
                       </button>
                       <button
                         onClick={() => { setSimulatedCommissionType('fixed'); setSimulatedCommissionValue(30); }}
                         className={`flex-1 py-2 rounded-xl text-xs font-semibold border ${
                           simulatedCommissionType === 'fixed'
-                            ? 'bg-cyan-500/20 text-cyan-300 border-cyan-400'
-                            : 'bg-slate-900 text-slate-400 border-slate-800'
+                            ? 'bg-cyan-100 dark:bg-cyan-500/20 text-cyan-800 dark:text-cyan-300 border-cyan-400'
+                            : 'bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-400 border-slate-200 dark:border-slate-800'
                         }`}
                       >
-                        Fixed SAR Currency
+                        {isRTL ? 'قيمة ثابتة بالريال (SAR)' : 'Fixed SAR Currency'}
                       </button>
                     </div>
 
-                    <div className="text-xs text-slate-300">
-                      Current setting: <strong className="text-white">{simulatedCommissionType === 'percentage' ? `${simulatedCommissionValue}% of order subtotal` : `${simulatedCommissionValue} SAR per completed order`}</strong>
+                    <div className="text-xs text-slate-700 dark:text-slate-300">
+                      {isRTL ? 'الإعداد المعتمد حالياً: ' : 'Current setting: '}{' '}
+                      <strong className="text-slate-900 dark:text-white">
+                        {simulatedCommissionType === 'percentage' 
+                          ? (isRTL ? `${simulatedCommissionValue}% من قيمة الطلب الإجمالية` : `${simulatedCommissionValue}% of order subtotal`)
+                          : (isRTL ? `${simulatedCommissionValue} ر.س عن كل مشوار مكتمل` : `${simulatedCommissionValue} SAR per completed order`)}
+                      </strong>
                     </div>
 
-                    <p className="text-[11px] text-slate-400">
-                      Drivers can inspect their wallet balance, request payout, and view completed delivery history in real-time.
+                    <p className="text-[11px] text-slate-500 dark:text-slate-400">
+                      {isRTL
+                        ? 'يمكن للسائقين التحقق من رصيد المحفظة، طلب التحويل البنكي، واستعراض سجل الرحلات لحظياً.'
+                        : 'Drivers can inspect their wallet balance, request payout, and view completed delivery history in real-time.'}
                     </p>
                   </div>
 
-                  <ul className="space-y-2 text-xs text-slate-300 pt-1">
+                  <ul className="space-y-2 text-xs text-slate-600 dark:text-slate-300 pt-1">
                     <li className="flex items-center gap-2">
-                      <CheckCircle2 className="w-3.5 h-3.5 text-cyan-400" />
-                      Add and manage driver credentials & commercial licenses
+                      <CheckCircle2 className="w-3.5 h-3.5 text-cyan-600 dark:text-cyan-400" />
+                      {isRTL ? 'إضافة وتدقيق رخص القيادة وشهادات السلامة المهنية' : 'Add and manage driver credentials & commercial licenses'}
                     </li>
                     <li className="flex items-center gap-2">
-                      <CheckCircle2 className="w-3.5 h-3.5 text-cyan-400" />
-                      Monitor driver availability status (Available, On Delivery, Offline)
+                      <CheckCircle2 className="w-3.5 h-3.5 text-cyan-600 dark:text-cyan-400" />
+                      {isRTL ? 'متابعة حالة تواجد السائقين الحية (متاح، في مشوار، غير متصل)' : 'Monitor driver availability status (Available, On Delivery, Offline)'}
                     </li>
                     <li className="flex items-center gap-2">
-                      <CheckCircle2 className="w-3.5 h-3.5 text-cyan-400" />
-                      Track driver wallet information and automated commission disbursements
+                      <CheckCircle2 className="w-3.5 h-3.5 text-cyan-600 dark:text-cyan-400" />
+                      {isRTL ? 'تتبع محافظ السائقين والصرف التلقائي للعمولات المعتمدة' : 'Track driver wallet information and automated commission disbursements'}
                     </li>
                   </ul>
                 </div>
 
                 <div className="lg:col-span-6 space-y-3">
-                  <div className="text-xs font-mono text-slate-400 uppercase">Registered Drivers Roster</div>
+                  <div className="text-xs font-mono text-slate-500 dark:text-slate-400 uppercase">
+                    {isRTL ? 'قائمة السائقين المعتمدين في النظام' : 'Registered Drivers Roster'}
+                  </div>
                   {SAMPLE_DRIVERS.map((driver) => (
-                    <div key={driver.id} className="p-4 rounded-xl bg-slate-950/70 border border-slate-800 flex items-center justify-between">
+                    <div key={driver.id} className="p-4 rounded-xl bg-white dark:bg-slate-950/70 border border-slate-200 dark:border-slate-800 flex items-center justify-between">
                       <div className="flex items-center gap-3">
-                        <div className="w-10 h-10 rounded-full bg-cyan-500/20 text-cyan-300 flex items-center justify-center font-bold text-sm">
+                        <div className="w-10 h-10 rounded-full bg-cyan-100 dark:bg-cyan-500/20 text-cyan-800 dark:text-cyan-300 flex items-center justify-center font-bold text-sm">
                           {driver.name.split(' ').map(n => n[0]).join('')}
                         </div>
                         <div>
-                          <div className="text-sm font-bold text-white flex items-center gap-2">
+                          <div className="text-sm font-bold text-slate-900 dark:text-white flex items-center gap-2">
                             {driver.name}
-                            <span className="text-[11px] font-mono text-amber-300">★ {driver.rating}</span>
+                            <span className="text-[11px] font-mono text-amber-600 dark:text-amber-300">★ {driver.rating}</span>
                           </div>
-                          <div className="text-xs text-slate-400">
+                          <div className="text-xs text-slate-500 dark:text-slate-400">
                             {driver.vehicleNo} • {driver.tankerSize}
                           </div>
                         </div>
                       </div>
 
-                      <div className="text-right">
-                        <div className="text-xs font-bold text-emerald-400 font-mono">
-                          {driver.walletBalanceSAR} SAR
+                      <div className="text-end">
+                        <div className="text-xs font-bold text-emerald-600 dark:text-emerald-400 font-mono">
+                          {driver.walletBalanceSAR} {t.common.sar}
                         </div>
-                        <div className="text-[10px] text-slate-400">
-                          Wallet Balance ({driver.commissionRate})
+                        <div className="text-[10px] text-slate-500 dark:text-slate-400">
+                          {isRTL ? 'رصيد المحفظة' : 'Wallet Balance'} ({driver.commissionRate})
                         </div>
                       </div>
                     </div>
@@ -273,45 +320,49 @@ export const NabaaPlatformOverview: React.FC = () => {
             {activeAdminTab === 'tankers' && (
               <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center animate-in fade-in duration-200">
                 <div className="lg:col-span-6 space-y-4">
-                  <h4 className="text-xl font-bold text-white">Fleet Capacity & Tanker Relationships</h4>
-                  <p className="text-slate-300 text-sm leading-relaxed">
-                    Easily manage diverse water tanker vehicle configurations, sanitization records, water meter inspection certificates, and driver-tanker pairings.
+                  <h4 className="text-xl font-bold text-slate-900 dark:text-white">
+                    {t.nabaaPlatform.tankersView.title}
+                  </h4>
+                  <p className="text-slate-600 dark:text-slate-300 text-sm leading-relaxed">
+                    {t.nabaaPlatform.tankersView.desc}
                   </p>
 
-                  <div className="space-y-2.5 text-xs sm:text-sm text-slate-200">
+                  <div className="space-y-2.5 text-xs sm:text-sm text-slate-700 dark:text-slate-200">
                     <div className="flex items-center gap-2">
-                      <CheckCircle2 className="w-4 h-4 text-cyan-400" />
-                      Configure different tanker sizes (10 Ton, 19 Ton, 32 Ton)
+                      <CheckCircle2 className="w-4 h-4 text-cyan-600 dark:text-cyan-400" />
+                      {isRTL ? 'تهيئة أحجام الصهاريج المختلفة (10 طن، 19 طن، 32 طن)' : 'Configure different tanker sizes (10 Ton, 19 Ton, 32 Ton)'}
                     </div>
                     <div className="flex items-center gap-2">
-                      <CheckCircle2 className="w-4 h-4 text-cyan-400" />
-                      Real-time tanker availability status
+                      <CheckCircle2 className="w-4 h-4 text-cyan-600 dark:text-cyan-400" />
+                      {isRTL ? 'متابعة حالة توفر الصهاريج الحية والجاهزية الفنية' : 'Real-time tanker availability status'}
                     </div>
                     <div className="flex items-center gap-2">
-                      <CheckCircle2 className="w-4 h-4 text-cyan-400" />
-                      Driver-to-tanker assignment & shift swaps
+                      <CheckCircle2 className="w-4 h-4 text-cyan-600 dark:text-cyan-400" />
+                      {isRTL ? 'تعيين الصهريج للسائق وجدولة نوبات القيادة والتبديل' : 'Driver-to-tanker assignment & shift swaps'}
                     </div>
                     <div className="flex items-center gap-2">
-                      <CheckCircle2 className="w-4 h-4 text-cyan-400" />
-                      Water quality check & tank sanitization logs
+                      <CheckCircle2 className="w-4 h-4 text-cyan-600 dark:text-cyan-400" />
+                      {isRTL ? 'سجلات فحص جودة المياه وتعقيم الصهاريج الدورية' : 'Water quality check & tank sanitization logs'}
                     </div>
                   </div>
                 </div>
 
                 <div className="lg:col-span-6 grid grid-cols-1 sm:grid-cols-3 gap-3">
                   {NABAA_TANKER_SIZES.map((tanker) => (
-                    <div key={tanker.id} className="p-4 rounded-2xl bg-slate-950/80 border border-slate-800 text-center flex flex-col justify-between">
+                    <div key={tanker.id} className="p-4 rounded-2xl bg-slate-50 dark:bg-slate-950/80 border border-slate-200 dark:border-slate-800 text-center flex flex-col justify-between">
                       <div>
-                        <div className="w-10 h-10 mx-auto rounded-xl bg-cyan-500/10 text-cyan-300 flex items-center justify-center mb-2">
+                        <div className="w-10 h-10 mx-auto rounded-xl bg-cyan-100 dark:bg-cyan-500/10 text-cyan-700 dark:text-cyan-300 flex items-center justify-center mb-2">
                           <Truck className="w-5 h-5" />
                         </div>
-                        <div className="text-sm font-bold text-white">{tanker.name}</div>
-                        <div className="text-xs text-cyan-300 font-mono mt-0.5">{tanker.capacity}</div>
-                        <div className="text-[11px] text-slate-400 mt-1">{tanker.liters}</div>
+                        <div className="text-sm font-bold text-slate-900 dark:text-white">
+                          {isRTL ? (tanker.id === 'small' ? 'صهريج صغير' : tanker.id === 'medium' ? 'صهريج متوسط' : 'صهريج كبير') : tanker.name}
+                        </div>
+                        <div className="text-xs text-cyan-700 dark:text-cyan-300 font-mono mt-0.5">{tanker.capacity}</div>
+                        <div className="text-[11px] text-slate-500 dark:text-slate-400 mt-1">{tanker.liters}</div>
                       </div>
-                      <div className="mt-3 pt-3 border-t border-slate-800">
-                        <div className="text-xs font-bold text-white">{tanker.priceSAR} SAR</div>
-                        <div className="text-[10px] text-slate-400">Base Tariff</div>
+                      <div className="mt-3 pt-3 border-t border-slate-200 dark:border-slate-800">
+                        <div className="text-xs font-bold text-slate-900 dark:text-white">{tanker.priceSAR} {t.common.sar}</div>
+                        <div className="text-[10px] text-slate-500 dark:text-slate-400">{isRTL ? 'التسعيرة الأساسية' : 'Base Tariff'}</div>
                       </div>
                     </div>
                   ))}
@@ -323,28 +374,36 @@ export const NabaaPlatformOverview: React.FC = () => {
             {activeAdminTab === 'orders' && (
               <div className="space-y-6 animate-in fade-in duration-200">
                 <div className="max-w-3xl">
-                  <h4 className="text-xl font-bold text-white">End-to-End Order Lifecycle Flow</h4>
-                  <p className="text-slate-300 text-sm mt-1">
-                    Administrators view and manage orders throughout their complete lifecycle, with real-time audit logs and automatic driver dispatch failovers.
+                  <h4 className="text-xl font-bold text-slate-900 dark:text-white">
+                    {t.nabaaPlatform.ordersView.title}
+                  </h4>
+                  <p className="text-slate-600 dark:text-slate-300 text-sm mt-1">
+                    {t.nabaaPlatform.ordersView.desc}
                   </p>
                 </div>
 
                 {/* Horizontal Flow Diagram */}
                 <div className="grid grid-cols-1 sm:grid-cols-5 gap-3 pt-2">
-                  {[
+                  {(isRTL ? [
+                    { step: '01', title: 'إنشاء الطلب', desc: 'يحدد العميل الحجم والعنوان ونوع التوصيل', badge: 'المحفز' },
+                    { step: '02', title: 'البحث عن السائق', desc: 'يرسل النظام تنبيهاً لأقرب الصهاريج المتاحة', badge: 'آلي' },
+                    { step: '03', title: 'تعيين السائق', desc: 'يقبل السائق؛ وتصل بيانات الشاحنة للعميل', badge: 'مقترن' },
+                    { step: '04', title: 'التوصيل جارٍ', desc: 'تتبع GPS مباشر والوصول للموقع وبدء الضخ', badge: 'مباشر' },
+                    { step: '05', title: 'اكتمال الطلب', desc: 'تسليم الفاتورة وسداد العمولة بمحفظة السائق', badge: 'مؤرشف' }
+                  ] : [
                     { step: '01', title: 'Order Created', desc: 'Customer selects size, address & delivery type', badge: 'Trigger' },
                     { step: '02', title: 'Driver Search', desc: 'System pings nearest available tanker drivers', badge: 'Auto' },
                     { step: '03', title: 'Driver Assigned', desc: 'Driver accepts order; ETA & vehicle sent to user', badge: 'Matched' },
                     { step: '04', title: 'Delivery in Progress', desc: 'Real-time GPS en route, arrival at site & filling', badge: 'Live' },
                     { step: '05', title: 'Completed', desc: 'Delivery signed off, invoice issued, payout settled', badge: 'Archived' }
-                  ].map((s, idx) => (
-                    <div key={idx} className="p-4 rounded-2xl bg-slate-950/80 border border-slate-800 relative group hover:border-cyan-500/40 transition-all">
-                      <div className="flex items-center justify-between text-xs font-mono text-cyan-400 mb-2">
+                  ]).map((s, idx) => (
+                    <div key={idx} className="p-4 rounded-2xl bg-slate-50 dark:bg-slate-950/80 border border-slate-200 dark:border-slate-800 relative group hover:border-cyan-500/40 transition-all">
+                      <div className="flex items-center justify-between text-xs font-mono text-cyan-600 dark:text-cyan-400 mb-2">
                         <span className="font-bold">{s.step}</span>
-                        <span className="px-1.5 py-0.5 rounded bg-cyan-950 text-[10px] border border-cyan-800">{s.badge}</span>
+                        <span className="px-1.5 py-0.5 rounded bg-cyan-100 dark:bg-cyan-950 text-[10px] border border-cyan-300 dark:border-cyan-800">{s.badge}</span>
                       </div>
-                      <div className="text-sm font-bold text-white">{s.title}</div>
-                      <p className="text-xs text-slate-400 mt-1">{s.desc}</p>
+                      <div className="text-sm font-bold text-slate-900 dark:text-white">{s.title}</div>
+                      <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">{s.desc}</p>
                     </div>
                   ))}
                 </div>
@@ -355,63 +414,85 @@ export const NabaaPlatformOverview: React.FC = () => {
             {activeAdminTab === 'promotions' && (
               <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start animate-in fade-in duration-200">
                 <div className="lg:col-span-6 space-y-4">
-                  <h4 className="text-xl font-bold text-white">Automated Promotional Offers Engine</h4>
-                  <p className="text-slate-300 text-sm leading-relaxed">
-                    Administrators create rich promotional rules tailored to seasonal demands, tanker capacities, and targeted customer segments without requiring manual code entry.
+                  <h4 className="text-xl font-bold text-slate-900 dark:text-white">
+                    {t.nabaaPlatform.promotionsView.title}
+                  </h4>
+                  <p className="text-slate-600 dark:text-slate-300 text-sm leading-relaxed">
+                    {t.nabaaPlatform.promotionsView.desc}
                   </p>
 
-                  <div className="grid grid-cols-2 gap-2 text-xs text-slate-300">
-                    <div className="p-2.5 rounded-xl bg-slate-950 border border-slate-800">
-                      <span className="text-slate-400 block text-[10px]">Discount Mechanism</span>
-                      <strong className="text-white">Percentage or Fixed SAR</strong>
+                  <div className="grid grid-cols-2 gap-2 text-xs text-slate-700 dark:text-slate-300">
+                    <div className="p-2.5 rounded-xl bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800">
+                      <span className="text-slate-500 dark:text-slate-400 block text-[10px]">
+                        {isRTL ? 'آلية الخصم' : 'Discount Mechanism'}
+                      </span>
+                      <strong className="text-slate-900 dark:text-white">
+                        {isRTL ? 'نسبة مئوية أو قيمة ثابتة' : 'Percentage or Fixed SAR'}
+                      </strong>
                     </div>
-                    <div className="p-2.5 rounded-xl bg-slate-950 border border-slate-800">
-                      <span className="text-slate-400 block text-[10px]">Capping Rule</span>
-                      <strong className="text-white">Maximum Discount Limit</strong>
+                    <div className="p-2.5 rounded-xl bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800">
+                      <span className="text-slate-500 dark:text-slate-400 block text-[10px]">
+                        {isRTL ? 'سقف الخصم' : 'Capping Rule'}
+                      </span>
+                      <strong className="text-slate-900 dark:text-white">
+                        {isRTL ? 'أقصى حد للتوفير بالريال' : 'Maximum Discount Limit'}
+                      </strong>
                     </div>
-                    <div className="p-2.5 rounded-xl bg-slate-950 border border-slate-800">
-                      <span className="text-slate-400 block text-[10px]">Cart Threshold</span>
-                      <strong className="text-white">Minimum Order Amount</strong>
+                    <div className="p-2.5 rounded-xl bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800">
+                      <span className="text-slate-500 dark:text-slate-400 block text-[10px]">
+                        {isRTL ? 'حد السلة الأدنى' : 'Cart Threshold'}
+                      </span>
+                      <strong className="text-slate-900 dark:text-white">
+                        {isRTL ? 'أقل قيمة لتفعيل العرض' : 'Minimum Order Amount'}
+                      </strong>
                     </div>
-                    <div className="p-2.5 rounded-xl bg-slate-950 border border-slate-800">
-                      <span className="text-slate-400 block text-[10px]">Target Audience</span>
-                      <strong className="text-white">New, Existing, or All</strong>
+                    <div className="p-2.5 rounded-xl bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800">
+                      <span className="text-slate-500 dark:text-slate-400 block text-[10px]">
+                        {isRTL ? 'الفئة المستهدفة' : 'Target Audience'}
+                      </span>
+                      <strong className="text-slate-900 dark:text-white">
+                        {isRTL ? 'عملاء جدد، حاليون، أو الجميع' : 'New, Existing, or All'}
+                      </strong>
                     </div>
                   </div>
 
-                  <p className="text-xs text-slate-400">
-                    Administrators configure whether the offer applies to the raw product price or the overall order subtotal.
+                  <p className="text-xs text-slate-500 dark:text-slate-400">
+                    {isRTL
+                      ? 'يحدد مدير النظام ما إذا كان العرض يطبق على سعر الصهريج المجرد أو على المجموع الفرعي للطلب بالكامل.'
+                      : 'Administrators configure whether the offer applies to the raw product price or the overall order subtotal.'}
                   </p>
                 </div>
 
                 {/* Example Promotional Card */}
                 <div className="lg:col-span-6">
-                  <div className="glass-panel-water p-6 rounded-2xl border border-cyan-400/40 relative shadow-xl">
-                    <div className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-cyan-400/20 text-cyan-200 text-xs font-bold uppercase mb-3">
-                      Example Promotion
+                  <div className="p-6 rounded-2xl bg-cyan-50/90 dark:bg-cyan-950/40 border border-cyan-300 dark:border-cyan-400/40 relative shadow-xl">
+                    <div className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-cyan-100 dark:bg-cyan-400/20 text-cyan-800 dark:text-cyan-200 text-xs font-bold uppercase mb-3">
+                      {isRTL ? 'نموذج عرض تلقائي' : 'Example Promotion'}
                     </div>
-                    <h5 className="text-2xl font-black text-white font-display">
-                      Ramadan Water Offer
+                    <h5 className="text-2xl font-black text-slate-900 dark:text-white font-display">
+                      {isRTL ? 'عرض مياه رمضان المبارك' : 'Ramadan Water Offer'}
                     </h5>
-                    <div className="text-base text-cyan-300 font-bold mt-1">
-                      Save 15% • Maximum Discount: 30 SAR
+                    <div className="text-base text-cyan-700 dark:text-cyan-300 font-bold mt-1">
+                      {isRTL ? 'وفّر 15% • أقصى خصم: 30 ر.س' : 'Save 15% • Maximum Discount: 30 SAR'}
                     </div>
-                    <p className="text-xs text-slate-200 mt-2">
-                      Applies automatically during checkout for all customers ordering any tanker size.
+                    <p className="text-xs text-slate-600 dark:text-slate-200 mt-2">
+                      {isRTL
+                        ? 'يطبق العرض تلقائياً عند الدفع لجميع العملاء عند طلب أي صهريج مياه.'
+                        : 'Applies automatically during checkout for all customers ordering any tanker size.'}
                     </p>
 
-                    <div className="mt-4 p-3 rounded-xl bg-slate-950/70 border border-cyan-500/20 text-xs space-y-1.5 font-mono">
-                      <div className="flex justify-between text-slate-300">
-                        <span>Medium Tanker (19T):</span>
-                        <span className="text-white">200 SAR</span>
+                    <div className="mt-4 p-3 rounded-xl bg-white dark:bg-slate-950/70 border border-cyan-200 dark:border-cyan-500/20 text-xs space-y-1.5 font-mono">
+                      <div className="flex justify-between text-slate-600 dark:text-slate-300">
+                        <span>{isRTL ? 'صهريج متوسط (19 طن):' : 'Medium Tanker (19T):'}</span>
+                        <span className="text-slate-900 dark:text-white">200 {t.common.sar}</span>
                       </div>
-                      <div className="flex justify-between text-emerald-400">
-                        <span>15% Ramadan Offer Discount:</span>
-                        <span>-30 SAR (Max Cap Reached)</span>
+                      <div className="flex justify-between text-emerald-600 dark:text-emerald-400">
+                        <span>{isRTL ? 'خصم عرض رمضان (15%):' : '15% Ramadan Offer Discount:'}</span>
+                        <span>{isRTL ? '-30 ر.س (تم الوصول للحد الأقصى)' : '-30 SAR (Max Cap Reached)'}</span>
                       </div>
-                      <div className="flex justify-between text-white font-bold pt-1 border-t border-slate-800">
-                        <span>Final Checkout:</span>
-                        <span className="text-cyan-300">170 SAR</span>
+                      <div className="flex justify-between text-slate-900 dark:text-white font-bold pt-1 border-t border-slate-200 dark:border-slate-800">
+                        <span>{isRTL ? 'المبلغ النهائي المطلوب:' : 'Final Checkout:'}</span>
+                        <span className="text-cyan-700 dark:text-cyan-300">170 {t.common.sar}</span>
                       </div>
                     </div>
                   </div>
@@ -423,57 +504,61 @@ export const NabaaPlatformOverview: React.FC = () => {
             {activeAdminTab === 'promocodes' && (
               <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start animate-in fade-in duration-200">
                 <div className="lg:col-span-6 space-y-4">
-                  <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-purple-950 border border-purple-800 text-xs font-mono text-purple-300">
+                  <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-purple-100 dark:bg-purple-950 border border-purple-200 dark:border-purple-800 text-xs font-mono text-purple-800 dark:text-purple-300">
                     <Ticket className="w-3.5 h-3.5" />
-                    Separate System from Promotions
+                    {isRTL ? 'منظومة مستقلة عن العروض التلقائية' : 'Separate System from Promotions'}
                   </div>
-                  <h4 className="text-xl font-bold text-white">Promo Codes Management</h4>
-                  <p className="text-slate-300 text-sm leading-relaxed">
-                    Promo codes are managed independently from automated promotional offers. Customers manually enter specific voucher codes during checkout for partner campaigns, corporate accounts, or influencer deals.
+                  <h4 className="text-xl font-bold text-slate-900 dark:text-white">
+                    {t.nabaaPlatform.promocodesView.title}
+                  </h4>
+                  <p className="text-slate-600 dark:text-slate-300 text-sm leading-relaxed">
+                    {t.nabaaPlatform.promocodesView.desc}
                   </p>
 
-                  <ul className="space-y-2 text-xs text-slate-300">
+                  <ul className="space-y-2 text-xs text-slate-600 dark:text-slate-300">
                     <li className="flex items-center gap-2">
-                      <CheckCircle2 className="w-3.5 h-3.5 text-cyan-400" />
-                      Create unique alphanumeric promo codes (e.g. NEO20, WATERFAST)
+                      <CheckCircle2 className="w-3.5 h-3.5 text-cyan-600 dark:text-cyan-400" />
+                      {isRTL ? 'إنشاء أكواد قسائم مخصصة (مثل NEO20, WATERFAST)' : 'Create unique alphanumeric promo codes (e.g. NEO20, WATERFAST)'}
                     </li>
                     <li className="flex items-center gap-2">
-                      <CheckCircle2 className="w-3.5 h-3.5 text-cyan-400" />
-                      Set percentage or fixed currency discounts
+                      <CheckCircle2 className="w-3.5 h-3.5 text-cyan-600 dark:text-cyan-400" />
+                      {isRTL ? 'تحديد الخصم كنسبة مئوية أو قيمة مالية ثابتة بالريال' : 'Set percentage or fixed currency discounts'}
                     </li>
                     <li className="flex items-center gap-2">
-                      <CheckCircle2 className="w-3.5 h-3.5 text-cyan-400" />
-                      Define expiration dates and total redemption limits
+                      <CheckCircle2 className="w-3.5 h-3.5 text-cyan-600 dark:text-cyan-400" />
+                      {isRTL ? 'تحديد تاريخ انتهاء الصلاحية والحد الأقصى لمرات الاستخدام' : 'Define expiration dates and total redemption limits'}
                     </li>
                     <li className="flex items-center gap-2">
-                      <CheckCircle2 className="w-3.5 h-3.5 text-cyan-400" />
-                      Instant 1-click enable or disable switch
+                      <CheckCircle2 className="w-3.5 h-3.5 text-cyan-600 dark:text-cyan-400" />
+                      {isRTL ? 'تفعيل أو إيقاف الكود فورياً بضغطة زر واحدة' : 'Instant 1-click enable or disable switch'}
                     </li>
                   </ul>
                 </div>
 
                 <div className="lg:col-span-6 space-y-3">
-                  <div className="text-xs font-mono text-slate-400 uppercase">Active Promo Codes in System</div>
+                  <div className="text-xs font-mono text-slate-500 dark:text-slate-400 uppercase">
+                    {t.nabaaPlatform.promocodesView.activeCodesLabel}
+                  </div>
                   {[
-                    { code: 'NEO20', discount: '20 SAR Fixed', min: '150 SAR', status: 'Active', uses: '840 / 1000' },
-                    { code: 'WATERFAST', discount: '15 SAR Fixed', min: '100 SAR', status: 'Active', uses: '412 / 500' },
-                    { code: 'SUMMER10', discount: '10% Percent', min: '120 SAR', status: 'Active', uses: '1,209 / 2000' }
+                    { code: 'NEO20', discount: isRTL ? '20 ر.س خصم ثابت' : '20 SAR Fixed', min: '150 SAR', status: isRTL ? 'نشط' : 'Active', uses: '840 / 1000' },
+                    { code: 'WATERFAST', discount: isRTL ? '15 ر.س خصم ثابت' : '15 SAR Fixed', min: '100 SAR', status: isRTL ? 'نشط' : 'Active', uses: '412 / 500' },
+                    { code: 'SUMMER10', discount: isRTL ? '10% نسبة مئوية' : '10% Percent', min: '120 SAR', status: isRTL ? 'نشط' : 'Active', uses: '1,209 / 2000' }
                   ].map((item, idx) => (
-                    <div key={idx} className="p-3.5 rounded-xl bg-slate-950/80 border border-slate-800 flex items-center justify-between text-xs">
+                    <div key={idx} className="p-3.5 rounded-xl bg-white dark:bg-slate-950/80 border border-slate-200 dark:border-slate-800 flex items-center justify-between text-xs">
                       <div>
-                        <span className="font-mono font-bold text-white px-2 py-0.5 rounded bg-slate-900 border border-slate-700 text-sm">
+                        <span className="font-mono font-bold text-slate-900 dark:text-white px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-900 border border-slate-300 dark:border-slate-700 text-sm">
                           {item.code}
                         </span>
-                        <div className="text-slate-400 text-[11px] mt-1">
-                          {item.discount} • Min Order: {item.min}
+                        <div className="text-slate-500 dark:text-slate-400 text-[11px] mt-1">
+                          {item.discount} • {isRTL ? 'الحد الأدنى:' : 'Min Order:'} {item.min}
                         </div>
                       </div>
-                      <div className="text-right">
-                        <span className="px-2 py-0.5 rounded text-[10px] font-mono bg-emerald-950 text-emerald-300 border border-emerald-800">
+                      <div className="text-end">
+                        <span className="px-2 py-0.5 rounded text-[10px] font-mono bg-emerald-100 dark:bg-emerald-950 text-emerald-800 dark:text-emerald-300 border border-emerald-300 dark:border-emerald-800">
                           {item.status}
                         </span>
-                        <div className="text-[10px] text-slate-400 font-mono mt-1">
-                          {item.uses} redemptions
+                        <div className="text-[10px] text-slate-500 dark:text-slate-400 font-mono mt-1">
+                          {item.uses} {isRTL ? 'استخدام' : 'redemptions'}
                         </div>
                       </div>
                     </div>
@@ -486,42 +571,56 @@ export const NabaaPlatformOverview: React.FC = () => {
             {activeAdminTab === 'insights' && (
               <div className="space-y-6 animate-in fade-in duration-200">
                 <div className="max-w-3xl">
-                  <h4 className="text-xl font-bold text-white">Dashboard & Business Insights</h4>
-                  <p className="text-slate-300 text-sm mt-1">
-                    Real-time visual operational metrics empowering executives to make data-driven logistics and capacity expansion decisions.
+                  <h4 className="text-xl font-bold text-slate-900 dark:text-white">
+                    {t.nabaaPlatform.insightsView.title}
+                  </h4>
+                  <p className="text-slate-600 dark:text-slate-300 text-sm mt-1">
+                    {t.nabaaPlatform.insightsView.desc}
                   </p>
                 </div>
 
                 <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
-                  <div className="p-4 rounded-2xl bg-slate-950/80 border border-slate-800">
-                    <div className="text-[11px] font-mono text-slate-400 uppercase">Total Orders</div>
-                    <div className="text-2xl font-extrabold text-white mt-1">18,490</div>
-                    <div className="text-[11px] text-emerald-400 mt-1 flex items-center gap-1 font-mono">
-                      <TrendingUp className="w-3 h-3" /> +14.2% MoM
+                  <div className="p-4 rounded-2xl bg-white dark:bg-slate-950/80 border border-slate-200 dark:border-slate-800">
+                    <div className="text-[11px] font-mono text-slate-500 dark:text-slate-400 uppercase">
+                      {t.nabaaPlatform.insightsView.metric1}
+                    </div>
+                    <div className="text-2xl font-extrabold text-slate-900 dark:text-white mt-1">18,490</div>
+                    <div className="text-[11px] text-emerald-600 dark:text-emerald-400 mt-1 flex items-center gap-1 font-mono">
+                      <TrendingUp className="w-3 h-3" /> {t.nabaaPlatform.insightsView.metric1Sub}
                     </div>
                   </div>
 
-                  <div className="p-4 rounded-2xl bg-slate-950/80 border border-slate-800">
-                    <div className="text-[11px] font-mono text-slate-400 uppercase">Active Orders</div>
-                    <div className="text-2xl font-extrabold text-cyan-300 mt-1">42 Live</div>
-                    <div className="text-[11px] text-slate-400 mt-1 font-mono">
-                      All drivers dispatched
+                  <div className="p-4 rounded-2xl bg-white dark:bg-slate-950/80 border border-slate-200 dark:border-slate-800">
+                    <div className="text-[11px] font-mono text-slate-500 dark:text-slate-400 uppercase">
+                      {t.nabaaPlatform.insightsView.metric2}
+                    </div>
+                    <div className="text-2xl font-extrabold text-cyan-700 dark:text-cyan-300 mt-1">
+                      {isRTL ? '42 مباشر' : '42 Live'}
+                    </div>
+                    <div className="text-[11px] text-slate-500 dark:text-slate-400 mt-1 font-mono">
+                      {t.nabaaPlatform.insightsView.metric2Sub}
                     </div>
                   </div>
 
-                  <div className="p-4 rounded-2xl bg-slate-950/80 border border-slate-800">
-                    <div className="text-[11px] font-mono text-slate-400 uppercase">Completed Deliveries</div>
-                    <div className="text-2xl font-extrabold text-emerald-400 mt-1">18,210</div>
-                    <div className="text-[11px] text-slate-400 mt-1 font-mono">
-                      98.5% on-time delivery
+                  <div className="p-4 rounded-2xl bg-white dark:bg-slate-950/80 border border-slate-200 dark:border-slate-800">
+                    <div className="text-[11px] font-mono text-slate-500 dark:text-slate-400 uppercase">
+                      {t.nabaaPlatform.insightsView.metric3}
+                    </div>
+                    <div className="text-2xl font-extrabold text-emerald-600 dark:text-emerald-400 mt-1">18,210</div>
+                    <div className="text-[11px] text-slate-500 dark:text-slate-400 mt-1 font-mono">
+                      {t.nabaaPlatform.insightsView.metric3Sub}
                     </div>
                   </div>
 
-                  <div className="p-4 rounded-2xl bg-slate-950/80 border border-slate-800">
-                    <div className="text-[11px] font-mono text-slate-400 uppercase">Monthly Revenue</div>
-                    <div className="text-2xl font-extrabold text-white mt-1">3.4M SAR</div>
-                    <div className="text-[11px] text-cyan-400 mt-1 font-mono">
-                      Auto-settled through wallet
+                  <div className="p-4 rounded-2xl bg-white dark:bg-slate-950/80 border border-slate-200 dark:border-slate-800">
+                    <div className="text-[11px] font-mono text-slate-500 dark:text-slate-400 uppercase">
+                      {t.nabaaPlatform.insightsView.metric4}
+                    </div>
+                    <div className="text-2xl font-extrabold text-slate-900 dark:text-white mt-1">
+                      {isRTL ? '3.4 مليون ر.س' : '3.4M SAR'}
+                    </div>
+                    <div className="text-[11px] text-cyan-700 dark:text-cyan-400 mt-1 font-mono">
+                      {t.nabaaPlatform.insightsView.metric4Sub}
                     </div>
                   </div>
                 </div>
@@ -531,19 +630,23 @@ export const NabaaPlatformOverview: React.FC = () => {
           </div>
 
           {/* Action Footer */}
-          <div className="mt-10 pt-6 border-t border-slate-800/80 flex flex-col sm:flex-row items-center justify-between gap-4">
-            <div className="flex items-center gap-2 text-xs text-slate-400">
-              <ShieldCheck className="w-4 h-4 text-cyan-400" />
-              <span>Multi-tenant security, role-based access control (RBAC), and SSL encrypted.</span>
+          <div className="mt-10 pt-6 border-t border-slate-200 dark:border-slate-800/80 flex flex-col sm:flex-row items-center justify-between gap-4">
+            <div className="flex items-center gap-2 text-xs text-slate-500 dark:text-slate-400">
+              <ShieldCheck className="w-4 h-4 text-cyan-600 dark:text-cyan-400" />
+              <span>
+                {isRTL 
+                  ? 'أمان متعدد المستأجرين، صلاحيات مخصصة حسب الأدوار (RBAC)، وتشفير SSL لكافة البيانات.'
+                  : 'Multi-tenant security, role-based access control (RBAC), and SSL encrypted.'}
+              </span>
             </div>
 
             <button
               id="view-admin-features-btn"
               onClick={() => setActiveAdminTab(activeAdminTab === 'business' ? 'orders' : 'business')}
-              className="px-5 py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs sm:text-sm font-semibold border border-slate-700 transition-all flex items-center gap-2"
+              className="px-5 py-2.5 rounded-xl bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-800 dark:text-slate-200 text-xs sm:text-sm font-semibold border border-slate-300 dark:border-slate-700 transition-all flex items-center gap-2"
             >
-              <span>View Admin Features</span>
-              <ArrowRight className="w-4 h-4" />
+              <span>{isRTL ? 'استعراض مميزات لوحة التحكم' : 'View Admin Features'}</span>
+              <ArrowRight className={`w-4 h-4 ${isRTL ? 'rotate-180' : ''}`} />
             </button>
           </div>
 

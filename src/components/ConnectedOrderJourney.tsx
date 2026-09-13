@@ -10,16 +10,15 @@ import {
   CheckCircle2,
   Sparkles
 } from 'lucide-react';
+import { useLanguage } from '../i18n';
 
 export const ConnectedOrderJourney: React.FC = () => {
+  const { t, isRTL } = useLanguage();
   const [activeStep, setActiveStep] = useState<number>(0);
 
-  const steps = [
+  const stepIcons = [User, Cpu, Truck, CreditCard, Droplets, Monitor];
+  const stepStyles = [
     {
-      actor: 'CUSTOMER',
-      title: 'Places Water Order',
-      description: 'Selects address, tanker size (10T, 19T, 32T), immediate dispatch or future scheduled date, and payment method.',
-      icon: User,
       badgeColor: 'bg-cyan-50 dark:bg-cyan-500/20 text-cyan-800 dark:text-cyan-300 border-cyan-200 dark:border-cyan-400/40',
       darkCardBg: 'dark:bg-gradient-to-b dark:from-[#092233] dark:to-[#05121c] dark:border-cyan-500/40 hover:dark:border-cyan-300 dark:shadow-lg dark:shadow-cyan-950/40',
       darkActiveBg: 'dark:bg-gradient-to-b dark:from-[#0e354f] dark:to-[#081e2e] dark:border-cyan-400 dark:shadow-cyan-500/30 ring-1 ring-cyan-400/30',
@@ -29,10 +28,6 @@ export const ConnectedOrderJourney: React.FC = () => {
       darkIconBg: 'dark:bg-cyan-500/25 dark:border-cyan-400/50 dark:text-cyan-200'
     },
     {
-      actor: 'SYSTEM',
-      title: 'Calculates & Pings Drivers',
-      description: 'Processes geofence coordinates, checks tanker inventory, and dispatches an instant request to the nearest qualified driver.',
-      icon: Cpu,
       badgeColor: 'bg-blue-50 dark:bg-blue-500/20 text-blue-800 dark:text-blue-300 border-blue-200 dark:border-blue-400/40',
       darkCardBg: 'dark:bg-gradient-to-b dark:from-[#0c2045] dark:to-[#061025] dark:border-blue-500/40 hover:dark:border-blue-300 dark:shadow-lg dark:shadow-blue-950/40',
       darkActiveBg: 'dark:bg-gradient-to-b dark:from-[#13326d] dark:to-[#0b1c40] dark:border-blue-400 dark:shadow-blue-500/30 ring-1 ring-blue-400/30',
@@ -42,10 +37,6 @@ export const ConnectedOrderJourney: React.FC = () => {
       darkIconBg: 'dark:bg-blue-500/25 dark:border-blue-400/50 dark:text-blue-200'
     },
     {
-      actor: 'DRIVER',
-      title: 'Accepts & Dispatches',
-      description: 'Receives customer location and order details on the Driver App, accepts the request, and navigates via turn-by-turn route.',
-      icon: Truck,
       badgeColor: 'bg-indigo-50 dark:bg-indigo-500/20 text-indigo-800 dark:text-indigo-300 border-indigo-200 dark:border-indigo-400/40',
       darkCardBg: 'dark:bg-gradient-to-b dark:from-[#1b1642] dark:to-[#0e0c24] dark:border-indigo-500/40 hover:dark:border-indigo-300 dark:shadow-lg dark:shadow-indigo-950/40',
       darkActiveBg: 'dark:bg-gradient-to-b dark:from-[#2a2267] dark:to-[#17133f] dark:border-indigo-400 dark:shadow-indigo-500/30 ring-1 ring-indigo-400/30',
@@ -55,10 +46,6 @@ export const ConnectedOrderJourney: React.FC = () => {
       darkIconBg: 'dark:bg-indigo-500/25 dark:border-indigo-400/50 dark:text-indigo-200'
     },
     {
-      actor: 'PAYMENT',
-      title: 'Secures Transaction',
-      description: 'Processes card tokenization, digital wallet, or flags Cash on Delivery upon tank delivery confirmation.',
-      icon: CreditCard,
       badgeColor: 'bg-emerald-50 dark:bg-emerald-500/20 text-emerald-800 dark:text-emerald-300 border-emerald-200 dark:border-emerald-400/40',
       darkCardBg: 'dark:bg-gradient-to-b dark:from-[#0a291b] dark:to-[#05150d] dark:border-emerald-500/40 hover:dark:border-emerald-300 dark:shadow-lg dark:shadow-emerald-950/40',
       darkActiveBg: 'dark:bg-gradient-to-b dark:from-[#10432c] dark:to-[#092719] dark:border-emerald-400 dark:shadow-emerald-500/30 ring-1 ring-emerald-400/30',
@@ -68,10 +55,6 @@ export const ConnectedOrderJourney: React.FC = () => {
       darkIconBg: 'dark:bg-emerald-500/25 dark:border-emerald-400/50 dark:text-emerald-200'
     },
     {
-      actor: 'DELIVERY',
-      title: 'Site Arrival & Pumping',
-      description: 'Driver connects the hose, pumps pure water into customer storage tanks, and updates order status to Delivered.',
-      icon: Droplets,
       badgeColor: 'bg-sky-50 dark:bg-sky-500/20 text-sky-800 dark:text-sky-300 border-sky-200 dark:border-sky-400/40',
       darkCardBg: 'dark:bg-gradient-to-b dark:from-[#092633] dark:to-[#04121a] dark:border-sky-500/40 hover:dark:border-sky-300 dark:shadow-lg dark:shadow-sky-950/40',
       darkActiveBg: 'dark:bg-gradient-to-b dark:from-[#0f3d53] dark:to-[#092432] dark:border-sky-400 dark:shadow-sky-500/30 ring-1 ring-sky-400/30',
@@ -81,10 +64,6 @@ export const ConnectedOrderJourney: React.FC = () => {
       darkIconBg: 'dark:bg-sky-500/25 dark:border-sky-400/50 dark:text-sky-200'
     },
     {
-      actor: 'ADMIN',
-      title: 'Monitors & Auto-Settles',
-      description: 'Tracks delivery completion on the central dashboard, credits driver wallet commission, and logs financial audit reports.',
-      icon: Monitor,
       badgeColor: 'bg-purple-50 dark:bg-purple-500/20 text-purple-800 dark:text-purple-300 border-purple-200 dark:border-purple-400/40',
       darkCardBg: 'dark:bg-gradient-to-b dark:from-[#2b0f42] dark:to-[#150621] dark:border-purple-500/40 hover:dark:border-purple-300 dark:shadow-lg dark:shadow-purple-950/40',
       darkActiveBg: 'dark:bg-gradient-to-b dark:from-[#431868] dark:to-[#290d40] dark:border-purple-400 dark:shadow-purple-500/30 ring-1 ring-purple-400/30',
@@ -94,6 +73,14 @@ export const ConnectedOrderJourney: React.FC = () => {
       darkIconBg: 'dark:bg-purple-500/25 dark:border-purple-400/50 dark:text-purple-200'
     }
   ];
+
+  const steps = t.connectedJourney.steps.map((s, idx) => ({
+    ...s,
+    icon: stepIcons[idx] || User,
+    ...stepStyles[idx]
+  }));
+
+  const active = steps[activeStep] || steps[0];
 
   return (
     <section id="connected-order-journey" className="py-24 relative overflow-hidden bg-slate-100/70 dark:bg-gradient-to-b dark:from-[#050b17] dark:via-[#091226] dark:to-[#050b17] border-t border-slate-200 dark:border-slate-800/80">
@@ -107,13 +94,13 @@ export const ConnectedOrderJourney: React.FC = () => {
         <div className="text-center max-w-3xl mx-auto mb-16">
           <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-cyan-50 dark:bg-cyan-950/80 border border-cyan-200 dark:border-cyan-700/60 text-xs font-mono text-cyan-800 dark:text-cyan-300 mb-3 shadow-sm">
             <Sparkles className="w-3.5 h-3.5 text-cyan-600 dark:text-cyan-400" />
-            End-to-End Synergy
+            {t.connectedJourney.badge}
           </div>
           <h2 className="text-3xl sm:text-5xl font-extrabold text-slate-900 dark:text-white tracking-tight font-display">
-            From Order to Delivery
+            {t.connectedJourney.heading}
           </h2>
           <p className="mt-4 text-base sm:text-lg text-slate-600 dark:text-slate-200 font-normal">
-            A seamless horizontal journey demonstrating how all three applications work in perfect, automated harmony.
+            {t.connectedJourney.subheading}
           </p>
         </div>
 
@@ -162,9 +149,11 @@ export const ConnectedOrderJourney: React.FC = () => {
                 </div>
 
                 <div className="mt-4 pt-3 border-t border-slate-200 dark:border-white/10 flex items-center justify-between text-[11px] text-slate-500 dark:text-slate-300">
-                  <span className="font-mono font-medium">{isSelected ? 'Active Step' : 'Click to inspect'}</span>
+                  <span className="font-mono font-medium">
+                    {isSelected ? (isRTL ? 'الخطوة النشطة' : 'Active Step') : t.connectedJourney.clickToInspect}
+                  </span>
                   {idx < steps.length - 1 && (
-                    <ArrowRight className="w-3 h-3 text-slate-400 dark:text-slate-400 hidden lg:block" />
+                    <ArrowRight className={`w-3 h-3 text-slate-400 dark:text-slate-400 hidden lg:block ${isRTL ? 'rotate-180' : ''}`} />
                   )}
                 </div>
               </div>
@@ -180,13 +169,13 @@ export const ConnectedOrderJourney: React.FC = () => {
             </div>
             <div>
               <div className="text-xs font-mono text-cyan-700 dark:text-cyan-300 uppercase font-bold tracking-wider">
-                Ecosystem Insight: Step {activeStep + 1} of 6
+                {isRTL ? `تفاصيل المنظومة: الخطوة ${activeStep + 1} من 6` : `Ecosystem Insight: Step ${activeStep + 1} of 6`}
               </div>
               <h4 className="text-lg font-bold text-slate-900 dark:text-white mt-0.5">
-                {steps[activeStep].actor} — {steps[activeStep].title}
+                {active.actor} — {active.title}
               </h4>
               <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-200 mt-0.5 leading-relaxed">
-                {steps[activeStep].description}
+                {active.description}
               </p>
             </div>
           </div>
@@ -196,13 +185,13 @@ export const ConnectedOrderJourney: React.FC = () => {
               onClick={() => setActiveStep(prev => (prev > 0 ? prev - 1 : steps.length - 1))}
               className="px-3.5 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 border border-slate-200 dark:border-slate-600 text-xs font-medium text-slate-700 dark:text-slate-200 hover:text-slate-900 dark:hover:text-white transition-all"
             >
-              Previous
+              {isRTL ? 'السابق' : 'Previous'}
             </button>
             <button
               onClick={() => setActiveStep(prev => (prev < steps.length - 1 ? prev + 1 : 0))}
               className="px-4 py-2 rounded-xl bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-bold text-xs shadow-md shadow-cyan-500/30 transition-all active:scale-95"
             >
-              Next Step
+              {isRTL ? 'الخطوة التالية' : 'Next Step'}
             </button>
           </div>
         </div>

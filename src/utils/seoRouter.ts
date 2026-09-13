@@ -1,486 +1,393 @@
 import { PageView } from '../types';
+import { Language } from '../i18n/types';
+import { enTranslations } from '../i18n/en';
+import { arTranslations } from '../i18n/ar';
 
-export interface RouteMeta {
+export const SITE_ORIGIN = 'https://neotechera.com';
+
+export interface RouteDefinition {
   view: PageView;
-  path: string;
+  slug: string; // e.g. '' for home, 'the-nabaa', 'products/nabaa-tankers'
   aliases: string[];
-  title: string;
-  description: string;
-  keywords: string[];
   ogType: 'website' | 'article' | 'product';
-  breadcrumbName: string;
-  schema: Record<string, unknown>;
 }
 
-export const ROUTES_CONFIG: Record<PageView, RouteMeta> = {
+export const ROUTE_DEFINITIONS: Record<PageView, RouteDefinition> = {
   'home': {
     view: 'home',
-    path: '/',
-    aliases: ['/home', '/index.html'],
-    title: 'Neo Tech Era | The Nabaa Tanker & Practical Digital Products Suite',
-    description: 'Explore practical software solutions by Neo Tech Era. Featuring our flagship water delivery platform The Nabaa Tankers, Pix Shield, Price Post Pulser, and E-Commerce Post Builder.',
-    keywords: [
-      'The Nabaa Tanker',
-      'water delivery platform',
-      'water tanker logistics',
-      'Saudi Arabia water delivery',
-      'Pix Shield',
-      'image watermarking tool',
-      'Price Post Pulser',
-      'pricing social post creator',
-      'E-Commerce Post Builder',
-      'Neo Tech Era'
+    slug: '',
+    aliases: ['/', '/home', '/index.html', '/products'],
+    ogType: 'website'
+  },
+  'nabaa-detail': {
+    view: 'nabaa-detail',
+    slug: 'products/nabaa-tankers',
+    aliases: [
+      'the-nabaa',
+      'the-nabaa-tankers',
+      'nabaa',
+      'products/the-nabaa',
+      'products/nabaa-tanker',
+      'products/nabaa',
+      'products/nabaa-detail'
     ],
-    ogType: 'website',
+    ogType: 'product'
+  },
+  'pix-shield-detail': {
+    view: 'pix-shield-detail',
+    slug: 'products/pix-shield',
+    aliases: ['pix-shield', 'products/pix-shield-detail'],
+    ogType: 'product'
+  },
+  'price-pulser-detail': {
+    view: 'price-pulser-detail',
+    slug: 'products/price-pulser',
+    aliases: [
+      'price-post-pulser',
+      'price-pulser',
+      'products/price-post-pulser',
+      'products/price-pulser-detail'
+    ],
+    ogType: 'product'
+  },
+  'ecommerce-builder-detail': {
+    view: 'ecommerce-builder-detail',
+    slug: 'products/ecommerce-builder',
+    aliases: [
+      'ecommerce-builder',
+      'ecommerce-post-builder',
+      'products/ecommerce-post-builder',
+      'products/ecommerce-builder-detail'
+    ],
+    ogType: 'product'
+  }
+};
+
+/**
+ * Normalizes a URL path by removing trailing slashes, leading slashes, and converting to lowercase.
+ */
+export function normalizePath(rawPath: string): string {
+  if (!rawPath) return '';
+  let clean = rawPath.toLowerCase().split('?')[0].split('#')[0].trim();
+  clean = clean.replace(/^\/+/, '').replace(/\/+$/, '');
+  return clean;
+}
+
+/**
+ * Parses any incoming pathname into its Language, PageView, and optional section hash.
+ */
+export function matchPathToRoute(pathname: string): {
+  view: PageView;
+  lang: Language;
+  targetSection?: string;
+} {
+  const normalized = normalizePath(pathname);
+
+  // Determine language prefix
+  let lang: Language = 'en';
+  let restPath = normalized;
+
+  if (normalized === 'ar' || normalized.startsWith('ar/')) {
+    lang = 'ar';
+    restPath = normalized === 'ar' ? '' : normalized.slice(3);
+  } else if (normalized === 'en' || normalized.startsWith('en/')) {
+    lang = 'en';
+    restPath = normalized === 'en' ? '' : normalized.slice(3);
+  }
+
+  // Check for about / contact special section routes
+  let targetSection: string | undefined;
+  if (restPath === 'about') {
+    return { view: 'home', lang, targetSection: 'company-section' };
+  }
+  if (restPath === 'contact') {
+    return { view: 'home', lang, targetSection: 'contact-modal' };
+  }
+  if (restPath === 'products') {
+    return { view: 'home', lang, targetSection: 'products-overview' };
+  }
+
+  // Match against route definitions
+  for (const [viewKey, def] of Object.entries(ROUTE_DEFINITIONS)) {
+    const normSlug = normalizePath(def.slug);
+    if (restPath === normSlug) {
+      return { view: viewKey as PageView, lang };
+    }
+    if (def.aliases.some((alias) => normalizePath(alias) === restPath)) {
+      return { view: viewKey as PageView, lang };
+    }
+  }
+
+  return { view: 'home', lang };
+}
+
+/**
+ * Resolves legacy or current pathname directly to PageView.
+ */
+export function matchPathToView(pathname: string): PageView {
+  return matchPathToRoute(pathname).view;
+}
+
+/**
+ * Gets canonical relative path with language prefix (e.g. /en/products/nabaa-tankers or /ar).
+ */
+export function getViewCanonicalPath(view: PageView, lang: Language = 'en'): string {
+  const def = ROUTE_DEFINITIONS[view] || ROUTE_DEFINITIONS['home'];
+  const slug = def.slug;
+  if (!slug) {
+    return `/${lang}`;
+  }
+  return `/${lang}/${slug}`;
+}
+
+/**
+ * Gets absolute canonical URL.
+ */
+export function getViewFullCanonicalUrl(view: PageView, lang: Language = 'en'): string {
+  const path = getViewCanonicalPath(view, lang);
+  return `${SITE_ORIGIN}${path}`;
+}
+
+/**
+ * Returns alternate URLs for hreflang tags.
+ */
+export function getAlternateUrls(view: PageView): {
+  en: string;
+  ar: string;
+  xDefault: string;
+} {
+  const enUrl = getViewFullCanonicalUrl(view, 'en');
+  const arUrl = getViewFullCanonicalUrl(view, 'ar');
+  return {
+    en: enUrl,
+    ar: arUrl,
+    xDefault: enUrl
+  };
+}
+
+/**
+ * Calculates the exact equivalent path for language switching while preserving page and hashes.
+ */
+export function getEquivalentPath(currentPath: string, targetLang: Language): string {
+  const { view, targetSection } = matchPathToRoute(currentPath);
+  let base = getViewCanonicalPath(view, targetLang);
+  if (targetSection === 'company-section') {
+    base = `/${targetLang}/about`;
+  } else if (targetSection === 'contact-modal') {
+    base = `/${targetLang}/contact`;
+  } else if (targetSection === 'products-overview') {
+    base = `/${targetLang}/products`;
+  }
+  return base;
+}
+
+/**
+ * Breadcrumb names config for components
+ */
+export const ROUTES_CONFIG = {
+  'home': {
     breadcrumbName: 'Home',
-    schema: {
+    path: '/en'
+  },
+  'nabaa-detail': {
+    breadcrumbName: 'The Nabaa Tankers',
+    path: '/en/products/nabaa-tankers'
+  },
+  'pix-shield-detail': {
+    breadcrumbName: 'Pix Shield',
+    path: '/en/products/pix-shield'
+  },
+  'price-pulser-detail': {
+    breadcrumbName: 'Price Post Pulser',
+    path: '/en/products/price-pulser'
+  },
+  'ecommerce-builder-detail': {
+    breadcrumbName: 'E-Commerce Post Builder',
+    path: '/en/products/ecommerce-builder'
+  }
+};
+
+/**
+ * Localized metadata content for SEO
+ */
+export function getRouteMeta(view: PageView, lang: Language) {
+  const dict = lang === 'ar' ? arTranslations : enTranslations;
+  
+  switch (view) {
+    case 'nabaa-detail':
+      return {
+        title: dict.seo.nabaa.title,
+        description: dict.seo.nabaa.description,
+        breadcrumbName: dict.seo.nabaa.breadcrumb,
+        keywords: lang === 'ar' 
+          ? ['The Nabaa Tankers', 'توصيل صهريج مياه', 'وايت ماء الرياض', 'تطبيق صهاريج مياه', 'توزيع المياه اللوجستي', 'صهريج 10 طن 19 طن 32 طن', 'Neo Tech Era']
+          : ['The Nabaa Tanker', 'water tanker delivery', 'water tanker Riyadh', 'Saudi Arabia water delivery app', 'fleet logistics management', 'driver dispatch app', '10T 19T 32T water tanker', 'Neo Tech Era'],
+        ogType: 'product' as const
+      };
+    case 'pix-shield-detail':
+      return {
+        title: dict.seo.pixShield.title,
+        description: dict.seo.pixShield.description,
+        breadcrumbName: dict.seo.pixShield.breadcrumb,
+        keywords: lang === 'ar'
+          ? ['Pix Shield', 'حماية الصور', 'إضافة علامات مائية', 'حماية الملكية الفكرية', 'علامة مائية مجمعة', 'Neo Tech Era']
+          : ['Pix Shield', 'image watermarking tool', 'protect digital photos', 'batch image watermark', 'copyright stamp', 'Neo Tech Era'],
+        ogType: 'product' as const
+      };
+    case 'price-pulser-detail':
+      return {
+        title: dict.seo.pricePulser.title,
+        description: dict.seo.pricePulser.description,
+        breadcrumbName: dict.seo.pricePulser.breadcrumb,
+        keywords: lang === 'ar'
+          ? ['Price Post Pulser', 'بطاقات تسعير إنستغرام', 'تصميم عروض أسعار', 'منشورات الأسعار', 'تسويق شبكات التواصل', 'Neo Tech Era']
+          : ['Price Post Pulser', 'pricing card creator', 'social media price graphics', 'discount post generator', 'Instagram pricing card', 'Neo Tech Era'],
+        ogType: 'product' as const
+      };
+    case 'ecommerce-builder-detail':
+      return {
+        title: dict.seo.ecommerceBuilder.title,
+        description: dict.seo.ecommerceBuilder.description,
+        breadcrumbName: dict.seo.ecommerceBuilder.breadcrumb,
+        keywords: lang === 'ar'
+          ? ['E-Commerce Post Builder', 'تصاميم متاجر إلكترونية', 'بانرات إعلانية', 'تسويق المتاجر', 'بطاقات منتجات', 'Neo Tech Era']
+          : ['E-Commerce Post Builder', 'ecommerce product showcase', 'social shopping post creator', 'online store banner maker', 'retail visual marketing', 'Neo Tech Era'],
+        ogType: 'product' as const
+      };
+    case 'home':
+    default:
+      return {
+        title: dict.seo.home.title,
+        description: dict.seo.home.description,
+        breadcrumbName: dict.seo.home.breadcrumb,
+        keywords: lang === 'ar'
+          ? ['Neo Tech Era', 'The Nabaa Tanker', 'منصة توصيل صهاريج المياه', 'Pix Shield', 'Price Post Pulser', 'E-Commerce Post Builder', 'حلول برمجية عملية']
+          : ['The Nabaa Tanker', 'water delivery platform', 'water tanker logistics', 'Saudi Arabia water delivery', 'Pix Shield', 'Price Post Pulser', 'E-Commerce Post Builder', 'Neo Tech Era'],
+        ogType: 'website' as const
+      };
+  }
+}
+
+/**
+ * Builds Schema.org JSON-LD structured data for the page.
+ */
+function buildSchemaJson(view: PageView, lang: Language) {
+  const canonicalUrl = getViewFullCanonicalUrl(view, lang);
+  const homeUrl = getViewFullCanonicalUrl('home', lang);
+  const meta = getRouteMeta(view, lang);
+
+  if (view === 'home') {
+    return {
       '@context': 'https://schema.org',
       '@graph': [
         {
           '@type': 'WebSite',
-          '@id': 'https://neotechera.netlify.app/#website',
-          'url': 'https://neotechera.netlify.app/',
-          'name': 'The Nabaa Tanker & Neo Tech Era Suite',
-          'description': 'Flagship on-demand water delivery logistics and practical software tools.',
+          '@id': `${canonicalUrl}#website`,
+          'url': canonicalUrl,
+          'name': lang === 'ar' ? 'منظومة Neo Tech Era ومنصة The Nabaa Tankers' : 'The Nabaa Tanker & Neo Tech Era Suite',
+          'description': meta.description,
+          'inLanguage': lang === 'ar' ? 'ar' : 'en',
           'publisher': {
             '@type': 'Organization',
             'name': 'Neo Tech Era',
-            'url': 'https://neotechera.netlify.app/'
+            'url': canonicalUrl
           }
         },
         {
           '@type': 'ItemList',
-          '@id': 'https://neotechera.netlify.app/#products',
-          'name': 'Featured Digital Products',
+          '@id': `${canonicalUrl}#products`,
+          'name': lang === 'ar' ? 'المنتجات الرقمية المميزة' : 'Featured Digital Products',
           'itemListElement': [
             {
               '@type': 'ListItem',
               'position': 1,
               'name': 'The Nabaa Tankers',
-              'url': 'https://neotechera.netlify.app/products/nabaa-tankers'
+              'url': getViewFullCanonicalUrl('nabaa-detail', lang)
             },
             {
               '@type': 'ListItem',
               'position': 2,
               'name': 'Pix Shield',
-              'url': 'https://neotechera.netlify.app/products/pix-shield'
+              'url': getViewFullCanonicalUrl('pix-shield-detail', lang)
             },
             {
               '@type': 'ListItem',
               'position': 3,
               'name': 'Price Post Pulser',
-              'url': 'https://neotechera.netlify.app/products/price-pulser'
+              'url': getViewFullCanonicalUrl('price-pulser-detail', lang)
             },
             {
               '@type': 'ListItem',
               'position': 4,
               'name': 'E-Commerce Post Builder',
-              'url': 'https://neotechera.netlify.app/products/ecommerce-builder'
+              'url': getViewFullCanonicalUrl('ecommerce-builder-detail', lang)
             }
           ]
         }
       ]
-    }
-  },
-
-  'nabaa-detail': {
-    view: 'nabaa-detail',
-    path: '/products/nabaa-tankers',
-    aliases: [
-      '/products/nabaa-tanker',
-      '/products/nabaa',
-      '/nabaa-tankers',
-      '/nabaa-tanker',
-      '/nabaa',
-      '/products/nabaa-detail'
-    ],
-    title: 'The Nabaa Tankers | On-Demand Water Delivery & Fleet Logistics Platform',
-    description: 'The complete on-demand water delivery and fleet logistics ecosystem. Connects central dispatch administration, iOS/Android driver navigation, and frictionless customer mobile ordering with live radar tracking.',
-    keywords: [
-      'The Nabaa Tanker',
-      'water tanker delivery',
-      'water tanker Riyadh',
-      'Saudi Arabia water delivery app',
-      'fleet logistics management',
-      'driver dispatch app',
-      'emergency water tanker',
-      '10T 19T 32T water tanker',
-      'on-demand water logistics'
-    ],
-    ogType: 'product',
-    breadcrumbName: 'The Nabaa Tankers',
-    schema: {
-      '@context': 'https://schema.org',
-      '@graph': [
-        {
-          '@type': 'SoftwareApplication',
-          '@id': 'https://neotechera.netlify.app/products/nabaa-tankers#software',
-          'name': 'The Nabaa Tankers',
-          'applicationCategory': 'LogisticsApplication',
-          'operatingSystem': 'Web, iOS, Android',
-          'description': 'A unified digital platform for bulk water transport and residential/commercial on-demand delivery, featuring automated dispatch, live driver radar, and digital wallet settlements.',
-          'offers': {
-            '@type': 'AggregateOffer',
-            'priceCurrency': 'SAR',
-            'lowPrice': 120,
-            'highPrice': 320,
-            'offerCount': 3,
-            'offers': [
-              {
-                '@type': 'Offer',
-                'name': 'Small Tanker (10 Tons / 10,000 Liters)',
-                'price': '120',
-                'priceCurrency': 'SAR',
-                'description': 'Ideal for residential villas, emergency water top-ups, and irrigation.'
-              },
-              {
-                '@type': 'Offer',
-                'name': 'Medium Tanker (19 Tons / 19,000 Liters)',
-                'price': '200',
-                'priceCurrency': 'SAR',
-                'description': 'Most popular for standard compounds, pools, and small clinics.'
-              },
-              {
-                '@type': 'Offer',
-                'name': 'Large Tanker (32 Tons / 32,000 Liters)',
-                'price': '320',
-                'priceCurrency': 'SAR',
-                'description': 'Commercial buildings, construction sites, and farm reservoirs.'
-              }
-            ]
-          },
-          'aggregateRating': {
-            '@type': 'AggregateRating',
-            'ratingValue': '4.9',
-            'reviewCount': '1420',
-            'bestRating': '5',
-            'worstRating': '1'
-          },
-          'featureList': [
-            'Central Business Admin Web Dashboard',
-            'Interactive Customer Mobile Ordering App with OTP Login',
-            'Driver Logistics Console with Turn-by-Turn GPS',
-            'Live Driver Radar Scanning & ETA Calculation',
-            'Hose Pumping Telemetry (1,200 Liters/min)',
-            'Integrated Driver Wallet and Instant Trip Commission',
-            'Promotions Engine with Automated Voucher Deductions'
-          ]
-        },
-        {
-          '@type': 'BreadcrumbList',
-          '@id': 'https://neotechera.netlify.app/products/nabaa-tankers#breadcrumb',
-          'itemListElement': [
-            {
-              '@type': 'ListItem',
-              'position': 1,
-              'name': 'Home',
-              'item': 'https://neotechera.netlify.app/'
-            },
-            {
-              '@type': 'ListItem',
-              'position': 2,
-              'name': 'Products',
-              'item': 'https://neotechera.netlify.app/#products'
-            },
-            {
-              '@type': 'ListItem',
-              'position': 3,
-              'name': 'The Nabaa Tankers',
-              'item': 'https://neotechera.netlify.app/products/nabaa-tankers'
-            }
-          ]
-        },
-        {
-          '@type': 'FAQPage',
-          '@id': 'https://neotechera.netlify.app/products/nabaa-tankers#faq',
-          'mainEntity': [
-            {
-              '@type': 'Question',
-              'name': 'What tanker capacities does The Nabaa Tankers provide?',
-              'acceptedAnswer': {
-                '@type': 'Answer',
-                'text': 'The platform manages Small Tankers (10 Tons / 10,000 L at 120 SAR), Medium Tankers (19 Tons / 19,000 L at 200 SAR), and Large Tankers (32 Tons / 32,000 L at 320 SAR) with calibrated 40-60m heavy-duty hoses and 1,200 L/min pumping.'
-              }
-            },
-            {
-              '@type': 'Question',
-              'name': 'How does live driver dispatch work in the customer mobile app?',
-              'acceptedAnswer': {
-                '@type': 'Answer',
-                'text': 'When a customer places an order, the backend geo-engine scans available tankers within a 5 km radius, matches the nearest active driver, and provides real-time radar tracking, ETA, and direct driver calling.'
-              }
-            },
-            {
-              '@type': 'Question',
-              'name': 'What payment methods are supported on The Nabaa Tankers?',
-              'acceptedAnswer': {
-                '@type': 'Answer',
-                'text': 'The platform supports Mada debit cards, Visa, Mastercard, Apple Pay, Google Pay, and Cash on Delivery (COD).'
-              }
-            }
-          ]
-        }
-      ]
-    }
-  },
-
-  'pix-shield-detail': {
-    view: 'pix-shield-detail',
-    path: '/products/pix-shield',
-    aliases: [
-      '/pix-shield',
-      '/products/pixshield',
-      '/pixshield',
-      '/products/pix-shield-detail'
-    ],
-    title: 'Pix Shield | Smart Digital Image Watermarking & Visual Asset Protection',
-    description: 'Protect your photos, graphics, and digital assets with Pix Shield. Fast in-browser watermarking, configurable opacity, custom branding, and instant high-resolution export.',
-    keywords: [
-      'Pix Shield',
-      'image watermarking tool',
-      'photo copyright protection',
-      'digital asset security',
-      'watermark generator',
-      'batch photo protection',
-      'creator tools'
-    ],
-    ogType: 'product',
-    breadcrumbName: 'Pix Shield',
-    schema: {
-      '@context': 'https://schema.org',
-      '@graph': [
-        {
-          '@type': 'SoftwareApplication',
-          '@id': 'https://neotechera.netlify.app/products/pix-shield#software',
-          'name': 'Pix Shield',
-          'applicationCategory': 'MultimediaApplication',
-          'operatingSystem': 'Web Browser',
-          'description': 'A smart image protection and watermarking tool designed to help creators, photographers, and businesses protect their visual content from unauthorized reuse.',
-          'featureList': [
-            'Live interactive watermark sandbox preview',
-            'Customizable position (diagonal, center, corners)',
-            'Fine-grained opacity and font sizing sliders',
-            'High-resolution zero-compression export',
-            'Client-side instant rendering without server upload'
-          ]
-        },
-        {
-          '@type': 'BreadcrumbList',
-          '@id': 'https://neotechera.netlify.app/products/pix-shield#breadcrumb',
-          'itemListElement': [
-            {
-              '@type': 'ListItem',
-              'position': 1,
-              'name': 'Home',
-              'item': 'https://neotechera.netlify.app/'
-            },
-            {
-              '@type': 'ListItem',
-              'position': 2,
-              'name': 'Products',
-              'item': 'https://neotechera.netlify.app/#products'
-            },
-            {
-              '@type': 'ListItem',
-              'position': 3,
-              'name': 'Pix Shield',
-              'item': 'https://neotechera.netlify.app/products/pix-shield'
-            }
-          ]
-        }
-      ]
-    }
-  },
-
-  'price-pulser-detail': {
-    view: 'price-pulser-detail',
-    path: '/products/price-pulser',
-    aliases: [
-      '/products/price-post-pulser',
-      '/price-post-pulser',
-      '/price-pulser',
-      '/products/price-pulser-detail'
-    ],
-    title: 'Price Post Pulser | Instant Social Media Pricing Card & Promo Creator',
-    description: 'Transform raw product pricing data into high-converting visual cards for Instagram, X, WhatsApp, and social commerce in seconds. Features customizable themes and discount badges.',
-    keywords: [
-      'Price Post Pulser',
-      'pricing card creator',
-      'social media price graphics',
-      'discount post generator',
-      'Instagram pricing card',
-      'WhatsApp price list builder',
-      'retail promo designer'
-    ],
-    ogType: 'product',
-    breadcrumbName: 'Price Post Pulser',
-    schema: {
-      '@context': 'https://schema.org',
-      '@graph': [
-        {
-          '@type': 'SoftwareApplication',
-          '@id': 'https://neotechera.netlify.app/products/price-pulser#software',
-          'name': 'Price Post Pulser',
-          'applicationCategory': 'BusinessApplication',
-          'operatingSystem': 'Web Browser',
-          'description': 'A visual marketing tool that turns pricing data into professionally designed, branded social media cards ready for instant distribution.',
-          'featureList': [
-            'Instant price badge and discount percentage calculator',
-            'Curated themes including Cyberpunk Neon, Emerald Luxury, and Clean Minimal',
-            'Pre-formatted for Instagram Feed (1:1), Stories (9:16), and WhatsApp cards',
-            'Direct PNG and SVG graphic export'
-          ]
-        },
-        {
-          '@type': 'BreadcrumbList',
-          '@id': 'https://neotechera.netlify.app/products/price-pulser#breadcrumb',
-          'itemListElement': [
-            {
-              '@type': 'ListItem',
-              'position': 1,
-              'name': 'Home',
-              'item': 'https://neotechera.netlify.app/'
-            },
-            {
-              '@type': 'ListItem',
-              'position': 2,
-              'name': 'Products',
-              'item': 'https://neotechera.netlify.app/#products'
-            },
-            {
-              '@type': 'ListItem',
-              'position': 3,
-              'name': 'Price Post Pulser',
-              'item': 'https://neotechera.netlify.app/products/price-pulser'
-            }
-          ]
-        }
-      ]
-    }
-  },
-
-  'ecommerce-builder-detail': {
-    view: 'ecommerce-builder-detail',
-    path: '/products/ecommerce-builder',
-    aliases: [
-      '/products/ecommerce-post-builder',
-      '/ecommerce-post-builder',
-      '/ecommerce-builder',
-      '/products/ecommerce-builder-detail'
-    ],
-    title: 'E-Commerce Post Builder | High-Converting Online Store Visual Showcase Creator',
-    description: 'Design professional, sales-driven e-commerce product posts and promotional banners with E-Commerce Post Builder. Tailored for online retailers and boutique merchants.',
-    keywords: [
-      'E-Commerce Post Builder',
-      'ecommerce product showcase',
-      'social shopping post creator',
-      'online store banner maker',
-      'product graphic designer',
-      'retail visual marketing'
-    ],
-    ogType: 'product',
-    breadcrumbName: 'E-Commerce Post Builder',
-    schema: {
-      '@context': 'https://schema.org',
-      '@graph': [
-        {
-          '@type': 'SoftwareApplication',
-          '@id': 'https://neotechera.netlify.app/products/ecommerce-builder#software',
-          'name': 'E-Commerce Post Builder',
-          'applicationCategory': 'MarketingApplication',
-          'operatingSystem': 'Web Browser',
-          'description': 'A specialized creative tool for online sellers to generate conversion-optimized product showcases with promo badges and stock indicators.',
-          'featureList': [
-            'Product image framing with auto drop-shadows',
-            'Dynamic price, strike-through original price, and savings badge',
-            'Stock urgency triggers (e.g. Only 3 units left)',
-            'Direct export optimized for modern mobile marketplaces'
-          ]
-        },
-        {
-          '@type': 'BreadcrumbList',
-          '@id': 'https://neotechera.netlify.app/products/ecommerce-builder#breadcrumb',
-          'itemListElement': [
-            {
-              '@type': 'ListItem',
-              'position': 1,
-              'name': 'Home',
-              'item': 'https://neotechera.netlify.app/'
-            },
-            {
-              '@type': 'ListItem',
-              'position': 2,
-              'name': 'Products',
-              'item': 'https://neotechera.netlify.app/#products'
-            },
-            {
-              '@type': 'ListItem',
-              'position': 3,
-              'name': 'E-Commerce Post Builder',
-              'item': 'https://neotechera.netlify.app/products/ecommerce-builder'
-            }
-          ]
-        }
-      ]
-    }
-  }
-};
-
-/**
- * Normalizes a URL path by removing trailing slashes and converting to lowercase.
- */
-function normalizePath(rawPath: string): string {
-  if (!rawPath || rawPath === '/') return '/';
-  const clean = rawPath.toLowerCase().split('?')[0].split('#')[0].replace(/\/+$/, '');
-  return clean || '/';
-}
-
-/**
- * Resolves any browser pathname (or alias) into the corresponding PageView.
- */
-export function matchPathToView(pathname: string): PageView {
-  const normalized = normalizePath(pathname);
-
-  // Check each route configuration
-  for (const [viewKey, config] of Object.entries(ROUTES_CONFIG)) {
-    if (config.path === normalized) {
-      return viewKey as PageView;
-    }
-    if (config.aliases.some((alias) => normalizePath(alias) === normalized)) {
-      return viewKey as PageView;
-    }
+    };
   }
 
-  return 'home';
+  // Product detail pages
+  return {
+    '@context': 'https://schema.org',
+    '@graph': [
+      {
+        '@type': 'SoftwareApplication',
+        '@id': `${canonicalUrl}#software`,
+        'name': meta.breadcrumbName,
+        'applicationCategory': view === 'nabaa-detail' ? 'LogisticsApplication' : 'BusinessApplication',
+        'operatingSystem': view === 'nabaa-detail' ? 'Web, iOS, Android' : 'Web Browser',
+        'description': meta.description,
+        'inLanguage': lang === 'ar' ? 'ar' : 'en',
+        'offers': view === 'nabaa-detail' ? {
+          '@type': 'AggregateOffer',
+          'priceCurrency': 'SAR',
+          'lowPrice': 120,
+          'highPrice': 320,
+          'offerCount': 3
+        } : undefined
+      },
+      {
+        '@type': 'BreadcrumbList',
+        '@id': `${canonicalUrl}#breadcrumb`,
+        'itemListElement': [
+          {
+            '@type': 'ListItem',
+            'position': 1,
+            'name': lang === 'ar' ? 'الرئيسية' : 'Home',
+            'item': homeUrl
+          },
+          {
+            '@type': 'ListItem',
+            'position': 2,
+            'name': lang === 'ar' ? 'المنتجات' : 'Products',
+            'item': `${homeUrl}/#products`
+          },
+          {
+            '@type': 'ListItem',
+            'position': 3,
+            'name': meta.breadcrumbName,
+            'item': canonicalUrl
+          }
+        ]
+      }
+    ]
+  };
 }
 
 /**
- * Returns the canonical URL path for a given PageView.
+ * Dynamically updates document metadata (title, meta description, og tags, canonical link, hreflang tags, and JSON-LD schema).
  */
-export function getViewCanonicalPath(view: PageView): string {
-  return ROUTES_CONFIG[view]?.path || '/';
-}
-
-/**
- * Returns the full canonical URL (e.g., https://neotechera.netlify.app/products/nabaa-tankers).
- */
-export function getViewFullCanonicalUrl(view: PageView): string {
-  const origin = typeof window !== 'undefined' ? window.location.origin : 'https://neotechera.netlify.app';
-  const path = getViewCanonicalPath(view);
-  return `${origin}${path === '/' ? '' : path}`;
-}
-
-/**
- * Dynamically updates document metadata (title, meta description, og tags, canonical link, and JSON-LD schema).
- */
-export function updateDocumentSEO(view: PageView): void {
+export function updateDocumentSEO(view: PageView, lang: Language = 'en'): void {
   if (typeof document === 'undefined') return;
 
-  const config = ROUTES_CONFIG[view] || ROUTES_CONFIG['home'];
-  const canonicalUrl = getViewFullCanonicalUrl(view);
+  const meta = getRouteMeta(view, lang);
+  const canonicalUrl = getViewFullCanonicalUrl(view, lang);
+  const alternates = getAlternateUrls(view);
 
-  // 1. Title
-  document.title = config.title;
+  // 1. Document Title
+  document.title = meta.title;
 
   // 2. Helper to set or create meta tag
   const setMeta = (attributeName: string, attributeValue: string, content: string) => {
@@ -494,21 +401,22 @@ export function updateDocumentSEO(view: PageView): void {
   };
 
   // 3. Standard & Search Engine Meta Tags
-  setMeta('name', 'description', config.description);
-  setMeta('name', 'keywords', config.keywords.join(', '));
+  setMeta('name', 'description', meta.description);
+  setMeta('name', 'keywords', meta.keywords.join(', '));
   setMeta('name', 'robots', 'index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1');
 
   // 4. Open Graph Meta Tags
-  setMeta('property', 'og:title', config.title);
-  setMeta('property', 'og:description', config.description);
+  setMeta('property', 'og:title', meta.title);
+  setMeta('property', 'og:description', meta.description);
   setMeta('property', 'og:url', canonicalUrl);
-  setMeta('property', 'og:type', config.ogType);
-  setMeta('property', 'og:site_name', 'The Nabaa Tanker & Neo Tech Era');
+  setMeta('property', 'og:type', meta.ogType);
+  setMeta('property', 'og:site_name', 'Neo Tech Era');
+  setMeta('property', 'og:locale', lang === 'ar' ? 'ar_SA' : 'en_US');
 
   // 5. Twitter Card Meta Tags
   setMeta('name', 'twitter:card', 'summary_large_image');
-  setMeta('name', 'twitter:title', config.title);
-  setMeta('name', 'twitter:description', config.description);
+  setMeta('name', 'twitter:title', meta.title);
+  setMeta('name', 'twitter:description', meta.description);
 
   // 6. Canonical Link
   let canonicalLink = document.querySelector('link[rel="canonical"]') as HTMLLinkElement | null;
@@ -519,7 +427,23 @@ export function updateDocumentSEO(view: PageView): void {
   }
   canonicalLink.setAttribute('href', canonicalUrl);
 
-  // 7. Structured Data (JSON-LD) for SEO & AEO
+  // 7. Hreflang Alternates (en, ar, x-default)
+  const setHreflang = (hreflang: string, href: string) => {
+    let link = document.querySelector(`link[rel="alternate"][hreflang="${hreflang}"]`) as HTMLLinkElement | null;
+    if (!link) {
+      link = document.createElement('link');
+      link.setAttribute('rel', 'alternate');
+      link.setAttribute('hreflang', hreflang);
+      document.head.appendChild(link);
+    }
+    link.setAttribute('href', href);
+  };
+
+  setHreflang('en', alternates.en);
+  setHreflang('ar', alternates.ar);
+  setHreflang('x-default', alternates.xDefault);
+
+  // 8. Structured Data (JSON-LD) for SEO & AEO
   let scriptTag = document.getElementById('schema-json-ld') as HTMLScriptElement | null;
   if (!scriptTag) {
     scriptTag = document.createElement('script');
@@ -527,5 +451,6 @@ export function updateDocumentSEO(view: PageView): void {
     scriptTag.type = 'application/ld+json';
     document.head.appendChild(scriptTag);
   }
-  scriptTag.textContent = JSON.stringify(config.schema, null, 2);
+  const schema = buildSchemaJson(view, lang);
+  scriptTag.textContent = JSON.stringify(schema, null, 2);
 }
