@@ -575,6 +575,49 @@ export interface TranslationDictionary {
     ctaSubheading: string;
     ctaButton: string;
   };
+  aboutPage: {
+    badge: string;
+    title: string;
+    subtitle: string;
+    quickAnswer: string;
+    missionTitle: string;
+    missionText: string;
+    visionTitle: string;
+    visionText: string;
+    principlesHeading: string;
+    principlesSubheading: string;
+    principles: Array<{ title: string; description: string }>;
+    stackHeading: string;
+    stackSubheading: string;
+    stackItems: Array<{ category: string; description: string }>;
+    portfolioHeading: string;
+    portfolioSubheading: string;
+    faqHeading: string;
+    faqSubheading: string;
+    faqs: Array<{ q: string; a: string }>;
+    contactCtaTitle: string;
+    contactCtaSubtitle: string;
+    contactCtaBtn: string;
+  };
+  contactPage: {
+    badge: string;
+    title: string;
+    subtitle: string;
+    quickAnswer: string;
+    emailLabel: string;
+    emailVal: string;
+    responseTimeLabel: string;
+    responseTimeVal: string;
+    hoursLabel: string;
+    hoursVal: string;
+    headquartersLabel: string;
+    headquartersVal: string;
+    formTitle: string;
+    formSubtitle: string;
+    faqHeading: string;
+    faqSubheading: string;
+    faqs: Array<{ q: string; a: string }>;
+  };
   seo: {
     home: {
       title: string;
@@ -597,6 +640,16 @@ export interface TranslationDictionary {
       breadcrumb: string;
     };
     ecommerceBuilder: {
+      title: string;
+      description: string;
+      breadcrumb: string;
+    };
+    about: {
+      title: string;
+      description: string;
+      breadcrumb: string;
+    };
+    contact: {
       title: string;
       description: string;
       breadcrumb: string;

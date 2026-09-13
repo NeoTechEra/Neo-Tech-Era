@@ -3,7 +3,9 @@ export type PageView =
   | 'nabaa-detail'
   | 'pix-shield-detail'
   | 'price-pulser-detail'
-  | 'ecommerce-builder-detail';
+  | 'ecommerce-builder-detail'
+  | 'about'
+  | 'contact';
 
 export interface ProductSummary {
   id: string;

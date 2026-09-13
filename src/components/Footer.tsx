@@ -147,10 +147,10 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenContact, theme
               </li>
               <li>
                 <a 
-                  href={`/${language}/about`}
+                  href={getViewCanonicalPath('about', language)}
                   onClick={(e) => {
                     e.preventDefault();
-                    handleNav('home', 'company-section');
+                    handleNav('about');
                   }}
                   className="hover:text-cyan-400 transition-colors"
                 >
@@ -158,12 +158,16 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenContact, theme
                 </a>
               </li>
               <li>
-                <button 
-                  onClick={onOpenContact} 
+                <a 
+                  href={getViewCanonicalPath('contact', language)}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    handleNav('contact');
+                  }}
                   className="hover:text-cyan-400 transition-colors"
                 >
                   {t.nav.contact}
-                </button>
+                </a>
               </li>
             </ul>
           </div>

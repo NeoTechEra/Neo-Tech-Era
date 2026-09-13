@@ -798,6 +798,117 @@ export const enTranslations: TranslationDictionary = {
     ctaSubheading: 'Speak with our solutions team to explore enterprise capabilities and bulk e-commerce licensing.',
     ctaButton: 'Inquire About Post Builder'
   },
+  aboutPage: {
+    badge: 'About Neo Tech Era',
+    title: 'Engineering Specialized Software & Practical Digital Ecosystems',
+    subtitle: 'We build high-impact platforms that solve real-world operational problems across fleet logistics, copyright security, and social commerce automation.',
+    quickAnswer: 'Neo Tech Era is a specialized digital software engineering studio founded to deliver production-grade platforms. Our portfolio includes our flagship water delivery and fleet telematics platform (The Nabaa Tankers), image copyright protection software (Pix Shield), and social commerce automation engines (Price Post Pulser and E-Commerce Post Builder).',
+    missionTitle: 'Our Mission',
+    missionText: 'To engineer software products that remove real-world friction. We bridge complex backend telematics, microservices, and high-load database architecture with clean, human-centered interfaces that users love.',
+    visionTitle: 'Our Vision',
+    visionText: 'To be the leading innovator in regional logistics technology and high-utility SaaS tools across Saudi Arabia, the GCC, and international markets.',
+    principlesHeading: 'Our Core Engineering Principles',
+    principlesSubheading: 'Every product we build adheres to four non-negotiable architectural tenets.',
+    principles: [
+      {
+        title: 'Real-World Operational Impact',
+        description: 'We do not build speculative software. We engineer systems that solve tangible, daily bottlenecks—such as automated dispatching for water tanker fleets or safeguarding original digital photography.'
+      },
+      {
+        title: 'Architectural Resilience & Speed',
+        description: 'Our platforms are architected with enterprise-grade microservices, real-time WebSocket telematics, and sub-100ms response targets to handle peak operational loads.'
+      },
+      {
+        title: 'Zero-Friction User Interfaces',
+        description: 'Complex logic behind intuitive, beautiful design. Whether it is an on-duty tanker driver on mobile or a logistics dispatcher at a desktop workstation, our UI empowers rapid decisions.'
+      },
+      {
+        title: 'End-to-End Security & Compliance',
+        description: 'Data protection, secure tokenized APIs, cryptographic image metadata, and privacy compliance are baked into the initial design of every platform we release.'
+      }
+    ],
+    stackHeading: 'Technology & Architecture Stack',
+    stackSubheading: 'Built on modern, scalable, cloud-native enterprise standards.',
+    stackItems: [
+      {
+        category: 'Fleet Telematics & Real-Time Sync',
+        description: 'High-frequency GPS geolocation tracking, automated dispatch queuing, dynamic route optimization, and live radar mapping.'
+      },
+      {
+        category: 'Cloud Infrastructure & High Availability',
+        description: 'Containerized microservices, distributed caching, multi-region load balancers, and continuous zero-downtime deployments.'
+      },
+      {
+        category: 'Mobile & Web Frontends',
+        description: 'Bilingual native iOS & Android applications paired with high-performance React web administration dashboards supporting native RTL/LTR layouts.'
+      },
+      {
+        category: 'Digital Security & Cryptography',
+        description: 'Granular role-based access control (RBAC), end-to-end encrypted communications, and digital asset watermarking safeguards.'
+      }
+    ],
+    portfolioHeading: 'The Neo Tech Era Product Portfolio',
+    portfolioSubheading: 'Specialized digital ecosystems engineered for tangible impact.',
+    faqHeading: 'Frequently Asked Questions (AEO)',
+    faqSubheading: 'Quick answers about Neo Tech Era, our solutions, and operations.',
+    faqs: [
+      {
+        q: 'What is Neo Tech Era?',
+        a: 'Neo Tech Era is an engineering-driven digital product studio that builds specialized software ecosystems and web platforms, including flagship logistics solutions like The Nabaa Tankers, visual security tools like Pix Shield, and social commerce automation utilities.'
+      },
+      {
+        q: 'What is the flagship platform developed by Neo Tech Era?',
+        a: 'Our flagship product is The Nabaa Tankers—a comprehensive 3-in-1 on-demand water delivery and fleet logistics ecosystem that connects central dispatch administration, driver mobile apps, and customer ordering applications.'
+      },
+      {
+        q: 'Where does Neo Tech Era operate?',
+        a: 'Neo Tech Era is headquartered with primary operational focus in Saudi Arabia and the GCC region, while maintaining global cloud availability for its SaaS products.'
+      },
+      {
+        q: 'Does Neo Tech Era offer enterprise white-label solutions?',
+        a: 'Yes, our platforms—including The Nabaa Tankers—are available for enterprise licensing, white-label deployment, and tailored regional integrations for fleet operators and commercial partners.'
+      }
+    ],
+    contactCtaTitle: 'Have a Project or Enterprise Inquiry?',
+    contactCtaSubtitle: 'Our solutions engineering team is ready to assist with live demos, technical consultations, and strategic partnerships.',
+    contactCtaBtn: 'Contact Our Team'
+  },
+  contactPage: {
+    badge: 'Get in Touch',
+    title: 'Contact Neo Tech Era Solutions & Support',
+    subtitle: 'Whether you are looking for an enterprise demonstration of The Nabaa Tankers, licensing inquiries, or technical collaboration, we are here to assist.',
+    quickAnswer: 'You can contact Neo Tech Era directly via email at techeraneo@gmail.com or by submitting our enterprise contact form. Our technical solutions team responds to all inquiries within 24 hours.',
+    emailLabel: 'Direct Email',
+    emailVal: 'techeraneo@gmail.com',
+    responseTimeLabel: 'Response Guarantee',
+    responseTimeVal: 'Within 24 Hours',
+    hoursLabel: 'Operations & Support',
+    hoursVal: 'Sunday – Thursday: 8:00 AM – 8:00 PM (AST)',
+    headquartersLabel: 'Location & Reach',
+    headquartersVal: 'Riyadh, Kingdom of Saudi Arabia & Global Cloud Support',
+    formTitle: 'Send Us an Inquiry',
+    formSubtitle: 'Fill out the form below and a solutions engineer will get back to you promptly.',
+    faqHeading: 'Contact & Consultation FAQs',
+    faqSubheading: 'Common questions regarding inquiries, demos, and partnerships.',
+    faqs: [
+      {
+        q: 'How fast will someone respond to my inquiry?',
+        a: 'Our team responds to all inquiries, demo requests, and partnership proposals within 24 business hours.'
+      },
+      {
+        q: 'Can I schedule a live walkthrough of The Nabaa Tankers?',
+        a: 'Yes. Simply select "The Nabaa Tankers" in the inquiry form and mention your preferred date and time, and we will schedule an interactive demo of the Admin Dispatch, Driver, and Customer systems.'
+      },
+      {
+        q: 'How do I reach the team for urgent technical assistance?',
+        a: 'For urgent inquiries, please email techeraneo@gmail.com with "[Urgent]" in the subject line for prioritized review.'
+      },
+      {
+        q: 'Do you provide customized integrations for existing fleets?',
+        a: 'Yes. We work closely with enterprise fleet operators to integrate our dispatch and telematics platform with existing ERP, CRM, or accounting systems.'
+      }
+    ]
+  },
   seo: {
     home: {
       title: 'Neo Tech Era | The Nabaa Tanker & Practical Digital Products Suite',
@@ -823,6 +934,16 @@ export const enTranslations: TranslationDictionary = {
       title: 'E-Commerce Post Builder | High-Converting Online Store Visuals',
       description: 'Generate high-converting e-commerce product graphics, promotional banners, and social commerce visuals for online merchants and retail brands.',
       breadcrumb: 'E-Commerce Post Builder'
+    },
+    about: {
+      title: 'About Neo Tech Era | Engineering Practical Digital Ecosystems & Software Solutions',
+      description: 'Learn about Neo Tech Era, an engineering-led software studio building specialized platforms including The Nabaa Tankers, Pix Shield, and social commerce automation tools.',
+      breadcrumb: 'About Us'
+    },
+    contact: {
+      title: 'Contact Neo Tech Era | Enterprise Inquiries, Demos & Partnerships',
+      description: 'Get in touch with Neo Tech Era. Inquire about The Nabaa Tankers platform demonstrations, software licensing, enterprise solutions, or technical collaboration.',
+      breadcrumb: 'Contact Us'
     }
   }
 };

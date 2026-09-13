@@ -30,21 +30,24 @@ export const Breadcrumb: React.FC<BreadcrumbProps> = ({ currentView, onNavigateH
         <span>{t.breadcrumb.home}</span>
       </a>
 
-      <ChevronRight className={`w-3.5 h-3.5 text-slate-300 dark:text-slate-600 ${isRTL ? 'rotate-180' : ''}`} />
-
-      <a
-        href={`/${language}/#products`}
-        onClick={(e) => {
-          e.preventDefault();
-          onNavigateHome();
-          setTimeout(() => {
-            document.getElementById('products-overview')?.scrollIntoView({ behavior: 'smooth' });
-          }, 100);
-        }}
-        className="hover:text-cyan-600 dark:hover:text-cyan-400 font-medium transition-colors"
-      >
-        {t.breadcrumb.products}
-      </a>
+      {currentView !== 'about' && currentView !== 'contact' && (
+        <>
+          <ChevronRight className={`w-3.5 h-3.5 text-slate-300 dark:text-slate-600 ${isRTL ? 'rotate-180' : ''}`} />
+          <a
+            href={`/${language}/#products`}
+            onClick={(e) => {
+              e.preventDefault();
+              onNavigateHome();
+              setTimeout(() => {
+                document.getElementById('products-overview')?.scrollIntoView({ behavior: 'smooth' });
+              }, 100);
+            }}
+            className="hover:text-cyan-600 dark:hover:text-cyan-400 font-medium transition-colors"
+          >
+            {t.breadcrumb.products}
+          </a>
+        </>
+      )}
 
       <ChevronRight className={`w-3.5 h-3.5 text-slate-300 dark:text-slate-600 ${isRTL ? 'rotate-180' : ''}`} />
 

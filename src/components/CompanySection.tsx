@@ -4,12 +4,19 @@ import {
   Target, 
   Cpu, 
   ShieldCheck, 
-  Sparkles
+  Sparkles,
+  ArrowRight
 } from 'lucide-react';
 import { useLanguage } from '../i18n';
+import { PageView } from '../types';
+import { getViewCanonicalPath } from '../utils/seoRouter';
 
-export const CompanySection: React.FC = () => {
-  const { language, t } = useLanguage();
+interface CompanySectionProps {
+  onNavigate?: (view: PageView) => void;
+}
+
+export const CompanySection: React.FC<CompanySectionProps> = ({ onNavigate }) => {
+  const { language, isRTL, t } = useLanguage();
 
   return (
     <section id="company-section" className="py-24 relative bg-slate-50 dark:bg-gradient-to-b dark:from-[#060c18] dark:to-[#03070f] border-t border-slate-200 dark:border-slate-800/80">
@@ -61,6 +68,23 @@ export const CompanySection: React.FC = () => {
                 <div className="text-xs text-slate-500 dark:text-slate-300 mt-1">{t.company.pillar3Desc}</div>
               </div>
             </div>
+
+            {/* Link to Dedicated About Us Page */}
+            {onNavigate && (
+              <div className="pt-2">
+                <a
+                  href={getViewCanonicalPath('about', language)}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    onNavigate('about');
+                  }}
+                  className="inline-flex items-center gap-2 text-sm font-bold text-cyan-700 dark:text-cyan-400 hover:text-cyan-900 dark:hover:text-cyan-200 group"
+                >
+                  <span>{language === 'ar' ? 'استكشف المزيد عنا وعن فريقنا ورؤيتنا' : 'Learn more about our team, architecture & story'}</span>
+                  <ArrowRight className={`w-4 h-4 group-hover:translate-x-1 transition-transform ${isRTL ? 'rotate-180 group-hover:-translate-x-1' : ''}`} />
+                </a>
+              </div>
+            )}
 
           </div>
 

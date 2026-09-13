@@ -60,6 +60,28 @@ export const ROUTE_DEFINITIONS: Record<PageView, RouteDefinition> = {
       'products/ecommerce-builder-detail'
     ],
     ogType: 'product'
+  },
+  'about': {
+    view: 'about',
+    slug: 'about-us',
+    aliases: [
+      'about',
+      'company',
+      'who-we-are',
+      'about-neo-tech-era'
+    ],
+    ogType: 'website'
+  },
+  'contact': {
+    view: 'contact',
+    slug: 'contact-us',
+    aliases: [
+      'contact',
+      'get-in-touch',
+      'inquiry',
+      'contact-neo-tech-era'
+    ],
+    ogType: 'website'
   }
 };
 
@@ -95,14 +117,8 @@ export function matchPathToRoute(pathname: string): {
     restPath = normalized === 'en' ? '' : normalized.slice(3);
   }
 
-  // Check for about / contact special section routes
+  // Check for products special section route
   let targetSection: string | undefined;
-  if (restPath === 'about') {
-    return { view: 'home', lang, targetSection: 'company-section' };
-  }
-  if (restPath === 'contact') {
-    return { view: 'home', lang, targetSection: 'contact-modal' };
-  }
   if (restPath === 'products') {
     return { view: 'home', lang, targetSection: 'products-overview' };
   }
@@ -171,12 +187,8 @@ export function getAlternateUrls(view: PageView): {
 export function getEquivalentPath(currentPath: string, targetLang: Language): string {
   const { view, targetSection } = matchPathToRoute(currentPath);
   let base = getViewCanonicalPath(view, targetLang);
-  if (targetSection === 'company-section') {
-    base = `/${targetLang}/about`;
-  } else if (targetSection === 'contact-modal') {
-    base = `/${targetLang}/contact`;
-  } else if (targetSection === 'products-overview') {
-    base = `/${targetLang}/products`;
+  if (targetSection === 'products-overview') {
+    base = `/${targetLang}/#products`;
   }
   return base;
 }
@@ -204,6 +216,14 @@ export const ROUTES_CONFIG = {
   'ecommerce-builder-detail': {
     breadcrumbName: 'E-Commerce Post Builder',
     path: '/en/products/ecommerce-builder'
+  },
+  'about': {
+    breadcrumbName: 'About Us',
+    path: '/en/about-us'
+  },
+  'contact': {
+    breadcrumbName: 'Contact Us',
+    path: '/en/contact-us'
   }
 };
 
@@ -254,6 +274,26 @@ export function getRouteMeta(view: PageView, lang: Language) {
           : ['E-Commerce Post Builder', 'ecommerce product showcase', 'social shopping post creator', 'online store banner maker', 'retail visual marketing', 'Neo Tech Era'],
         ogType: 'product' as const
       };
+    case 'about':
+      return {
+        title: dict.seo.about.title,
+        description: dict.seo.about.description,
+        breadcrumbName: dict.seo.about.breadcrumb,
+        keywords: lang === 'ar'
+          ? ['Neo Tech Era', 'من نحن', 'مختبرات برمجيات', 'The Nabaa Tankers', 'تطوير منصات رقمية', 'لوجستيات الأساطيل', 'تقنية الرياض السعودية']
+          : ['About Neo Tech Era', 'Neo Tech Era Software Labs', 'digital platforms engineering', 'The Nabaa Tankers creators', 'Saudi Arabia software company', 'logistics telematics studio'],
+        ogType: 'website' as const
+      };
+    case 'contact':
+      return {
+        title: dict.seo.contact.title,
+        description: dict.seo.contact.description,
+        breadcrumbName: dict.seo.contact.breadcrumb,
+        keywords: lang === 'ar'
+          ? ['اتصل بنا Neo Tech Era', 'تواصل مع Neo Tech Era', 'حجز عرض The Nabaa Tankers', 'استفسارات الأنظمة والشركات', 'دعم منصة النبع', 'بريد techeraneo@gmail.com']
+          : ['Contact Neo Tech Era', 'get in touch Neo Tech Era', 'The Nabaa Tankers enterprise demo', 'logistics software inquiry', 'techeraneo@gmail.com', 'request consultation'],
+        ogType: 'website' as const
+      };
     case 'home':
     default:
       return {
@@ -269,12 +309,13 @@ export function getRouteMeta(view: PageView, lang: Language) {
 }
 
 /**
- * Builds Schema.org JSON-LD structured data for the page.
+ * Builds Schema.org JSON-LD structured data for the page (SEO & AEO optimized).
  */
 function buildSchemaJson(view: PageView, lang: Language) {
   const canonicalUrl = getViewFullCanonicalUrl(view, lang);
   const homeUrl = getViewFullCanonicalUrl('home', lang);
   const meta = getRouteMeta(view, lang);
+  const dict = lang === 'ar' ? arTranslations : enTranslations;
 
   if (view === 'home') {
     return {
@@ -290,7 +331,8 @@ function buildSchemaJson(view: PageView, lang: Language) {
           'publisher': {
             '@type': 'Organization',
             'name': 'Neo Tech Era',
-            'url': canonicalUrl
+            'url': canonicalUrl,
+            'email': 'techeraneo@gmail.com'
           }
         },
         {
@@ -323,6 +365,166 @@ function buildSchemaJson(view: PageView, lang: Language) {
               'url': getViewFullCanonicalUrl('ecommerce-builder-detail', lang)
             }
           ]
+        }
+      ]
+    };
+  }
+
+  // About Us Page (AEO & SEO optimized with Organization, AboutPage & FAQPage schema)
+  if (view === 'about') {
+    return {
+      '@context': 'https://schema.org',
+      '@graph': [
+        {
+          '@type': 'AboutPage',
+          '@id': `${canonicalUrl}#aboutpage`,
+          'url': canonicalUrl,
+          'name': meta.title,
+          'description': meta.description,
+          'inLanguage': lang === 'ar' ? 'ar' : 'en',
+          'mainEntity': {
+            '@type': 'Organization',
+            '@id': `${homeUrl}#organization`,
+            'name': 'Neo Tech Era',
+            'alternateName': 'Neo Tech Era Software Labs',
+            'url': homeUrl,
+            'email': 'techeraneo@gmail.com',
+            'description': dict.aboutPage.quickAnswer,
+            'knowsAbout': [
+              'On-demand water tanker delivery logistics',
+              'Fleet telematics and dispatch algorithms',
+              'Image protection and batch watermarking technology',
+              'Dynamic pricing graphic generators for social media',
+              'E-commerce marketing banner automation'
+            ],
+            'makesOffer': [
+              {
+                '@type': 'Offer',
+                'itemOffered': {
+                  '@type': 'SoftwareApplication',
+                  'name': 'The Nabaa Tankers',
+                  'url': getViewFullCanonicalUrl('nabaa-detail', lang)
+                }
+              },
+              {
+                '@type': 'Offer',
+                'itemOffered': {
+                  '@type': 'SoftwareApplication',
+                  'name': 'Pix Shield',
+                  'url': getViewFullCanonicalUrl('pix-shield-detail', lang)
+                }
+              },
+              {
+                '@type': 'Offer',
+                'itemOffered': {
+                  '@type': 'SoftwareApplication',
+                  'name': 'Price Post Pulser',
+                  'url': getViewFullCanonicalUrl('price-pulser-detail', lang)
+                }
+              },
+              {
+                '@type': 'Offer',
+                'itemOffered': {
+                  '@type': 'SoftwareApplication',
+                  'name': 'E-Commerce Post Builder',
+                  'url': getViewFullCanonicalUrl('ecommerce-builder-detail', lang)
+                }
+              }
+            ]
+          }
+        },
+        {
+          '@type': 'BreadcrumbList',
+          '@id': `${canonicalUrl}#breadcrumb`,
+          'itemListElement': [
+            {
+              '@type': 'ListItem',
+              'position': 1,
+              'name': lang === 'ar' ? 'الرئيسية' : 'Home',
+              'item': homeUrl
+            },
+            {
+              '@type': 'ListItem',
+              'position': 2,
+              'name': meta.breadcrumbName,
+              'item': canonicalUrl
+            }
+          ]
+        },
+        {
+          '@type': 'FAQPage',
+          '@id': `${canonicalUrl}#faq`,
+          'mainEntity': dict.aboutPage.faqs.map((f) => ({
+            '@type': 'Question',
+            'name': f.q,
+            'acceptedAnswer': {
+              '@type': 'Answer',
+              'text': f.a
+            }
+          }))
+        }
+      ]
+    };
+  }
+
+  // Contact Us Page (AEO & SEO optimized with ContactPage, ContactPoint & FAQPage schema)
+  if (view === 'contact') {
+    return {
+      '@context': 'https://schema.org',
+      '@graph': [
+        {
+          '@type': 'ContactPage',
+          '@id': `${canonicalUrl}#contactpage`,
+          'url': canonicalUrl,
+          'name': meta.title,
+          'description': meta.description,
+          'inLanguage': lang === 'ar' ? 'ar' : 'en',
+          'mainEntity': {
+            '@type': 'Organization',
+            '@id': `${homeUrl}#organization`,
+            'name': 'Neo Tech Era',
+            'url': homeUrl,
+            'contactPoint': [
+              {
+                '@type': 'ContactPoint',
+                'contactType': 'customer support and enterprise sales',
+                'email': 'techeraneo@gmail.com',
+                'availableLanguage': ['en', 'ar'],
+                'hoursAvailable': 'Mo-Su 08:00-20:00',
+                'areaServed': ['SA', 'AE', 'KW', 'BH', 'QA', 'OM', 'Worldwide']
+              }
+            ]
+          }
+        },
+        {
+          '@type': 'BreadcrumbList',
+          '@id': `${canonicalUrl}#breadcrumb`,
+          'itemListElement': [
+            {
+              '@type': 'ListItem',
+              'position': 1,
+              'name': lang === 'ar' ? 'الرئيسية' : 'Home',
+              'item': homeUrl
+            },
+            {
+              '@type': 'ListItem',
+              'position': 2,
+              'name': meta.breadcrumbName,
+              'item': canonicalUrl
+            }
+          ]
+        },
+        {
+          '@type': 'FAQPage',
+          '@id': `${canonicalUrl}#faq`,
+          'mainEntity': dict.contactPage.faqs.map((f) => ({
+            '@type': 'Question',
+            'name': f.q,
+            'acceptedAnswer': {
+              '@type': 'Answer',
+              'text': f.a
+            }
+          }))
         }
       ]
     };

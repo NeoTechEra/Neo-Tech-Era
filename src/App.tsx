@@ -23,6 +23,8 @@ import { PixShieldDetail } from './components/PixShieldDetail';
 import { PricePulserDetail } from './components/PricePulserDetail';
 import { EcommerceBuilderDetail } from './components/EcommerceBuilderDetail';
 import { NabaaDetail } from './components/NabaaDetail';
+import { AboutPage } from './components/AboutPage';
+import { ContactPage } from './components/ContactPage';
 import { ContactModal } from './components/ContactModal';
 import { ThemeProvider, useTheme } from './styles/theme/ThemeProvider';
 import { LanguageProvider, useLanguage } from './i18n';
@@ -139,7 +141,7 @@ function AppContent() {
             <OtherProductsSection onNavigate={handleNavigate} />
 
             {/* Company Section: Built by Neo Tech Era */}
-            <CompanySection />
+            <CompanySection onNavigate={handleNavigate} />
 
             {/* Final Call to Action */}
             <FinalCTA 
@@ -178,6 +180,21 @@ function AppContent() {
           <EcommerceBuilderDetail 
             onBack={() => handleNavigate('home')}
             onOpenContact={() => handleOpenContact('E-Commerce Post Builder')}
+          />
+        )}
+
+        {/* Dedicated About Us Page (SEO / AEO with Schema.org & canonical URL) */}
+        {currentView === 'about' && (
+          <AboutPage 
+            onNavigate={handleNavigate}
+            onOpenContact={() => handleOpenContact('About Us Inquiry')}
+          />
+        )}
+
+        {/* Dedicated Contact Us Page (SEO / AEO with Schema.org & canonical URL) */}
+        {currentView === 'contact' && (
+          <ContactPage 
+            onNavigate={handleNavigate}
           />
         )}
       </main>

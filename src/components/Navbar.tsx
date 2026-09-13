@@ -252,23 +252,35 @@ export const Navbar: React.FC<NavbarProps> = ({
 
           <a
             id="nav-link-about"
-            href={`/${language}/about`}
+            href={getViewCanonicalPath('about', language)}
             onClick={(e) => {
               e.preventDefault();
-              handleNavClick('home', 'company-section');
+              handleNavClick('about');
             }}
-            className="px-4 py-2 rounded-full text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white hover:bg-slate-200/60 dark:hover:bg-slate-800/50 transition-all"
+            className={`px-4 py-2 rounded-full text-sm font-medium transition-all ${
+              currentView === 'about'
+                ? 'bg-cyan-100 dark:bg-blue-600/20 text-cyan-900 dark:text-cyan-300 shadow-sm border border-cyan-300 dark:border-cyan-500/30 font-semibold'
+                : 'text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white hover:bg-slate-200/60 dark:hover:bg-slate-800/50'
+            }`}
           >
             {t.nav.about}
           </a>
 
-          <button
+          <a
             id="nav-link-contact"
-            onClick={onOpenContact}
-            className="px-4 py-2 rounded-full text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white hover:bg-slate-200/60 dark:hover:bg-slate-800/50 transition-all"
+            href={getViewCanonicalPath('contact', language)}
+            onClick={(e) => {
+              e.preventDefault();
+              handleNavClick('contact');
+            }}
+            className={`px-4 py-2 rounded-full text-sm font-medium transition-all ${
+              currentView === 'contact'
+                ? 'bg-cyan-100 dark:bg-blue-600/20 text-cyan-900 dark:text-cyan-300 shadow-sm border border-cyan-300 dark:border-cyan-500/30 font-semibold'
+                : 'text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white hover:bg-slate-200/60 dark:hover:bg-slate-800/50'
+            }`}
           >
             {t.nav.contact}
-          </button>
+          </a>
         </nav>
 
         {/* Language Switcher, Action Button, Theme Toggle & Mobile Menu Toggle */}
@@ -481,21 +493,35 @@ export const Navbar: React.FC<NavbarProps> = ({
               E-Commerce Post Builder
             </a>
             <a
-              href={`/${language}/about`}
+              href={getViewCanonicalPath('about', language)}
               onClick={(e) => {
                 e.preventDefault();
-                handleNavClick('home', 'company-section');
+                handleNavClick('about');
               }}
-              className="text-start px-4 py-3 rounded-xl bg-slate-50 dark:bg-slate-900/60 text-slate-800 dark:text-slate-200 font-medium hover:bg-slate-100 dark:hover:bg-slate-800 border border-slate-200 dark:border-transparent block"
+              className={`text-start px-4 py-3 rounded-xl font-medium border flex items-center justify-between ${
+                currentView === 'about'
+                  ? 'bg-cyan-50 dark:bg-cyan-950/40 text-cyan-900 dark:text-cyan-300 border-cyan-300 dark:border-cyan-500/30 font-semibold'
+                  : 'bg-slate-50 dark:bg-slate-900/60 text-slate-800 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800 border-slate-200 dark:border-transparent'
+              }`}
             >
-              {t.nav.about}
+              <span>{t.nav.about}</span>
+              <ChevronRight className={`w-4 h-4 text-slate-400 ${isRTL ? 'rotate-180' : ''}`} />
             </a>
-            <button
-              onClick={() => { setMobileMenuOpen(false); onOpenContact?.(); }}
-              className="text-start px-4 py-3 rounded-xl bg-slate-50 dark:bg-slate-900/60 text-slate-800 dark:text-slate-200 font-medium hover:bg-slate-100 dark:hover:bg-slate-800 border border-slate-200 dark:border-transparent w-full"
+            <a
+              href={getViewCanonicalPath('contact', language)}
+              onClick={(e) => {
+                e.preventDefault();
+                handleNavClick('contact');
+              }}
+              className={`text-start px-4 py-3 rounded-xl font-medium border flex items-center justify-between ${
+                currentView === 'contact'
+                  ? 'bg-cyan-50 dark:bg-cyan-950/40 text-cyan-900 dark:text-cyan-300 border-cyan-300 dark:border-cyan-500/30 font-semibold'
+                  : 'bg-slate-50 dark:bg-slate-900/60 text-slate-800 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800 border-slate-200 dark:border-transparent'
+              }`}
             >
-              {t.nav.contact}
-            </button>
+              <span>{t.nav.contact}</span>
+              <ChevronRight className={`w-4 h-4 text-slate-400 ${isRTL ? 'rotate-180' : ''}`} />
+            </a>
           </div>
 
           <a
