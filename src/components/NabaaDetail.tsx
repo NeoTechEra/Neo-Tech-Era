@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { 
   Droplets, 
   ArrowLeft, 
@@ -20,7 +20,9 @@ import {
   ArrowRight,
   PhoneCall,
   MapPin,
-  ExternalLink
+  ExternalLink,
+  Compass,
+  Menu
 } from 'lucide-react';
 import { NABAA_TANKER_SIZES, NABAA_PROMOTIONS, VALID_PROMO_CODES, SAMPLE_DRIVERS } from '../data/products';
 import { Breadcrumb } from './Breadcrumb';
@@ -39,7 +41,39 @@ interface NabaaDetailProps {
 
 export const NabaaDetail: React.FC<NabaaDetailProps> = ({ onBack, onOpenContact }) => {
   const { t, isRTL, language } = useLanguage();
-  const [activeQuickNav, setActiveQuickNav] = useState<string>('overview');
+  const [activeQuickNav, setActiveQuickNav] = useState<string>('platform-overview');
+
+  // Scroll spy to automatically highlight the current visible section in the sub-menu
+  useEffect(() => {
+    const handleScroll = () => {
+      const sectionIds = [
+        'platform-overview',
+        'customer-app-section',
+        'driver-app-section',
+        'nabaa-platform-overview',
+        'connected-journey-section',
+        'tanker-specs-section',
+        'why-nabaa-section'
+      ];
+      
+      const scrollPosition = window.scrollY + 200;
+      
+      for (let i = sectionIds.length - 1; i >= 0; i--) {
+        const section = document.getElementById(sectionIds[i]);
+        if (section) {
+          const top = section.offsetTop;
+          if (scrollPosition >= top) {
+            setActiveQuickNav(sectionIds[i]);
+            break;
+          }
+        }
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    handleScroll();
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   const scrollToSection = (sectionId: string) => {
     setActiveQuickNav(sectionId);
@@ -50,13 +84,83 @@ export const NabaaDetail: React.FC<NabaaDetailProps> = ({ onBack, onOpenContact 
   };
 
   const quickNavLinks = [
-    { id: 'platform-overview', label: isRTL ? 'نظرة عامة على المنظومة' : 'Platform Overview', icon: Layers },
-    { id: 'customer-app-section', label: isRTL ? 'تطبيق العميل' : 'Customer App', icon: Smartphone },
-    { id: 'driver-app-section', label: isRTL ? 'تطبيق السائق' : 'Driver App', icon: Truck },
-    { id: 'nabaa-platform-overview', label: isRTL ? 'لوحة تحكم الإدارة' : 'Admin Dashboard', icon: Monitor },
-    { id: 'connected-journey-section', label: isRTL ? 'مسار الطلب المتكامل' : 'Ecosystem Journey', icon: Clock },
-    { id: 'tanker-specs-section', label: isRTL ? 'مواصفات الأسطول' : 'Fleet Tankers', icon: Droplets },
-    { id: 'why-nabaa-section', label: isRTL ? 'لماذا صهاريج نبع' : 'Why The Nabaa', icon: ShieldCheck }
+    { 
+      id: 'platform-overview', 
+      label: isRTL ? 'نظرة عامة' : 'Overview', 
+      fullLabel: isRTL ? 'نظرة عامة على المنظومة' : 'Platform Overview',
+      icon: Layers,
+      num: '01',
+      activeClasses: 'bg-gradient-to-r from-cyan-600 to-cyan-500 text-slate-950 shadow-md shadow-cyan-500/30 border-cyan-300 ring-2 ring-cyan-400/40',
+      inactiveClasses: 'text-slate-700 dark:text-slate-200 bg-white dark:bg-slate-800/90 border-slate-200 dark:border-slate-700/80 hover:border-cyan-400 dark:hover:border-cyan-400 hover:text-cyan-700 dark:hover:text-cyan-300 hover:bg-cyan-50/60 dark:hover:bg-cyan-950/40',
+      iconColor: 'text-cyan-600 dark:text-cyan-400',
+      badgeColor: 'bg-cyan-500/15 text-cyan-700 dark:text-cyan-300'
+    },
+    { 
+      id: 'customer-app-section', 
+      label: isRTL ? 'العميل' : 'Customer App', 
+      fullLabel: isRTL ? 'تطبيق العميل' : 'Customer App',
+      icon: Smartphone,
+      num: '02',
+      activeClasses: 'bg-gradient-to-r from-sky-600 to-blue-600 text-white shadow-md shadow-sky-500/30 border-sky-300 ring-2 ring-sky-400/40',
+      inactiveClasses: 'text-slate-700 dark:text-slate-200 bg-white dark:bg-slate-800/90 border-slate-200 dark:border-slate-700/80 hover:border-sky-400 dark:hover:border-sky-400 hover:text-sky-700 dark:hover:text-sky-300 hover:bg-sky-50/60 dark:hover:bg-sky-950/40',
+      iconColor: 'text-sky-600 dark:text-sky-400',
+      badgeColor: 'bg-sky-500/15 text-sky-700 dark:text-sky-300'
+    },
+    { 
+      id: 'driver-app-section', 
+      label: isRTL ? 'السائق' : 'Driver App', 
+      fullLabel: isRTL ? 'تطبيق السائق' : 'Driver App',
+      icon: Truck,
+      num: '03',
+      activeClasses: 'bg-gradient-to-r from-emerald-600 to-teal-600 text-white shadow-md shadow-emerald-500/30 border-emerald-300 ring-2 ring-emerald-400/40',
+      inactiveClasses: 'text-slate-700 dark:text-slate-200 bg-white dark:bg-slate-800/90 border-slate-200 dark:border-slate-700/80 hover:border-emerald-400 dark:hover:border-emerald-400 hover:text-emerald-700 dark:hover:text-emerald-300 hover:bg-emerald-50/60 dark:hover:bg-emerald-950/40',
+      iconColor: 'text-emerald-600 dark:text-emerald-400',
+      badgeColor: 'bg-emerald-500/15 text-emerald-700 dark:text-emerald-300'
+    },
+    { 
+      id: 'nabaa-platform-overview', 
+      label: isRTL ? 'الإدارة' : 'Admin Panel', 
+      fullLabel: isRTL ? 'لوحة تحكم الإدارة' : 'Admin Dashboard',
+      icon: Monitor,
+      num: '04',
+      activeClasses: 'bg-gradient-to-r from-indigo-600 to-violet-600 text-white shadow-md shadow-indigo-500/30 border-indigo-300 ring-2 ring-indigo-400/40',
+      inactiveClasses: 'text-slate-700 dark:text-slate-200 bg-white dark:bg-slate-800/90 border-slate-200 dark:border-slate-700/80 hover:border-indigo-400 dark:hover:border-indigo-400 hover:text-indigo-700 dark:hover:text-indigo-300 hover:bg-indigo-50/60 dark:hover:bg-indigo-950/40',
+      iconColor: 'text-indigo-600 dark:text-indigo-400',
+      badgeColor: 'bg-indigo-500/15 text-indigo-700 dark:text-indigo-300'
+    },
+    { 
+      id: 'connected-journey-section', 
+      label: isRTL ? 'المسار' : 'Order Journey', 
+      fullLabel: isRTL ? 'مسار الطلب المتكامل' : 'Ecosystem Journey',
+      icon: Clock,
+      num: '05',
+      activeClasses: 'bg-gradient-to-r from-purple-600 to-pink-600 text-white shadow-md shadow-purple-500/30 border-purple-300 ring-2 ring-purple-400/40',
+      inactiveClasses: 'text-slate-700 dark:text-slate-200 bg-white dark:bg-slate-800/90 border-slate-200 dark:border-slate-700/80 hover:border-purple-400 dark:hover:border-purple-400 hover:text-purple-700 dark:hover:text-purple-300 hover:bg-purple-50/60 dark:hover:bg-purple-950/40',
+      iconColor: 'text-purple-600 dark:text-purple-400',
+      badgeColor: 'bg-purple-500/15 text-purple-700 dark:text-purple-300'
+    },
+    { 
+      id: 'tanker-specs-section', 
+      label: isRTL ? 'الأسطول' : 'Fleet Tankers', 
+      fullLabel: isRTL ? 'مواصفات الأسطول' : 'Fleet Tankers',
+      icon: Droplets,
+      num: '06',
+      activeClasses: 'bg-gradient-to-r from-blue-600 to-cyan-600 text-white shadow-md shadow-blue-500/30 border-blue-300 ring-2 ring-blue-400/40',
+      inactiveClasses: 'text-slate-700 dark:text-slate-200 bg-white dark:bg-slate-800/90 border-slate-200 dark:border-slate-700/80 hover:border-blue-400 dark:hover:border-blue-400 hover:text-blue-700 dark:hover:text-blue-300 hover:bg-blue-50/60 dark:hover:bg-blue-950/40',
+      iconColor: 'text-blue-600 dark:text-blue-400',
+      badgeColor: 'bg-blue-500/15 text-blue-700 dark:text-blue-300'
+    },
+    { 
+      id: 'why-nabaa-section', 
+      label: isRTL ? 'المميزات' : 'Why Nabaa', 
+      fullLabel: isRTL ? 'لماذا صهاريج نبع' : 'Why The Nabaa',
+      icon: ShieldCheck,
+      num: '07',
+      activeClasses: 'bg-gradient-to-r from-teal-600 to-emerald-600 text-white shadow-md shadow-teal-500/30 border-teal-300 ring-2 ring-teal-400/40',
+      inactiveClasses: 'text-slate-700 dark:text-slate-200 bg-white dark:bg-slate-800/90 border-slate-200 dark:border-slate-700/80 hover:border-teal-400 dark:hover:border-teal-400 hover:text-teal-700 dark:hover:text-teal-300 hover:bg-teal-50/60 dark:hover:bg-teal-950/40',
+      iconColor: 'text-teal-600 dark:text-teal-400',
+      badgeColor: 'bg-teal-500/15 text-teal-700 dark:text-teal-300'
+    }
   ];
 
   return (
@@ -170,9 +274,34 @@ export const NabaaDetail: React.FC<NabaaDetailProps> = ({ onBack, onOpenContact 
           </div>
         </section>
 
-        {/* QUICK JUMP STICKY NAVIGATION */}
-        <div className="sticky top-20 z-40 mb-12 bg-white/90 dark:bg-slate-900/90 backdrop-blur-md rounded-2xl border border-slate-200 dark:border-slate-800 p-2 shadow-md">
-          <div className="flex items-center gap-1.5 overflow-x-auto no-scrollbar py-1">
+        {/* QUICK JUMP STICKY SUB-MENU NAVIGATION (NON-SCROLLING GRID) */}
+        <nav 
+          aria-label="Platform Sub-Menu"
+          className="sticky top-20 z-40 mb-12 bg-white/95 dark:bg-[#061426]/95 backdrop-blur-xl rounded-2xl border-2 border-slate-200/90 dark:border-cyan-500/30 p-2 sm:p-2.5 shadow-xl dark:shadow-2xl dark:shadow-cyan-950/60 ring-1 ring-black/5 dark:ring-cyan-500/10 transition-all overflow-hidden"
+        >
+          {/* Sub-Menu Top Header / Status Row */}
+          <div className="flex items-center justify-between px-1 pb-2 mb-2 border-b border-slate-100 dark:border-slate-800/80">
+            <div className="flex items-center gap-2">
+              <span className="flex items-center gap-1.5 px-2.5 py-0.5 rounded-lg bg-slate-900 text-white dark:bg-cyan-500/20 dark:text-cyan-300 border border-slate-800 dark:border-cyan-500/40 text-[11px] font-mono font-bold uppercase tracking-wider">
+                <Compass className="w-3.5 h-3.5 text-cyan-400" />
+                <span>{isRTL ? 'قائمة أقسام المنظومة' : 'Sub-Menu • Sections'}</span>
+              </span>
+              <span className="hidden md:inline text-xs text-slate-500 dark:text-slate-400 font-medium">
+                {isRTL ? 'انقر للانتقال المباشر لأي قسم' : 'Instant section navigation'}
+              </span>
+            </div>
+
+            <button
+              onClick={onOpenContact}
+              className="px-2.5 py-1 rounded-lg bg-cyan-50 hover:bg-cyan-100 dark:bg-cyan-950/60 dark:hover:bg-cyan-900/60 text-cyan-700 dark:text-cyan-300 border border-cyan-200 dark:border-cyan-500/30 text-xs font-semibold transition-colors flex items-center gap-1.5 active:scale-95"
+            >
+              <Sparkles className="w-3 h-3 text-cyan-600 dark:text-cyan-400" />
+              <span>{isRTL ? 'حجز عرض تجريبي' : 'Book Demo'}</span>
+            </button>
+          </div>
+
+          {/* 7 Distinct Highlighted Tabs (Non-Scrolling Full Width Responsive Grid) */}
+          <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-7 gap-1.5 sm:gap-2">
             {quickNavLinks.map((item) => {
               const Icon = item.icon;
               const isActive = activeQuickNav === item.id;
@@ -180,19 +309,27 @@ export const NabaaDetail: React.FC<NabaaDetailProps> = ({ onBack, onOpenContact 
                 <button
                   key={item.id}
                   onClick={() => scrollToSection(item.id)}
-                  className={`px-3.5 py-1.5 rounded-xl text-xs font-semibold whitespace-nowrap transition-all flex items-center gap-1.5 ${
+                  className={`w-full px-2 py-2 rounded-xl text-xs font-semibold transition-all flex items-center justify-center gap-1.5 border active:scale-95 text-center ${
                     isActive
-                      ? 'bg-cyan-500 text-slate-950 shadow-sm font-bold'
-                      : 'text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800'
+                      ? `${item.activeClasses} font-bold`
+                      : `${item.inactiveClasses}`
                   }`}
                 >
-                  <Icon className="w-3.5 h-3.5" />
-                  <span>{item.label}</span>
+                  <span className={`w-4 h-4 rounded-md flex items-center justify-center text-[10px] font-mono font-bold shrink-0 ${
+                    isActive ? 'bg-white/25 text-current' : item.badgeColor
+                  }`}>
+                    {item.num}
+                  </span>
+                  <Icon className={`w-3.5 h-3.5 shrink-0 ${isActive ? 'text-current' : item.iconColor}`} />
+                  <span className="truncate">
+                    <span className="hidden xl:inline">{item.fullLabel}</span>
+                    <span className="xl:hidden">{item.label}</span>
+                  </span>
                 </button>
               );
             })}
           </div>
-        </div>
+        </nav>
 
         {/* 2. PLATFORM OVERVIEW SECTION */}
         <section id="platform-overview" className="mb-20 scroll-mt-32">
