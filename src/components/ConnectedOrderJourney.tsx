@@ -17,67 +17,20 @@ export const ConnectedOrderJourney: React.FC = () => {
   const [activeStep, setActiveStep] = useState<number>(0);
 
   const stepIcons = [User, Cpu, Truck, CreditCard, Droplets, Monitor];
-  const stepStyles = [
-    {
-      badgeColor: 'bg-cyan-50 dark:bg-cyan-500/20 text-cyan-800 dark:text-cyan-300 border-cyan-200 dark:border-cyan-400/40',
-      darkCardBg: 'dark:bg-gradient-to-b dark:from-[#092233] dark:to-[#05121c] dark:border-cyan-500/40 hover:dark:border-cyan-300 dark:shadow-lg dark:shadow-cyan-950/40',
-      darkActiveBg: 'dark:bg-gradient-to-b dark:from-[#0e354f] dark:to-[#081e2e] dark:border-cyan-400 dark:shadow-cyan-500/30 ring-1 ring-cyan-400/30',
-      darkTextAccent: 'dark:text-cyan-300',
-      darkDesc: 'dark:text-cyan-100/95',
-      darkNum: 'dark:text-cyan-300',
-      darkIconBg: 'dark:bg-cyan-500/25 dark:border-cyan-400/50 dark:text-cyan-200'
-    },
-    {
-      badgeColor: 'bg-blue-50 dark:bg-blue-500/20 text-blue-800 dark:text-blue-300 border-blue-200 dark:border-blue-400/40',
-      darkCardBg: 'dark:bg-gradient-to-b dark:from-[#0c2045] dark:to-[#061025] dark:border-blue-500/40 hover:dark:border-blue-300 dark:shadow-lg dark:shadow-blue-950/40',
-      darkActiveBg: 'dark:bg-gradient-to-b dark:from-[#13326d] dark:to-[#0b1c40] dark:border-blue-400 dark:shadow-blue-500/30 ring-1 ring-blue-400/30',
-      darkTextAccent: 'dark:text-blue-300',
-      darkDesc: 'dark:text-blue-100/95',
-      darkNum: 'dark:text-blue-300',
-      darkIconBg: 'dark:bg-blue-500/25 dark:border-blue-400/50 dark:text-blue-200'
-    },
-    {
-      badgeColor: 'bg-indigo-50 dark:bg-indigo-500/20 text-indigo-800 dark:text-indigo-300 border-indigo-200 dark:border-indigo-400/40',
-      darkCardBg: 'dark:bg-gradient-to-b dark:from-[#1b1642] dark:to-[#0e0c24] dark:border-indigo-500/40 hover:dark:border-indigo-300 dark:shadow-lg dark:shadow-indigo-950/40',
-      darkActiveBg: 'dark:bg-gradient-to-b dark:from-[#2a2267] dark:to-[#17133f] dark:border-indigo-400 dark:shadow-indigo-500/30 ring-1 ring-indigo-400/30',
-      darkTextAccent: 'dark:text-indigo-300',
-      darkDesc: 'dark:text-indigo-100/95',
-      darkNum: 'dark:text-indigo-300',
-      darkIconBg: 'dark:bg-indigo-500/25 dark:border-indigo-400/50 dark:text-indigo-200'
-    },
-    {
-      badgeColor: 'bg-emerald-50 dark:bg-emerald-500/20 text-emerald-800 dark:text-emerald-300 border-emerald-200 dark:border-emerald-400/40',
-      darkCardBg: 'dark:bg-gradient-to-b dark:from-[#0a291b] dark:to-[#05150d] dark:border-emerald-500/40 hover:dark:border-emerald-300 dark:shadow-lg dark:shadow-emerald-950/40',
-      darkActiveBg: 'dark:bg-gradient-to-b dark:from-[#10432c] dark:to-[#092719] dark:border-emerald-400 dark:shadow-emerald-500/30 ring-1 ring-emerald-400/30',
-      darkTextAccent: 'dark:text-emerald-300',
-      darkDesc: 'dark:text-emerald-100/95',
-      darkNum: 'dark:text-emerald-300',
-      darkIconBg: 'dark:bg-emerald-500/25 dark:border-emerald-400/50 dark:text-emerald-200'
-    },
-    {
-      badgeColor: 'bg-sky-50 dark:bg-sky-500/20 text-sky-800 dark:text-sky-300 border-sky-200 dark:border-sky-400/40',
-      darkCardBg: 'dark:bg-gradient-to-b dark:from-[#092633] dark:to-[#04121a] dark:border-sky-500/40 hover:dark:border-sky-300 dark:shadow-lg dark:shadow-sky-950/40',
-      darkActiveBg: 'dark:bg-gradient-to-b dark:from-[#0f3d53] dark:to-[#092432] dark:border-sky-400 dark:shadow-sky-500/30 ring-1 ring-sky-400/30',
-      darkTextAccent: 'dark:text-sky-300',
-      darkDesc: 'dark:text-sky-100/95',
-      darkNum: 'dark:text-sky-300',
-      darkIconBg: 'dark:bg-sky-500/25 dark:border-sky-400/50 dark:text-sky-200'
-    },
-    {
-      badgeColor: 'bg-purple-50 dark:bg-purple-500/20 text-purple-800 dark:text-purple-300 border-purple-200 dark:border-purple-400/40',
-      darkCardBg: 'dark:bg-gradient-to-b dark:from-[#2b0f42] dark:to-[#150621] dark:border-purple-500/40 hover:dark:border-purple-300 dark:shadow-lg dark:shadow-purple-950/40',
-      darkActiveBg: 'dark:bg-gradient-to-b dark:from-[#431868] dark:to-[#290d40] dark:border-purple-400 dark:shadow-purple-500/30 ring-1 ring-purple-400/30',
-      darkTextAccent: 'dark:text-purple-300',
-      darkDesc: 'dark:text-purple-100/95',
-      darkNum: 'dark:text-purple-300',
-      darkIconBg: 'dark:bg-purple-500/25 dark:border-purple-400/50 dark:text-purple-200'
-    }
-  ];
+  const unifiedStepStyle = {
+    badgeColor: 'bg-cyan-50 dark:bg-cyan-950/80 text-cyan-800 dark:text-cyan-300 border-cyan-200 dark:border-cyan-500/40',
+    darkCardBg: 'dark:bg-[#071322] dark:border-cyan-500/30 hover:dark:border-cyan-400 dark:shadow-lg dark:shadow-cyan-950/40',
+    darkActiveBg: 'dark:bg-gradient-to-b dark:from-[#0e354f] dark:to-[#081e2e] dark:border-cyan-400 dark:shadow-cyan-500/30 ring-1 ring-cyan-400/30',
+    darkTextAccent: 'dark:text-cyan-300',
+    darkDesc: 'dark:text-slate-200',
+    darkNum: 'dark:text-cyan-400',
+    darkIconBg: 'dark:bg-cyan-500/20 dark:border-cyan-400/50 dark:text-cyan-200'
+  };
 
   const steps = t.connectedJourney.steps.map((s, idx) => ({
     ...s,
     icon: stepIcons[idx] || User,
-    ...stepStyles[idx]
+    ...unifiedStepStyle
   }));
 
   const active = steps[activeStep] || steps[0];

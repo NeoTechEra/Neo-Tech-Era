@@ -153,13 +153,13 @@ export const NabaaDetail: React.FC<NabaaDetailProps> = ({ onBack, onOpenContact 
                   </div>
                 </div>
                 <div>
-                  <div className="text-2xl font-black text-emerald-600 dark:text-emerald-400 font-mono">100%</div>
+                  <div className="text-2xl font-black text-cyan-600 dark:text-cyan-400 font-mono">100%</div>
                   <div className="text-xs text-slate-500 dark:text-slate-400 font-medium mt-0.5">
                     {isRTL ? 'تتبع فوري ومحفظة لحظية' : 'Live Radar Telematics'}
                   </div>
                 </div>
                 <div>
-                  <div className="text-2xl font-black text-blue-600 dark:text-blue-400 font-mono">SAR / %</div>
+                  <div className="text-2xl font-black text-cyan-600 dark:text-cyan-400 font-mono">SAR / %</div>
                   <div className="text-xs text-slate-500 dark:text-slate-400 font-medium mt-0.5">
                     {isRTL ? 'محرك عمولات مرن' : 'Dual Commission Engine'}
                   </div>
@@ -247,11 +247,11 @@ export const NabaaDetail: React.FC<NabaaDetailProps> = ({ onBack, onOpenContact 
             </div>
 
             {/* Pillar 2: Driver App */}
-            <div className="p-7 rounded-3xl border border-slate-200 dark:border-blue-500/30 bg-white/95 dark:bg-gradient-to-b dark:from-[#0a1e3d] dark:to-[#051124] shadow-sm">
-              <div className="p-3 w-fit rounded-2xl bg-blue-100 dark:bg-blue-500/20 text-blue-700 dark:text-blue-300 border border-blue-300 dark:border-blue-500/40 mb-4">
+            <div className="p-7 rounded-3xl border border-slate-200 dark:border-cyan-500/30 bg-white/95 dark:bg-gradient-to-b dark:from-[#081e30] dark:to-[#04101a] shadow-sm">
+              <div className="p-3 w-fit rounded-2xl bg-cyan-100 dark:bg-cyan-500/20 text-cyan-700 dark:text-cyan-300 border border-cyan-300 dark:border-cyan-500/40 mb-4">
                 <Truck className="w-6 h-6" />
               </div>
-              <span className="text-xs font-mono font-bold text-blue-700 dark:text-blue-400 uppercase">
+              <span className="text-xs font-mono font-bold text-cyan-700 dark:text-cyan-400 uppercase">
                 {isRTL ? 'الركيزة الثانية: لوجستيات الميدان' : 'Pillar 02 • Field Logistics'}
               </span>
               <h3 className="text-2xl font-bold text-slate-900 dark:text-white font-display mt-1 mb-3">
@@ -264,26 +264,26 @@ export const NabaaDetail: React.FC<NabaaDetailProps> = ({ onBack, onOpenContact 
               </p>
               <ul className="space-y-2.5 text-xs text-slate-700 dark:text-slate-300 border-t border-slate-100 dark:border-white/10 pt-4">
                 <li className="flex items-center gap-2">
-                  <CheckCircle2 className="w-4 h-4 text-blue-600 dark:text-blue-400 shrink-0" />
+                  <CheckCircle2 className="w-4 h-4 text-cyan-600 dark:text-cyan-400 shrink-0" />
                   <span>{isRTL ? 'تنبيهات صوتية فورية بالمسافة وقيمة الرحلة' : 'Audible trip alerts with distance & payout'}</span>
                 </li>
                 <li className="flex items-center gap-2">
-                  <CheckCircle2 className="w-4 h-4 text-blue-600 dark:text-blue-400 shrink-0" />
+                  <CheckCircle2 className="w-4 h-4 text-cyan-600 dark:text-cyan-400 shrink-0" />
                   <span>{isRTL ? 'ملاحة مدمجة وتعليمات بوابة العميل' : 'Turn-by-turn directions & gate instructions'}</span>
                 </li>
                 <li className="flex items-center gap-2">
-                  <CheckCircle2 className="w-4 h-4 text-blue-600 dark:text-blue-400 shrink-0" />
+                  <CheckCircle2 className="w-4 h-4 text-cyan-600 dark:text-cyan-400 shrink-0" />
                   <span>{isRTL ? 'إيداع فوري لأرباح الرحلة في محفظة السائق' : 'Instant per-trip wallet deposit upon delivery'}</span>
                 </li>
               </ul>
             </div>
 
             {/* Pillar 3: Admin Web Dashboard */}
-            <div className="p-7 rounded-3xl border border-slate-200 dark:border-indigo-500/30 bg-white/95 dark:bg-gradient-to-b dark:from-[#17143b] dark:to-[#0c0922] shadow-sm">
-              <div className="p-3 w-fit rounded-2xl bg-indigo-100 dark:bg-indigo-500/20 text-indigo-700 dark:text-indigo-300 border border-indigo-300 dark:border-indigo-500/40 mb-4">
+            <div className="p-7 rounded-3xl border border-slate-200 dark:border-cyan-500/30 bg-white/95 dark:bg-gradient-to-b dark:from-[#081e30] dark:to-[#04101a] shadow-sm">
+              <div className="p-3 w-fit rounded-2xl bg-cyan-100 dark:bg-cyan-500/20 text-cyan-700 dark:text-cyan-300 border border-cyan-300 dark:border-cyan-500/40 mb-4">
                 <Monitor className="w-6 h-6" />
               </div>
-              <span className="text-xs font-mono font-bold text-indigo-700 dark:text-indigo-400 uppercase">
+              <span className="text-xs font-mono font-bold text-cyan-700 dark:text-cyan-400 uppercase">
                 {isRTL ? 'الركيزة الثالثة: مركز التحكم والإدارة' : 'Pillar 03 • Central Command'}
               </span>
               <h3 className="text-2xl font-bold text-slate-900 dark:text-white font-display mt-1 mb-3">
@@ -296,15 +296,15 @@ export const NabaaDetail: React.FC<NabaaDetailProps> = ({ onBack, onOpenContact 
               </p>
               <ul className="space-y-2.5 text-xs text-slate-700 dark:text-slate-300 border-t border-slate-100 dark:border-white/10 pt-4">
                 <li className="flex items-center gap-2">
-                  <CheckCircle2 className="w-4 h-4 text-indigo-600 dark:text-indigo-400 shrink-0" />
+                  <CheckCircle2 className="w-4 h-4 text-cyan-600 dark:text-cyan-400 shrink-0" />
                   <span>{isRTL ? 'خريطة رادار حية لكافة صهاريج الأسطول' : 'Real-time telemetry map of active tankers'}</span>
                 </li>
                 <li className="flex items-center gap-2">
-                  <CheckCircle2 className="w-4 h-4 text-indigo-600 dark:text-indigo-400 shrink-0" />
+                  <CheckCircle2 className="w-4 h-4 text-cyan-600 dark:text-cyan-400 shrink-0" />
                   <span>{isRTL ? 'محرك عمولات ذكي (نسبة مئوية أو قيمة ثابتة)' : 'Dual commission engine (percentage or flat SAR)'}</span>
                 </li>
                 <li className="flex items-center gap-2">
-                  <CheckCircle2 className="w-4 h-4 text-indigo-600 dark:text-indigo-400 shrink-0" />
+                  <CheckCircle2 className="w-4 h-4 text-cyan-600 dark:text-cyan-400 shrink-0" />
                   <span>{isRTL ? 'تحليلات ذكية لساعات الذروة والأحياء الأكثر طلباً' : 'Peak-hour demand heatmaps & financial reports'}</span>
                 </li>
               </ul>
@@ -402,7 +402,7 @@ export const NabaaDetail: React.FC<NabaaDetailProps> = ({ onBack, onOpenContact 
                   </div>
                   <div className="flex justify-between items-center">
                     <span className="text-slate-500 dark:text-slate-400">{isRTL ? 'سرعة الضخ والتفريغ:' : 'Pumping Rate:'}</span>
-                    <span className="font-mono text-emerald-600 dark:text-emerald-400 font-bold">{isRTL ? '1,200 لتر/دقيقة' : '1,200 L/min'}</span>
+                    <span className="font-mono text-cyan-600 dark:text-cyan-400 font-bold">{isRTL ? '1,200 لتر/دقيقة' : '1,200 L/min'}</span>
                   </div>
                   <div className="flex justify-between items-center">
                     <span className="text-slate-500 dark:text-slate-400">{isRTL ? 'شهادة التعقيم الصحي:' : 'Sanitation Audit:'}</span>

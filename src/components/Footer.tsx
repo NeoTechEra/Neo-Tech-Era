@@ -48,12 +48,8 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenContact, theme
           {/* Brand Info */}
           <div className="md:col-span-5 space-y-4 text-start">
             <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-cyan-500 via-blue-600 to-indigo-800 p-[1px] shadow-lg shadow-cyan-500/20">
-                <div className="w-full h-full bg-slate-950 rounded-[11px] flex items-center justify-center">
-                  <span className="text-xl font-black bg-gradient-to-r from-cyan-400 to-blue-400 bg-clip-text text-transparent font-mono">
-                    N
-                  </span>
-                </div>
+              <div className="w-10 h-10 rounded-xl bg-cyan-500 text-slate-950 font-black text-xl flex items-center justify-center font-mono shadow-md shadow-cyan-500/25">
+                N
               </div>
               <span className="text-xl font-extrabold text-white tracking-tight font-display">
                 {t.common.brandName}
@@ -205,7 +201,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenContact, theme
                   }}
                   className="hover:text-cyan-400 transition-colors flex items-center gap-2"
                 >
-                  <ShieldCheck className="w-4 h-4 text-blue-400" />
+                  <ShieldCheck className="w-4 h-4 text-cyan-400" />
                   Pix Shield
                 </a>
               </li>
@@ -216,9 +212,9 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenContact, theme
                     e.preventDefault();
                     handleNav('price-pulser-detail');
                   }}
-                  className="hover:text-purple-400 transition-colors flex items-center gap-2"
+                  className="hover:text-cyan-400 transition-colors flex items-center gap-2"
                 >
-                  <Zap className="w-4 h-4 text-purple-400" />
+                  <Zap className="w-4 h-4 text-cyan-400" />
                   Price Post Pulser
                 </a>
               </li>
@@ -229,9 +225,9 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenContact, theme
                     e.preventDefault();
                     handleNav('ecommerce-builder-detail');
                   }}
-                  className="hover:text-emerald-400 transition-colors flex items-center gap-2"
+                  className="hover:text-cyan-400 transition-colors flex items-center gap-2"
                 >
-                  <ShoppingBag className="w-4 h-4 text-emerald-400" />
+                  <ShoppingBag className="w-4 h-4 text-cyan-400" />
                   E-Commerce Post Builder
                 </a>
               </li>

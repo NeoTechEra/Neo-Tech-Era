@@ -53,22 +53,22 @@ export const FeaturedNabaa: React.FC<FeaturedNabaaProps> = ({
       title: t.featuredNabaa.driverTab.title,
       tagline: isRTL ? 'استقبال وإدارة طلبات التوصيل.' : 'Receive and manage delivery requests.',
       icon: Truck,
-      accent: 'blue',
-      badgeBg: 'bg-blue-50 dark:bg-blue-500/20 text-blue-800 dark:text-blue-300 border-blue-200 dark:border-blue-400/40',
-      cardBorder: 'border-slate-200 dark:border-blue-500/30 hover:border-blue-500/60 dark:hover:border-blue-400',
-      gradient: 'dark:from-[#0c1f40] dark:to-[#061022]',
-      iconColor: 'text-blue-600 dark:text-blue-400'
+      accent: 'cyan',
+      badgeBg: 'bg-cyan-50 dark:bg-cyan-500/20 text-cyan-800 dark:text-cyan-300 border-cyan-200 dark:border-cyan-400/40',
+      cardBorder: 'border-slate-200 dark:border-cyan-500/30 hover:border-cyan-500/60 dark:hover:border-cyan-400',
+      gradient: 'dark:from-[#091f33] dark:to-[#05121e]',
+      iconColor: 'text-cyan-600 dark:text-cyan-400'
     },
     {
       id: 'admin',
       title: t.featuredNabaa.adminTab.title,
       tagline: isRTL ? 'إدارة كامل العمليات التشغيلية.' : 'Manage the complete delivery operation.',
       icon: Monitor,
-      accent: 'indigo',
-      badgeBg: 'bg-indigo-50 dark:bg-indigo-500/20 text-indigo-800 dark:text-indigo-300 border-indigo-200 dark:border-indigo-400/40',
-      cardBorder: 'border-slate-200 dark:border-indigo-500/30 hover:border-indigo-500/60 dark:hover:border-indigo-400',
-      gradient: 'dark:from-[#17143b] dark:to-[#0c0a21]',
-      iconColor: 'text-indigo-600 dark:text-indigo-400'
+      accent: 'cyan',
+      badgeBg: 'bg-cyan-50 dark:bg-cyan-500/20 text-cyan-800 dark:text-cyan-300 border-cyan-200 dark:border-cyan-400/40',
+      cardBorder: 'border-slate-200 dark:border-cyan-500/30 hover:border-cyan-500/60 dark:hover:border-cyan-400',
+      gradient: 'dark:from-[#091f33] dark:to-[#05121e]',
+      iconColor: 'text-cyan-600 dark:text-cyan-400'
     }
   ];
 
@@ -95,7 +95,7 @@ export const FeaturedNabaa: React.FC<FeaturedNabaaProps> = ({
             {t.featuredNabaa.headingLine1}
           </h2>
 
-          <p className="mt-2 text-xl sm:text-2xl font-bold bg-gradient-to-r from-cyan-600 via-sky-600 to-blue-600 dark:from-cyan-300 dark:via-sky-200 dark:to-blue-400 bg-clip-text text-transparent">
+          <p className="mt-2 text-xl sm:text-2xl font-bold bg-gradient-to-r from-cyan-600 via-cyan-500 to-cyan-400 dark:from-cyan-300 dark:via-cyan-200 dark:to-cyan-400 bg-clip-text text-transparent">
             {t.featuredNabaa.tagline || t.featuredNabaa.headingLine2}
           </p>
 

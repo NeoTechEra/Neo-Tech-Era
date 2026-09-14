@@ -42,20 +42,20 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate, onOpenContact 
 
   const principleIcons = [
     <Target className="w-5 h-5 text-cyan-600 dark:text-cyan-400" key="0" />,
-    <Zap className="w-5 h-5 text-amber-500 dark:text-amber-400" key="1" />,
-    <Layers className="w-5 h-5 text-blue-500 dark:text-blue-400" key="2" />,
-    <Lock className="w-5 h-5 text-emerald-500 dark:text-emerald-400" key="3" />
+    <Zap className="w-5 h-5 text-cyan-600 dark:text-cyan-400" key="1" />,
+    <Layers className="w-5 h-5 text-cyan-600 dark:text-cyan-400" key="2" />,
+    <Lock className="w-5 h-5 text-cyan-600 dark:text-cyan-400" key="3" />
   ];
 
   const stackIcons = [
     <Radio className="w-5 h-5 text-cyan-600 dark:text-cyan-400" key="s0" />,
-    <Server className="w-5 h-5 text-blue-500 dark:text-blue-400" key="s1" />,
-    <Cpu className="w-5 h-5 text-purple-500 dark:text-purple-400" key="s2" />,
-    <ShieldCheck className="w-5 h-5 text-emerald-500 dark:text-emerald-400" key="s3" />
+    <Server className="w-5 h-5 text-cyan-600 dark:text-cyan-400" key="s1" />,
+    <Cpu className="w-5 h-5 text-cyan-600 dark:text-cyan-400" key="s2" />,
+    <ShieldCheck className="w-5 h-5 text-cyan-600 dark:text-cyan-400" key="s3" />
   ];
 
   return (
-    <div id="about-us-page" className="w-full py-8 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto space-y-12">
+    <div id="about-us-page" className="w-full min-h-screen pt-28 pb-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto space-y-12 text-start">
       {/* Top Breadcrumb */}
       <Breadcrumb currentView="about" onNavigateHome={() => onNavigate('home')} />
 
@@ -111,7 +111,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate, onOpenContact 
         </div>
 
         <div className="p-8 rounded-3xl bg-white dark:bg-slate-900/60 border border-slate-200 dark:border-slate-800 shadow-sm space-y-3">
-          <div className="w-12 h-12 rounded-2xl bg-blue-100 dark:bg-blue-950/60 border border-blue-200 dark:border-blue-800 flex items-center justify-center text-blue-600 dark:text-blue-400">
+          <div className="w-12 h-12 rounded-2xl bg-cyan-100 dark:bg-cyan-950/60 border border-cyan-200 dark:border-cyan-800 flex items-center justify-center text-cyan-600 dark:text-cyan-400">
             <Compass className="w-6 h-6" />
           </div>
           <h2 className="text-xl font-bold text-slate-900 dark:text-white font-display">
@@ -242,7 +242,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate, onOpenContact 
           {/* Pix Shield */}
           <div className="p-6 rounded-3xl bg-white dark:bg-slate-900/60 border border-slate-200 dark:border-slate-800 flex flex-col justify-between space-y-4">
             <div className="space-y-2">
-              <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-blue-100 dark:bg-blue-950/60 text-blue-800 dark:text-blue-300 text-[10px] font-bold uppercase tracking-wider">
+              <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-cyan-100 dark:bg-cyan-950/60 text-cyan-800 dark:text-cyan-300 text-[10px] font-bold uppercase tracking-wider">
                 <ImageIcon className="w-3 h-3" />
                 <span>{t.common.productBadge}</span>
               </div>
@@ -262,7 +262,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate, onOpenContact 
                   e.preventDefault();
                   onNavigate('pix-shield-detail');
                 }}
-                className="inline-flex items-center gap-2 text-xs font-bold text-blue-600 dark:text-blue-400 hover:underline group"
+                className="inline-flex items-center gap-2 text-xs font-bold text-cyan-600 dark:text-cyan-400 hover:text-cyan-800 dark:hover:text-cyan-200 group"
               >
                 <span>{language === 'ar' ? 'تفاصيل المنتج' : 'View Product Details'}</span>
                 <ArrowRight className={`w-3.5 h-3.5 group-hover:translate-x-1 transition-transform ${isRTL ? 'rotate-180 group-hover:-translate-x-1' : ''}`} />
@@ -273,7 +273,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate, onOpenContact 
           {/* Price Post Pulser */}
           <div className="p-6 rounded-3xl bg-white dark:bg-slate-900/60 border border-slate-200 dark:border-slate-800 flex flex-col justify-between space-y-4">
             <div className="space-y-2">
-              <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-purple-100 dark:bg-purple-950/60 text-purple-800 dark:text-purple-300 text-[10px] font-bold uppercase tracking-wider">
+              <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-cyan-100 dark:bg-cyan-950/60 text-cyan-800 dark:text-cyan-300 text-[10px] font-bold uppercase tracking-wider">
                 <Tag className="w-3 h-3" />
                 <span>{t.common.productBadge}</span>
               </div>
@@ -293,7 +293,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate, onOpenContact 
                   e.preventDefault();
                   onNavigate('price-pulser-detail');
                 }}
-                className="inline-flex items-center gap-2 text-xs font-bold text-purple-600 dark:text-purple-400 hover:underline group"
+                className="inline-flex items-center gap-2 text-xs font-bold text-cyan-600 dark:text-cyan-400 hover:text-cyan-800 dark:hover:text-cyan-200 group"
               >
                 <span>{language === 'ar' ? 'تفاصيل المنتج' : 'View Product Details'}</span>
                 <ArrowRight className={`w-3.5 h-3.5 group-hover:translate-x-1 transition-transform ${isRTL ? 'rotate-180 group-hover:-translate-x-1' : ''}`} />
@@ -304,7 +304,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate, onOpenContact 
           {/* E-Commerce Post Builder */}
           <div className="p-6 rounded-3xl bg-white dark:bg-slate-900/60 border border-slate-200 dark:border-slate-800 flex flex-col justify-between space-y-4">
             <div className="space-y-2">
-              <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-emerald-100 dark:bg-emerald-950/60 text-emerald-800 dark:text-emerald-300 text-[10px] font-bold uppercase tracking-wider">
+              <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-cyan-100 dark:bg-cyan-950/60 text-cyan-800 dark:text-cyan-300 text-[10px] font-bold uppercase tracking-wider">
                 <ShoppingBag className="w-3 h-3" />
                 <span>{t.common.productBadge}</span>
               </div>
@@ -324,7 +324,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate, onOpenContact 
                   e.preventDefault();
                   onNavigate('ecommerce-builder-detail');
                 }}
-                className="inline-flex items-center gap-2 text-xs font-bold text-emerald-600 dark:text-emerald-400 hover:underline group"
+                className="inline-flex items-center gap-2 text-xs font-bold text-cyan-600 dark:text-cyan-400 hover:text-cyan-800 dark:hover:text-cyan-200 group"
               >
                 <span>{language === 'ar' ? 'تفاصيل المنتج' : 'View Product Details'}</span>
                 <ArrowRight className={`w-3.5 h-3.5 group-hover:translate-x-1 transition-transform ${isRTL ? 'rotate-180 group-hover:-translate-x-1' : ''}`} />

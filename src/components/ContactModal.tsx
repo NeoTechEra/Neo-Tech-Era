@@ -172,7 +172,7 @@ export const ContactModal: React.FC<ContactModalProps> = ({
           </div>
         ) : (
           <div className="text-center py-6 space-y-4">
-            <div className="w-16 h-16 rounded-full bg-emerald-500/20 border-2 border-emerald-500 mx-auto flex items-center justify-center text-emerald-600 dark:text-emerald-300">
+            <div className="w-16 h-16 rounded-full bg-cyan-500/20 border-2 border-cyan-500 mx-auto flex items-center justify-center text-cyan-600 dark:text-cyan-300">
               <CheckCircle2 className="w-8 h-8" />
             </div>
 

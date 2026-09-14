@@ -72,7 +72,7 @@ export const Navbar: React.FC<NavbarProps> = ({
     <header 
       id="main-navigation"
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled 
+        isScrolled || currentView !== 'home'
           ? 'bg-white/90 dark:bg-slate-950/85 backdrop-blur-xl border-b border-slate-200 dark:border-slate-800/80 shadow-md dark:shadow-xl dark:shadow-slate-950/50 py-3' 
           : 'bg-transparent py-5'
       }`}
@@ -89,13 +89,8 @@ export const Navbar: React.FC<NavbarProps> = ({
           }}
           className="flex items-center gap-3 group text-start focus:outline-none"
         >
-          <div className="relative w-10 h-10 rounded-xl bg-gradient-to-br from-cyan-500 via-blue-600 to-indigo-800 p-[1px] shadow-lg shadow-cyan-500/20 group-hover:shadow-cyan-500/40 transition-shadow">
-            <div className="w-full h-full bg-slate-950 rounded-[11px] flex items-center justify-center">
-              <span className="text-xl font-black bg-gradient-to-r from-cyan-400 to-blue-400 bg-clip-text text-transparent font-mono">
-                N
-              </span>
-            </div>
-            <div className="absolute -top-1 -right-1 w-3 h-3 bg-cyan-400 rounded-full blur-[2px] animate-pulse"></div>
+          <div className="w-10 h-10 rounded-xl bg-cyan-500 text-slate-950 font-black text-xl flex items-center justify-center font-mono shadow-md shadow-cyan-500/25 group-hover:bg-cyan-400 transition-colors">
+            N
           </div>
           <div>
             <div className="flex items-center gap-1.5">
@@ -183,7 +178,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                   }}
                   className="w-full text-start p-2 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800/80 transition-all flex items-start gap-3 group"
                 >
-                  <div className="p-2 rounded-lg bg-blue-500/10 text-blue-600 dark:text-blue-400 group-hover:bg-blue-500/20">
+                  <div className="p-2 rounded-lg bg-cyan-500/10 text-cyan-600 dark:text-cyan-400 group-hover:bg-cyan-500/20">
                     <ShieldCheck className="w-4 h-4" />
                   </div>
                   <div>
@@ -201,7 +196,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                   }}
                   className="w-full text-start p-2 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800/80 transition-all flex items-start gap-3 group"
                 >
-                  <div className="p-2 rounded-lg bg-purple-500/10 text-purple-600 dark:text-purple-400 group-hover:bg-purple-500/20">
+                  <div className="p-2 rounded-lg bg-cyan-500/10 text-cyan-600 dark:text-cyan-400 group-hover:bg-cyan-500/20">
                     <Zap className="w-4 h-4" />
                   </div>
                   <div>
@@ -219,7 +214,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                   }}
                   className="w-full text-start p-2 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800/80 transition-all flex items-start gap-3 group"
                 >
-                  <div className="p-2 rounded-lg bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 group-hover:bg-emerald-500/20">
+                  <div className="p-2 rounded-lg bg-cyan-500/10 text-cyan-600 dark:text-cyan-400 group-hover:bg-cyan-500/20">
                     <ShoppingBag className="w-4 h-4" />
                   </div>
                   <div>
@@ -467,7 +462,7 @@ export const Navbar: React.FC<NavbarProps> = ({
               }}
               className="text-start px-4 py-2.5 rounded-xl text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-900 flex items-center gap-2 text-sm ps-6"
             >
-              <ShieldCheck className="w-4 h-4 text-blue-600 dark:text-blue-400" />
+              <ShieldCheck className="w-4 h-4 text-cyan-600 dark:text-cyan-400" />
               Pix Shield
             </a>
             <a
@@ -478,7 +473,7 @@ export const Navbar: React.FC<NavbarProps> = ({
               }}
               className="text-start px-4 py-2.5 rounded-xl text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-900 flex items-center gap-2 text-sm ps-6"
             >
-              <Zap className="w-4 h-4 text-purple-600 dark:text-purple-400" />
+              <Zap className="w-4 h-4 text-cyan-600 dark:text-cyan-400" />
               Price Post Pulser
             </a>
             <a
@@ -489,7 +484,7 @@ export const Navbar: React.FC<NavbarProps> = ({
               }}
               className="text-start px-4 py-2.5 rounded-xl text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-900 flex items-center gap-2 text-sm ps-6"
             >
-              <ShoppingBag className="w-4 h-4 text-emerald-600 dark:text-emerald-400" />
+              <ShoppingBag className="w-4 h-4 text-cyan-600 dark:text-cyan-400" />
               E-Commerce Post Builder
             </a>
             <a

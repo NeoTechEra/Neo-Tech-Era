@@ -135,8 +135,8 @@ export const DriverAppSection: React.FC = () => {
             </div>
 
             {/* Driver Wallet & Earnings */}
-            <div className="p-6 rounded-3xl border border-slate-200 dark:border-emerald-500/40 space-y-3 bg-white/90 dark:bg-gradient-to-br dark:from-[#092b1d] dark:to-[#04160e] shadow-sm dark:shadow-lg dark:shadow-emerald-950/50 transition-all">
-              <div className="text-xs font-mono text-emerald-700 dark:text-emerald-300 uppercase font-bold tracking-wider">
+            <div className="p-6 rounded-3xl border border-slate-200 dark:border-cyan-500/30 space-y-3 bg-white/90 dark:bg-[#071322] shadow-sm dark:shadow-lg dark:shadow-cyan-950/40 transition-all">
+              <div className="text-xs font-mono text-cyan-700 dark:text-cyan-300 uppercase font-bold tracking-wider">
                 {isRTL ? 'الشفافية المالية والأرباح' : 'Financial Transparency'}
               </div>
               <h3 className="text-xl font-bold text-slate-900 dark:text-white">
@@ -152,12 +152,12 @@ export const DriverAppSection: React.FC = () => {
                 <button
                   id="driver-features-explore-btn"
                   onClick={() => setActiveTab(activeTab === 'delivery' ? 'wallet' : 'delivery')}
-                  className="px-5 py-2.5 rounded-xl bg-slate-100 hover:bg-slate-200 dark:bg-emerald-500/20 dark:hover:bg-emerald-500/30 text-cyan-700 dark:text-emerald-200 text-xs sm:text-sm font-bold border border-slate-200 dark:border-emerald-500/40 transition-all flex items-center gap-2 active:scale-95"
+                  className="px-5 py-2.5 rounded-xl bg-slate-100 hover:bg-slate-200 dark:bg-cyan-500/20 dark:hover:bg-cyan-500/30 text-cyan-700 dark:text-cyan-200 text-xs sm:text-sm font-bold border border-slate-200 dark:border-cyan-500/40 transition-all flex items-center gap-2 active:scale-95"
                 >
                   <span>{isRTL ? 'استعرض شاشات السائق في النموذج' : 'View Driver Features in Mockup'}</span>
                   <ArrowRight className={`w-4 h-4 ${isRTL ? 'rotate-180' : ''}`} />
                 </button>
-                <span className="text-xs font-mono text-slate-500 dark:text-emerald-300 font-medium">
+                <span className="text-xs font-mono text-slate-500 dark:text-cyan-300 font-medium">
                   {isRTL ? 'تسوية لحظية بالمحفظة' : 'Real-time wallet settlement'}
                 </span>
               </div>
@@ -185,8 +185,8 @@ export const DriverAppSection: React.FC = () => {
                       <div className="text-xs font-bold text-slate-900 dark:text-white">
                         {isRTL ? 'طارق المنصور' : 'Tariq Al-Mansoor'}
                       </div>
-                      <div className="text-[10px] text-emerald-600 dark:text-emerald-400 font-mono flex items-center gap-1 font-semibold">
-                        <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" /> 
+                      <div className="text-[10px] text-cyan-600 dark:text-cyan-400 font-mono flex items-center gap-1 font-semibold">
+                        <span className="w-1.5 h-1.5 rounded-full bg-cyan-500 animate-pulse" /> 
                         {isRTL ? 'متصل ومتاح • صهريج #402' : 'Online • Tanker #402'}
                       </div>
                     </div>
@@ -267,7 +267,7 @@ export const DriverAppSection: React.FC = () => {
                               </div>
                               <div className="flex justify-between pt-1 border-t border-cyan-200 dark:border-cyan-500/20">
                                 <span className="text-slate-600 dark:text-slate-400">{isRTL ? 'عمولة المشوار:' : 'Trip Commission:'}</span>
-                                <span className="font-bold text-emerald-600 dark:text-emerald-400 font-mono">
+                                <span className="font-bold text-cyan-600 dark:text-cyan-400 font-mono">
                                   {isRTL ? '+35 ر.س مضمونة' : '+35 SAR Guaranteed'}
                                 </span>
                               </div>
@@ -282,7 +282,7 @@ export const DriverAppSection: React.FC = () => {
                               </button>
                               <button
                                 onClick={handleAcceptOrder}
-                                className="w-2/3 py-2 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 text-xs font-black flex items-center justify-center gap-1 shadow-md shadow-emerald-500/20 active:scale-95 transition-all"
+                                className="w-2/3 py-2 rounded-xl bg-cyan-500 hover:bg-cyan-400 text-slate-950 text-xs font-black flex items-center justify-center gap-1 shadow-md shadow-cyan-500/20 active:scale-95 transition-all"
                               >
                                 <Check className="w-4 h-4" /> {isRTL ? 'قبول وتوجه' : 'Accept Delivery'}
                               </button>
@@ -305,7 +305,7 @@ export const DriverAppSection: React.FC = () => {
                               <span className="flex items-center gap-1 font-mono text-cyan-700 dark:text-cyan-300 font-semibold">
                                 <Navigation className="w-3 h-3 text-cyan-600 dark:text-cyan-400" /> {isRTL ? 'ملاحة GPS حية' : 'GPS Turn-by-Turn'}
                               </span>
-                              <span className="font-mono text-emerald-600 dark:text-emerald-400 font-bold">
+                              <span className="font-mono text-cyan-600 dark:text-cyan-400 font-bold">
                                 {isRTL ? 'متبقي 1.2 كم' : '1.2 km left'}
                               </span>
                             </div>
@@ -323,7 +323,7 @@ export const DriverAppSection: React.FC = () => {
                               <div className="text-[11px] text-slate-700 dark:text-slate-300 font-medium">
                                 {isRTL ? 'العميل: ناصر السبيعي' : 'Customer: Nasser Al-Subaie'}
                               </div>
-                              <button className="px-2 py-1 rounded bg-blue-100 dark:bg-blue-600/30 text-blue-800 dark:text-blue-300 text-[10px] font-semibold flex items-center gap-1 border border-blue-200 dark:border-transparent">
+                              <button className="px-2 py-1 rounded bg-cyan-100 dark:bg-cyan-600/30 text-cyan-800 dark:text-cyan-300 text-[10px] font-semibold flex items-center gap-1 border border-cyan-200 dark:border-transparent">
                                 <PhoneCall className="w-2.5 h-2.5" /> {isRTL ? 'اتصال بالعميل' : 'Call Customer'}
                               </button>
                             </div>
@@ -339,13 +339,13 @@ export const DriverAppSection: React.FC = () => {
                               <span className={driverStatus === 'accepted' ? 'text-cyan-600 dark:text-cyan-400 font-bold' : 'text-slate-400 dark:text-slate-500'}>
                                 ● {isRTL ? 'تم القبول' : 'Accepted'}
                               </span>
-                              <span className={driverStatus === 'on_the_way' ? 'text-blue-600 dark:text-blue-400 font-bold' : 'text-slate-400 dark:text-slate-500'}>
+                              <span className={driverStatus === 'on_the_way' ? 'text-cyan-600 dark:text-cyan-400 font-bold' : 'text-slate-400 dark:text-slate-500'}>
                                 ● {isRTL ? 'في الطريق' : 'On the Way'}
                               </span>
-                              <span className={driverStatus === 'arrived' ? 'text-amber-600 dark:text-amber-400 font-bold' : 'text-slate-400 dark:text-slate-500'}>
+                              <span className={driverStatus === 'arrived' ? 'text-cyan-600 dark:text-cyan-400 font-bold' : 'text-slate-400 dark:text-slate-500'}>
                                 ● {isRTL ? 'وصل للموقع' : 'Arrived'}
                               </span>
-                              <span className={driverStatus === 'delivered' ? 'text-emerald-600 dark:text-emerald-400 font-bold' : 'text-slate-400 dark:text-slate-500'}>
+                              <span className={driverStatus === 'delivered' ? 'text-cyan-600 dark:text-cyan-400 font-bold' : 'text-slate-400 dark:text-slate-500'}>
                                 ● {isRTL ? 'تم التسليم' : 'Delivered'}
                               </span>
                             </div>
@@ -361,8 +361,8 @@ export const DriverAppSection: React.FC = () => {
                                 <ArrowRight className={`w-3.5 h-3.5 ${isRTL ? 'rotate-180' : ''}`} />
                               </button>
                             ) : (
-                              <div className="p-2.5 rounded-xl bg-emerald-50 dark:bg-emerald-950/60 border border-emerald-200 dark:border-emerald-500/30 text-center space-y-1">
-                                <div className="text-emerald-700 dark:text-emerald-300 font-bold text-xs flex items-center justify-center gap-1">
+                              <div className="p-2.5 rounded-xl bg-cyan-50 dark:bg-cyan-950/60 border border-cyan-200 dark:border-cyan-500/30 text-center space-y-1">
+                                <div className="text-cyan-700 dark:text-cyan-300 font-bold text-xs flex items-center justify-center gap-1">
                                   <CheckCircle2 className="w-4 h-4" /> 
                                   {isRTL ? 'تم تسليم الطلب وإيداع العمولة بنجاح!' : 'Order Complete & Paid!'}
                                 </div>
@@ -394,7 +394,7 @@ export const DriverAppSection: React.FC = () => {
                           {isRTL ? 'إجمالي الرصيد المتاح للسحب' : 'Total Available Balance'}
                         </div>
                         <div className="text-2xl font-black text-slate-900 dark:text-white font-mono">{driverWalletSAR} {t.common.sar}</div>
-                        <div className="text-[10px] text-emerald-600 dark:text-emerald-400 font-mono font-semibold">
+                        <div className="text-[10px] text-cyan-600 dark:text-cyan-400 font-mono font-semibold">
                           {isRTL ? 'نسبة العمولة: 35 ر.س / مشوار' : 'Commission rate: 35 SAR / trip'}
                         </div>
                       </div>
@@ -413,7 +413,7 @@ export const DriverAppSection: React.FC = () => {
                               <div className="font-semibold text-slate-900 dark:text-white text-[11px]">{item.title}</div>
                               <div className="text-[9px] text-slate-500 dark:text-slate-400">{item.date}</div>
                             </div>
-                            <span className="font-mono font-bold text-emerald-600 dark:text-emerald-400">{item.amount}</span>
+                            <span className="font-mono font-bold text-cyan-600 dark:text-cyan-400">{item.amount}</span>
                           </div>
                         ))}
                       </div>

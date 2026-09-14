@@ -201,28 +201,28 @@ export const Hero: React.FC<HeroProps> = ({ onNavigate, onExploreProducts, onExp
               {/* Price Post Pulser */}
               <div 
                 onClick={() => navigateTo('price-pulser-detail')}
-                className="glass-panel p-4 sm:p-5 rounded-2xl cursor-pointer border border-slate-200 dark:border-purple-500/40 hover:dark:border-purple-300 dark:bg-gradient-to-b dark:from-[#2a0e40] dark:to-[#140620] transition-all duration-300 group shadow-lg dark:shadow-purple-950/40 text-start"
+                className="glass-panel p-4 sm:p-5 rounded-2xl cursor-pointer border border-slate-200 dark:border-cyan-500/40 hover:dark:border-cyan-300 dark:bg-gradient-to-b dark:from-[#092233] dark:to-[#05141f] transition-all duration-300 group shadow-lg dark:shadow-cyan-950/40 text-start"
               >
                 <div className="flex items-center justify-between mb-3">
-                  <div className="p-2.5 rounded-xl bg-purple-500/10 dark:bg-purple-500/20 border border-purple-500/20 dark:border-purple-400/40 text-purple-600 dark:text-purple-300 group-hover:scale-110 transition-transform">
+                  <div className="p-2.5 rounded-xl bg-cyan-500/10 dark:bg-cyan-500/20 border border-cyan-500/20 dark:border-cyan-400/40 text-cyan-600 dark:text-cyan-300 group-hover:scale-110 transition-transform">
                     <Zap className="w-5 h-5" />
                   </div>
-                  <span className="text-[11px] font-mono text-purple-800 dark:text-purple-300 px-2 py-0.5 rounded-md bg-purple-100 dark:bg-purple-950/80 border border-purple-300 dark:border-purple-500/40 font-bold">
+                  <span className="text-[11px] font-mono text-cyan-800 dark:text-cyan-300 px-2 py-0.5 rounded-md bg-cyan-100 dark:bg-cyan-950/80 border border-cyan-300 dark:border-cyan-500/40 font-bold">
                     {t.otherProducts.pricePulser.badge}
                   </span>
                 </div>
-                <h3 className="text-base font-bold text-slate-900 dark:text-white group-hover:text-purple-600 dark:group-hover:text-purple-300 transition-colors">
+                <h3 className="text-base font-bold text-slate-900 dark:text-white group-hover:text-cyan-600 dark:group-hover:text-cyan-300 transition-colors">
                   Price Post Pulser
                 </h3>
                 <p className="text-xs text-slate-600 dark:text-slate-200 mt-1 line-clamp-2">
                   {t.otherProducts.pricePulser.description}
                 </p>
                 <div className="mt-3 pt-3 border-t border-slate-200 dark:border-white/10 flex items-center justify-between text-xs text-slate-700 dark:text-slate-200">
-                  <span className="flex items-center gap-1 text-[11px] text-purple-700 dark:text-purple-300 font-semibold">
-                    <TrendingUp className="w-3.5 h-3.5 text-purple-600 dark:text-purple-400" />
+                  <span className="flex items-center gap-1 text-[11px] text-cyan-700 dark:text-cyan-300 font-semibold">
+                    <TrendingUp className="w-3.5 h-3.5 text-cyan-600 dark:text-cyan-400" />
                     {language === 'ar' ? 'جاهز لشبكات التواصل' : 'Ready for Social Media'}
                   </span>
-                  <span className={`text-slate-400 dark:text-purple-400 group-hover:text-purple-600 dark:group-hover:text-purple-300 transition-all ${isRTL ? 'rotate-180 group-hover:-translate-x-1' : 'group-hover:translate-x-1'}`}>→</span>
+                  <span className={`text-slate-400 dark:text-cyan-400 group-hover:text-cyan-600 dark:group-hover:text-cyan-300 transition-all ${isRTL ? 'rotate-180 group-hover:-translate-x-1' : 'group-hover:translate-x-1'}`}>→</span>
                 </div>
               </div>
             </div>
@@ -245,7 +245,7 @@ export const Hero: React.FC<HeroProps> = ({ onNavigate, onExploreProducts, onExp
                       ⭐ {t.productsOverview.flagshipCard.badge}
                     </div>
                     <div className="flex items-center gap-1.5 text-xs font-mono text-slate-700 dark:text-cyan-200 bg-slate-100 dark:bg-[#071324] px-2.5 py-1 rounded-full border border-slate-200 dark:border-cyan-500/30">
-                      <span className="w-2 h-2 rounded-full bg-emerald-500 dark:bg-emerald-400 animate-pulse" />
+                      <span className="w-2 h-2 rounded-full bg-cyan-500 dark:bg-cyan-400 animate-pulse" />
                       {language === 'ar' ? 'منظومة حية متصلة' : 'Live Ecosystem'}
                     </div>
                   </div>
@@ -303,7 +303,7 @@ export const Hero: React.FC<HeroProps> = ({ onNavigate, onExploreProducts, onExp
                         <div className="text-xs font-bold text-slate-900 dark:text-white mt-0.5">
                           {language === 'ar' ? 'تطبيق السائق' : 'Driver App'}
                         </div>
-                        <div className="text-[10px] text-emerald-700 dark:text-emerald-400 mt-1 font-medium">
+                        <div className="text-[10px] text-cyan-700 dark:text-cyan-400 mt-1 font-medium">
                           {language === 'ar' ? 'GPS والمحفظة' : 'GPS & Wallet'}
                         </div>
                       </div>
@@ -344,28 +344,28 @@ export const Hero: React.FC<HeroProps> = ({ onNavigate, onExploreProducts, onExp
               {/* E-Commerce Post Builder Card */}
               <div 
                 onClick={() => navigateTo('ecommerce-builder-detail')}
-                className="glass-panel p-4 sm:p-5 rounded-2xl cursor-pointer border border-slate-200 dark:border-emerald-500/40 hover:dark:border-emerald-300 dark:bg-gradient-to-b dark:from-[#0a291b] dark:to-[#05150d] transition-all duration-300 group shadow-lg dark:shadow-emerald-950/40 text-start"
+                className="glass-panel p-4 sm:p-5 rounded-2xl cursor-pointer border border-slate-200 dark:border-cyan-500/40 hover:dark:border-cyan-300 dark:bg-gradient-to-b dark:from-[#092233] dark:to-[#05141f] transition-all duration-300 group shadow-lg dark:shadow-cyan-950/40 text-start"
               >
                 <div className="flex items-center justify-between mb-3">
-                  <div className="p-2.5 rounded-xl bg-emerald-500/10 dark:bg-emerald-500/20 border border-emerald-500/20 dark:border-emerald-400/40 text-emerald-600 dark:text-emerald-300 group-hover:scale-110 transition-transform">
+                  <div className="p-2.5 rounded-xl bg-cyan-500/10 dark:bg-cyan-500/20 border border-cyan-500/20 dark:border-cyan-400/40 text-cyan-600 dark:text-cyan-300 group-hover:scale-110 transition-transform">
                     <ShoppingBag className="w-5 h-5" />
                   </div>
-                  <span className="text-[11px] font-mono text-emerald-800 dark:text-emerald-300 px-2 py-0.5 rounded-md bg-emerald-100 dark:bg-emerald-950/80 border border-emerald-300 dark:border-emerald-500/40 font-bold">
+                  <span className="text-[11px] font-mono text-cyan-800 dark:text-cyan-300 px-2 py-0.5 rounded-md bg-cyan-100 dark:bg-cyan-950/80 border border-cyan-300 dark:border-cyan-500/40 font-bold">
                     {t.otherProducts.ecommerceBuilder.badge}
                   </span>
                 </div>
-                <h3 className="text-base font-bold text-slate-900 dark:text-white group-hover:text-emerald-600 dark:group-hover:text-emerald-300 transition-colors">
+                <h3 className="text-base font-bold text-slate-900 dark:text-white group-hover:text-cyan-600 dark:group-hover:text-cyan-300 transition-colors">
                   E-Commerce Post Builder
                 </h3>
                 <p className="text-xs text-slate-600 dark:text-slate-200 mt-1 line-clamp-2">
                   {t.otherProducts.ecommerceBuilder.description}
                 </p>
                 <div className="mt-3 pt-3 border-t border-slate-200 dark:border-white/10 flex items-center justify-between text-xs text-slate-700 dark:text-slate-200">
-                  <span className="flex items-center gap-1 text-[11px] text-emerald-700 dark:text-emerald-300 font-semibold">
-                    <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400" />
+                  <span className="flex items-center gap-1 text-[11px] text-cyan-700 dark:text-cyan-300 font-semibold">
+                    <CheckCircle2 className="w-3.5 h-3.5 text-cyan-600 dark:text-cyan-400" />
                     {language === 'ar' ? 'بطاقات وشارات ترويجية' : 'Promo Cards & Badges'}
                   </span>
-                  <span className={`text-slate-400 dark:text-emerald-400 group-hover:text-emerald-600 dark:group-hover:text-emerald-300 transition-all ${isRTL ? 'rotate-180 group-hover:-translate-x-1' : 'group-hover:translate-x-1'}`}>→</span>
+                  <span className={`text-slate-400 dark:text-cyan-400 group-hover:text-cyan-600 dark:group-hover:text-cyan-300 transition-all ${isRTL ? 'rotate-180 group-hover:-translate-x-1' : 'group-hover:translate-x-1'}`}>→</span>
                 </div>
               </div>
 

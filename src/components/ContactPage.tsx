@@ -77,14 +77,14 @@ export const ContactPage: React.FC<ContactPageProps> = ({ onNavigate }) => {
   };
 
   return (
-    <div id="contact-us-page" className="w-full py-8 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto space-y-12">
+    <div id="contact-us-page" className="w-full min-h-screen pt-28 pb-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto space-y-12 text-start">
       {/* Top Breadcrumb */}
       <Breadcrumb currentView="contact" onNavigateHome={() => onNavigate('home')} />
 
       {/* Header Section */}
       <header className="relative rounded-3xl bg-gradient-to-b from-slate-100 to-white dark:from-slate-900/90 dark:to-slate-950/80 border border-slate-200 dark:border-slate-800 p-8 sm:p-12 shadow-sm overflow-hidden text-start">
         <div className="absolute top-0 right-0 w-96 h-96 bg-cyan-500/10 dark:bg-cyan-500/15 rounded-full blur-3xl pointer-events-none -mr-20 -mt-20"></div>
-        <div className="absolute bottom-0 left-0 w-80 h-80 bg-blue-500/10 dark:bg-blue-500/15 rounded-full blur-3xl pointer-events-none -ml-20 -mb-20"></div>
+        <div className="absolute bottom-0 left-0 w-80 h-80 bg-cyan-500/10 dark:bg-cyan-500/15 rounded-full blur-3xl pointer-events-none -ml-20 -mb-20"></div>
 
         <div className="relative z-10 max-w-3xl space-y-4">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-100 dark:bg-cyan-500/20 border border-cyan-300 dark:border-cyan-500/30 text-cyan-900 dark:text-cyan-300 text-xs font-mono font-semibold uppercase tracking-wider">
@@ -222,7 +222,7 @@ export const ContactPage: React.FC<ContactPageProps> = ({ onNavigate }) => {
             </form>
           ) : (
             <div className="py-8 text-center space-y-4 animate-in fade-in zoom-in-95 duration-200">
-              <div className="w-16 h-16 rounded-full bg-emerald-100 dark:bg-emerald-950/60 border border-emerald-300 dark:border-emerald-600 text-emerald-600 dark:text-emerald-400 flex items-center justify-center mx-auto shadow-sm">
+              <div className="w-16 h-16 rounded-full bg-cyan-100 dark:bg-cyan-950/60 border border-cyan-300 dark:border-cyan-600 text-cyan-600 dark:text-cyan-400 flex items-center justify-center mx-auto shadow-sm">
                 <CheckCircle2 className="w-8 h-8" />
               </div>
               <h3 className="text-2xl font-bold text-slate-900 dark:text-white font-display">
@@ -274,7 +274,7 @@ export const ContactPage: React.FC<ContactPageProps> = ({ onNavigate }) => {
             >
               {copiedEmail ? (
                 <>
-                  <Check className="w-4 h-4 text-emerald-500" />
+                  <Check className="w-4 h-4 text-cyan-500" />
                   <span>{language === 'ar' ? 'تم نسخ البريد!' : 'Email Copied!'}</span>
                 </>
               ) : (
@@ -289,7 +289,7 @@ export const ContactPage: React.FC<ContactPageProps> = ({ onNavigate }) => {
           {/* Response & Operational Metrics */}
           <div className="p-6 rounded-3xl bg-white dark:bg-slate-900/80 border border-slate-200 dark:border-slate-800 shadow-sm space-y-4">
             <div className="flex items-start gap-3">
-              <Clock className="w-5 h-5 text-amber-500 shrink-0 mt-0.5" />
+              <Clock className="w-5 h-5 text-cyan-600 dark:text-cyan-400 shrink-0 mt-0.5" />
               <div className="space-y-0.5">
                 <span className="text-xs font-mono uppercase text-slate-500 dark:text-slate-400 font-semibold">
                   {t.contactPage.responseTimeLabel}
@@ -301,7 +301,7 @@ export const ContactPage: React.FC<ContactPageProps> = ({ onNavigate }) => {
             </div>
 
             <div className="border-t border-slate-100 dark:border-slate-800 pt-3 flex items-start gap-3">
-              <Calendar className="w-5 h-5 text-blue-500 shrink-0 mt-0.5" />
+              <Calendar className="w-5 h-5 text-cyan-600 dark:text-cyan-400 shrink-0 mt-0.5" />
               <div className="space-y-0.5">
                 <span className="text-xs font-mono uppercase text-slate-500 dark:text-slate-400 font-semibold">
                   {t.contactPage.hoursLabel}
@@ -313,7 +313,7 @@ export const ContactPage: React.FC<ContactPageProps> = ({ onNavigate }) => {
             </div>
 
             <div className="border-t border-slate-100 dark:border-slate-800 pt-3 flex items-start gap-3">
-              <MapPin className="w-5 h-5 text-emerald-500 shrink-0 mt-0.5" />
+              <MapPin className="w-5 h-5 text-cyan-600 dark:text-cyan-400 shrink-0 mt-0.5" />
               <div className="space-y-0.5">
                 <span className="text-xs font-mono uppercase text-slate-500 dark:text-slate-400 font-semibold">
                   {t.contactPage.headquartersLabel}

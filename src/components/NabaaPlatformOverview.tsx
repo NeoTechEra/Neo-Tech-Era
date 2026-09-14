@@ -103,7 +103,7 @@ export const NabaaPlatformOverview: React.FC = () => {
                 <div className="text-[10px] text-slate-500 dark:text-slate-300 uppercase font-mono">
                   {isRTL ? 'نسبة نجاح التوصيل' : 'Order Success'}
                 </div>
-                <div className="text-lg font-extrabold text-emerald-600 dark:text-emerald-300 font-mono">
+                <div className="text-lg font-extrabold text-cyan-600 dark:text-cyan-300 font-mono">
                   99.4%
                 </div>
               </div>
@@ -303,7 +303,7 @@ export const NabaaPlatformOverview: React.FC = () => {
                       </div>
 
                       <div className="text-end">
-                        <div className="text-xs font-bold text-emerald-600 dark:text-emerald-400 font-mono">
+                        <div className="text-xs font-bold text-cyan-600 dark:text-cyan-400 font-mono">
                           {driver.walletBalanceSAR} {t.common.sar}
                         </div>
                         <div className="text-[10px] text-slate-500 dark:text-slate-400">
@@ -486,7 +486,7 @@ export const NabaaPlatformOverview: React.FC = () => {
                         <span>{isRTL ? 'صهريج متوسط (19 طن):' : 'Medium Tanker (19T):'}</span>
                         <span className="text-slate-900 dark:text-white">200 {t.common.sar}</span>
                       </div>
-                      <div className="flex justify-between text-emerald-600 dark:text-emerald-400">
+                      <div className="flex justify-between text-cyan-600 dark:text-cyan-400">
                         <span>{isRTL ? 'خصم عرض رمضان (15%):' : '15% Ramadan Offer Discount:'}</span>
                         <span>{isRTL ? '-30 ر.س (تم الوصول للحد الأقصى)' : '-30 SAR (Max Cap Reached)'}</span>
                       </div>
@@ -504,7 +504,7 @@ export const NabaaPlatformOverview: React.FC = () => {
             {activeAdminTab === 'promocodes' && (
               <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start animate-in fade-in duration-200">
                 <div className="lg:col-span-6 space-y-4">
-                  <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-purple-100 dark:bg-purple-950 border border-purple-200 dark:border-purple-800 text-xs font-mono text-purple-800 dark:text-purple-300">
+                  <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-100 dark:bg-cyan-950 border border-cyan-200 dark:border-cyan-800 text-xs font-mono text-cyan-800 dark:text-cyan-300">
                     <Ticket className="w-3.5 h-3.5" />
                     {isRTL ? 'منظومة مستقلة عن العروض التلقائية' : 'Separate System from Promotions'}
                   </div>
@@ -554,7 +554,7 @@ export const NabaaPlatformOverview: React.FC = () => {
                         </div>
                       </div>
                       <div className="text-end">
-                        <span className="px-2 py-0.5 rounded text-[10px] font-mono bg-emerald-100 dark:bg-emerald-950 text-emerald-800 dark:text-emerald-300 border border-emerald-300 dark:border-emerald-800">
+                        <span className="px-2 py-0.5 rounded text-[10px] font-mono bg-cyan-100 dark:bg-cyan-950 text-cyan-800 dark:text-cyan-300 border border-cyan-300 dark:border-cyan-800">
                           {item.status}
                         </span>
                         <div className="text-[10px] text-slate-500 dark:text-slate-400 font-mono mt-1">
@@ -585,7 +585,7 @@ export const NabaaPlatformOverview: React.FC = () => {
                       {t.nabaaPlatform.insightsView.metric1}
                     </div>
                     <div className="text-2xl font-extrabold text-slate-900 dark:text-white mt-1">18,490</div>
-                    <div className="text-[11px] text-emerald-600 dark:text-emerald-400 mt-1 flex items-center gap-1 font-mono">
+                    <div className="text-[11px] text-cyan-600 dark:text-cyan-400 mt-1 flex items-center gap-1 font-mono">
                       <TrendingUp className="w-3 h-3" /> {t.nabaaPlatform.insightsView.metric1Sub}
                     </div>
                   </div>
@@ -606,7 +606,7 @@ export const NabaaPlatformOverview: React.FC = () => {
                     <div className="text-[11px] font-mono text-slate-500 dark:text-slate-400 uppercase">
                       {t.nabaaPlatform.insightsView.metric3}
                     </div>
-                    <div className="text-2xl font-extrabold text-emerald-600 dark:text-emerald-400 mt-1">18,210</div>
+                    <div className="text-2xl font-extrabold text-cyan-600 dark:text-cyan-400 mt-1">18,210</div>
                     <div className="text-[11px] text-slate-500 dark:text-slate-400 mt-1 font-mono">
                       {t.nabaaPlatform.insightsView.metric3Sub}
                     </div>

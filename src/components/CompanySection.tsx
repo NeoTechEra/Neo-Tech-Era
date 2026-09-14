@@ -45,24 +45,24 @@ export const CompanySection: React.FC<CompanySectionProps> = ({ onNavigate }) =>
             {/* Core Values Pillars */}
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-4">
               <div className="p-4 rounded-2xl bg-white dark:bg-[#071324] border border-slate-200 dark:border-cyan-500/30 shadow-sm">
-                <div className="w-8 h-8 rounded-xl bg-cyan-500/10 dark:bg-cyan-500/20 text-cyan-600 dark:text-cyan-300 flex items-center justify-center mb-2">
-                  <Target className="w-4 h-4" />
+                <div className="w-8 h-8 rounded-xl bg-cyan-500/10 dark:bg-cyan-500/20 text-cyan-600 dark:text-cyan-400 flex items-center justify-center mb-2">
+                  <Target className="w-4 h-4 text-cyan-600 dark:text-cyan-400" />
                 </div>
                 <div className="text-sm font-bold text-slate-900 dark:text-white">{t.company.pillar1Title}</div>
                 <div className="text-xs text-slate-500 dark:text-slate-300 mt-1">{t.company.pillar1Desc}</div>
               </div>
 
-              <div className="p-4 rounded-2xl bg-white dark:bg-[#081329] border border-slate-200 dark:border-blue-500/30 shadow-sm">
-                <div className="w-8 h-8 rounded-xl bg-blue-500/10 dark:bg-blue-500/20 text-blue-600 dark:text-blue-300 flex items-center justify-center mb-2">
-                  <Cpu className="w-4 h-4" />
+              <div className="p-4 rounded-2xl bg-white dark:bg-[#071324] border border-slate-200 dark:border-cyan-500/30 shadow-sm">
+                <div className="w-8 h-8 rounded-xl bg-cyan-500/10 dark:bg-cyan-500/20 text-cyan-600 dark:text-cyan-400 flex items-center justify-center mb-2">
+                  <Cpu className="w-4 h-4 text-cyan-600 dark:text-cyan-400" />
                 </div>
                 <div className="text-sm font-bold text-slate-900 dark:text-white">{t.company.pillar2Title}</div>
                 <div className="text-xs text-slate-500 dark:text-slate-300 mt-1">{t.company.pillar2Desc}</div>
               </div>
 
-              <div className="p-4 rounded-2xl bg-white dark:bg-[#140b24] border border-slate-200 dark:border-purple-500/30 shadow-sm">
-                <div className="w-8 h-8 rounded-xl bg-purple-500/10 dark:bg-purple-500/20 text-purple-600 dark:text-purple-300 flex items-center justify-center mb-2">
-                  <ShieldCheck className="w-4 h-4" />
+              <div className="p-4 rounded-2xl bg-white dark:bg-[#071324] border border-slate-200 dark:border-cyan-500/30 shadow-sm">
+                <div className="w-8 h-8 rounded-xl bg-cyan-500/10 dark:bg-cyan-500/20 text-cyan-600 dark:text-cyan-400 flex items-center justify-center mb-2">
+                  <ShieldCheck className="w-4 h-4 text-cyan-600 dark:text-cyan-400" />
                 </div>
                 <div className="text-sm font-bold text-slate-900 dark:text-white">{t.company.pillar3Title}</div>
                 <div className="text-xs text-slate-500 dark:text-slate-300 mt-1">{t.company.pillar3Desc}</div>
@@ -109,19 +109,19 @@ export const CompanySection: React.FC<CompanySectionProps> = ({ onNavigate }) =>
                   <span className="text-slate-500 dark:text-slate-300">
                     {language === 'ar' ? 'لوجستيات صهاريج المياه:' : 'Flagship Logistics:'}
                   </span>
-                  <span className="font-bold text-cyan-700 dark:text-cyan-300">The Nabaa Tankers</span>
+                  <span className="font-bold text-cyan-600 dark:text-cyan-400">The Nabaa Tankers</span>
                 </div>
-                <div className="p-3 rounded-xl bg-slate-50 dark:bg-[#060e1b] border border-slate-200 dark:border-blue-500/30 flex items-center justify-between">
+                <div className="p-3 rounded-xl bg-slate-50 dark:bg-[#060e1b] border border-slate-200 dark:border-cyan-500/30 flex items-center justify-between">
                   <span className="text-slate-500 dark:text-slate-300">
                     {language === 'ar' ? 'حماية المحتوى البصري:' : 'Content Protection:'}
                   </span>
-                  <span className="font-bold text-blue-700 dark:text-blue-300">Pix Shield Suite</span>
+                  <span className="font-bold text-cyan-600 dark:text-cyan-400">Pix Shield Suite</span>
                 </div>
-                <div className="p-3 rounded-xl bg-slate-50 dark:bg-[#060e1b] border border-slate-200 dark:border-purple-500/30 flex items-center justify-between">
+                <div className="p-3 rounded-xl bg-slate-50 dark:bg-[#060e1b] border border-slate-200 dark:border-cyan-500/30 flex items-center justify-between">
                   <span className="text-slate-500 dark:text-slate-300">
                     {language === 'ar' ? 'تسويق التجارة الإلكترونية:' : 'Social Commerce:'}
                   </span>
-                  <span className="font-bold text-purple-700 dark:text-purple-300">Price Pulser & Post Builder</span>
+                  <span className="font-bold text-cyan-600 dark:text-cyan-400">Price Pulser & Post Builder</span>
                 </div>
               </div>
 

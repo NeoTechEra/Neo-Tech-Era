@@ -36,7 +36,7 @@ export const ProductsOverview: React.FC<ProductsOverviewProps> = ({ onNavigate, 
     <section id="products-overview" className="py-24 relative">
       
       {/* Background ambient accents */}
-      <div className="absolute top-1/2 left-0 w-96 h-96 bg-blue-600/10 rounded-full blur-[140px] pointer-events-none" />
+      <div className="absolute top-1/2 left-0 w-96 h-96 bg-cyan-500/10 rounded-full blur-[140px] pointer-events-none" />
       <div className="absolute bottom-0 right-0 w-96 h-96 bg-cyan-500/10 rounded-full blur-[140px] pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -135,14 +135,14 @@ export const ProductsOverview: React.FC<ProductsOverviewProps> = ({ onNavigate, 
                     <div className="bg-slate-50 dark:bg-[#050d18] rounded-2xl p-6 border border-slate-200 dark:border-cyan-500/40 shadow-lg relative">
                       <div className="text-xs font-mono uppercase tracking-wider text-cyan-700 dark:text-cyan-300 mb-4 flex items-center justify-between font-bold">
                         <span>{language === 'ar' ? 'الهيكلية المتصلة' : 'Connected Architecture'}</span>
-                        <span className="w-2 h-2 rounded-full bg-emerald-500 dark:bg-emerald-400 animate-ping" />
+                        <span className="w-2 h-2 rounded-full bg-cyan-500 dark:bg-cyan-400 animate-ping" />
                       </div>
 
                       {/* 3 App Visual Representation */}
                       <div className="space-y-3">
                         <div className="p-3 rounded-xl bg-white dark:bg-[#081526] border border-slate-200 dark:border-cyan-500/30 flex items-center justify-between shadow-xs">
                           <div className="flex items-center gap-3">
-                            <div className="w-9 h-9 rounded-lg bg-blue-100 dark:bg-blue-600/20 text-blue-700 dark:text-blue-300 flex items-center justify-center font-bold text-sm">
+                            <div className="w-9 h-9 rounded-lg bg-cyan-100 dark:bg-cyan-600/20 text-cyan-700 dark:text-cyan-300 flex items-center justify-center font-bold text-sm">
                               01
                             </div>
                             <div>
@@ -154,12 +154,12 @@ export const ProductsOverview: React.FC<ProductsOverviewProps> = ({ onNavigate, 
                               </div>
                             </div>
                           </div>
-                          <span className="text-xs font-mono text-slate-700 dark:text-cyan-300 bg-slate-100 dark:bg-cyan-950/80 px-2 py-0.5 rounded border border-slate-200 dark:border-cyan-500/30 font-semibold">
+                          <span className="text-xs font-mono text-cyan-800 dark:text-cyan-300 bg-cyan-50 dark:bg-cyan-950/80 px-2 py-0.5 rounded border border-cyan-200 dark:border-cyan-500/30 font-semibold">
                             Web
                           </span>
                         </div>
 
-                        <div className="p-3 rounded-xl bg-cyan-50/80 dark:bg-blue-950/80 border border-cyan-300/80 dark:border-cyan-400/50 flex items-center justify-between shadow-xs">
+                        <div className="p-3 rounded-xl bg-cyan-50/80 dark:bg-cyan-950/80 border border-cyan-300/80 dark:border-cyan-400/50 flex items-center justify-between shadow-xs">
                           <div className="flex items-center gap-3">
                             <div className="w-9 h-9 rounded-lg bg-cyan-200/80 dark:bg-cyan-500/20 text-cyan-800 dark:text-cyan-300 flex items-center justify-center font-bold text-sm">
                               02
@@ -180,7 +180,7 @@ export const ProductsOverview: React.FC<ProductsOverviewProps> = ({ onNavigate, 
 
                         <div className="p-3 rounded-xl bg-white dark:bg-[#081526] border border-slate-200 dark:border-cyan-500/30 flex items-center justify-between shadow-xs">
                           <div className="flex items-center gap-3">
-                            <div className="w-9 h-9 rounded-lg bg-emerald-100 dark:bg-emerald-600/20 text-emerald-700 dark:text-emerald-300 flex items-center justify-center font-bold text-sm">
+                            <div className="w-9 h-9 rounded-lg bg-cyan-100 dark:bg-cyan-600/20 text-cyan-700 dark:text-cyan-300 flex items-center justify-center font-bold text-sm">
                               03
                             </div>
                             <div>
@@ -192,7 +192,7 @@ export const ProductsOverview: React.FC<ProductsOverviewProps> = ({ onNavigate, 
                               </div>
                             </div>
                           </div>
-                          <span className="text-xs font-mono text-emerald-800 dark:text-emerald-300 bg-emerald-50 dark:bg-emerald-950/80 px-2 py-0.5 rounded border border-emerald-200 dark:border-emerald-500/30 font-semibold">
+                          <span className="text-xs font-mono text-cyan-800 dark:text-cyan-300 bg-cyan-50 dark:bg-cyan-950/80 px-2 py-0.5 rounded border border-cyan-200 dark:border-cyan-500/30 font-semibold">
                             Driver App
                           </span>
                         </div>
@@ -273,21 +273,21 @@ export const ProductsOverview: React.FC<ProductsOverviewProps> = ({ onNavigate, 
 
           {/* PRICE POST PULSER */}
           <div className="lg:col-span-4 flex flex-col">
-            <div className="glass-panel p-6 sm:p-7 rounded-3xl border border-slate-200 dark:border-purple-500/40 hover:dark:border-purple-300 dark:bg-gradient-to-b dark:from-[#2a0e40] dark:to-[#140620] transition-all duration-300 flex flex-col justify-between h-full group shadow-lg dark:shadow-purple-950/50 text-start">
+            <div className="glass-panel p-6 sm:p-7 rounded-3xl border border-slate-200 dark:border-cyan-500/40 hover:dark:border-cyan-300 dark:bg-gradient-to-b dark:from-[#092233] dark:to-[#05141f] transition-all duration-300 flex flex-col justify-between h-full group shadow-lg dark:shadow-cyan-950/50 text-start">
               <div>
                 <div className="flex items-center justify-between mb-4">
-                  <div className="w-12 h-12 rounded-2xl bg-purple-500/10 dark:bg-purple-500/20 border border-purple-500/20 dark:border-purple-400/40 text-purple-600 dark:text-purple-300 flex items-center justify-center group-hover:scale-110 transition-transform">
+                  <div className="w-12 h-12 rounded-2xl bg-cyan-500/10 dark:bg-cyan-500/20 border border-cyan-500/20 dark:border-cyan-400/40 text-cyan-600 dark:text-cyan-300 flex items-center justify-center group-hover:scale-110 transition-transform">
                     <Zap className="w-6 h-6" />
                   </div>
-                  <span className="text-xs font-mono text-purple-800 dark:text-purple-300 bg-purple-100 dark:bg-purple-950/80 border border-purple-300 dark:border-purple-500/40 px-2.5 py-1 rounded-full font-bold">
+                  <span className="text-xs font-mono text-cyan-800 dark:text-cyan-300 bg-cyan-100 dark:bg-cyan-950/80 border border-cyan-300 dark:border-cyan-500/40 px-2.5 py-1 rounded-full font-bold">
                     {t.otherProducts.pricePulser.badge}
                   </span>
                 </div>
 
-                <h3 className="text-xl font-bold text-slate-900 dark:text-white group-hover:text-purple-600 dark:group-hover:text-purple-300 transition-colors">
+                <h3 className="text-xl font-bold text-slate-900 dark:text-white group-hover:text-cyan-600 dark:group-hover:text-cyan-300 transition-colors">
                   Price Post Pulser
                 </h3>
-                <p className="text-xs font-semibold text-purple-700 dark:text-purple-300 mt-1">
+                <p className="text-xs font-semibold text-cyan-700 dark:text-cyan-300 mt-1">
                   {t.otherProducts.pricePulser.tagline}
                 </p>
                 <p className="text-slate-600 dark:text-slate-200 text-xs sm:text-sm mt-3 leading-relaxed">
@@ -301,7 +301,7 @@ export const ProductsOverview: React.FC<ProductsOverviewProps> = ({ onNavigate, 
                   <ul className="space-y-1.5 text-xs text-slate-700 dark:text-slate-200">
                     {t.otherProducts.pricePulser.capabilities.map((cap, i) => (
                       <li key={i} className="flex items-center gap-2">
-                        <span className="w-1.5 h-1.5 rounded-full bg-purple-600 dark:bg-purple-400" />
+                        <span className="w-1.5 h-1.5 rounded-full bg-cyan-600 dark:bg-cyan-400" />
                         {cap}
                       </li>
                     ))}
@@ -317,7 +317,7 @@ export const ProductsOverview: React.FC<ProductsOverviewProps> = ({ onNavigate, 
                     e.preventDefault();
                     handleNav('price-pulser-detail');
                   }}
-                  className="w-full py-2.5 px-4 rounded-xl bg-slate-900 hover:bg-slate-800 text-slate-100 font-semibold text-xs sm:text-sm border border-slate-700/80 dark:border-purple-500/40 hover:dark:border-purple-400 dark:bg-[#1a082b] dark:hover:bg-[#280d42] transition-all flex items-center justify-center gap-2 group-hover:text-purple-300"
+                  className="w-full py-2.5 px-4 rounded-xl bg-slate-900 hover:bg-slate-800 text-slate-100 font-semibold text-xs sm:text-sm border border-slate-700/80 dark:border-cyan-500/40 hover:dark:border-cyan-400 dark:bg-[#071727] dark:hover:bg-[#0b243d] transition-all flex items-center justify-center gap-2 group-hover:text-cyan-300"
                 >
                   <span>{t.common.viewDetails}</span>
                   <ArrowRight className={`w-3.5 h-3.5 transition-transform ${isRTL ? 'rotate-180 group-hover:-translate-x-1' : 'group-hover:translate-x-1'}`} />
@@ -328,21 +328,21 @@ export const ProductsOverview: React.FC<ProductsOverviewProps> = ({ onNavigate, 
 
           {/* E-COMMERCE POST BUILDER */}
           <div className="lg:col-span-4 flex flex-col">
-            <div className="glass-panel p-6 sm:p-7 rounded-3xl border border-slate-200 dark:border-emerald-500/40 hover:dark:border-emerald-300 dark:bg-gradient-to-b dark:from-[#0a291b] dark:to-[#05150d] transition-all duration-300 flex flex-col justify-between h-full group shadow-lg dark:shadow-emerald-950/50 text-start">
+            <div className="glass-panel p-6 sm:p-7 rounded-3xl border border-slate-200 dark:border-cyan-500/40 hover:dark:border-cyan-300 dark:bg-gradient-to-b dark:from-[#092233] dark:to-[#05141f] transition-all duration-300 flex flex-col justify-between h-full group shadow-lg dark:shadow-cyan-950/50 text-start">
               <div>
                 <div className="flex items-center justify-between mb-4">
-                  <div className="w-12 h-12 rounded-2xl bg-emerald-500/10 dark:bg-emerald-500/20 border border-emerald-500/20 dark:border-emerald-400/40 text-emerald-600 dark:text-emerald-300 flex items-center justify-center group-hover:scale-110 transition-transform">
+                  <div className="w-12 h-12 rounded-2xl bg-cyan-500/10 dark:bg-cyan-500/20 border border-cyan-500/20 dark:border-cyan-400/40 text-cyan-600 dark:text-cyan-300 flex items-center justify-center group-hover:scale-110 transition-transform">
                     <ShoppingBag className="w-6 h-6" />
                   </div>
-                  <span className="text-xs font-mono text-emerald-800 dark:text-emerald-300 bg-emerald-100 dark:bg-emerald-950/80 border border-emerald-300 dark:border-emerald-500/40 px-2.5 py-1 rounded-full font-bold">
+                  <span className="text-xs font-mono text-cyan-800 dark:text-cyan-300 bg-cyan-100 dark:bg-cyan-950/80 border border-cyan-300 dark:border-cyan-500/40 px-2.5 py-1 rounded-full font-bold">
                     {t.otherProducts.ecommerceBuilder.badge}
                   </span>
                 </div>
 
-                <h3 className="text-xl font-bold text-slate-900 dark:text-white group-hover:text-emerald-600 dark:group-hover:text-emerald-300 transition-colors">
+                <h3 className="text-xl font-bold text-slate-900 dark:text-white group-hover:text-cyan-600 dark:group-hover:text-cyan-300 transition-colors">
                   E-Commerce Post Builder
                 </h3>
-                <p className="text-xs font-semibold text-emerald-700 dark:text-emerald-300 mt-1">
+                <p className="text-xs font-semibold text-cyan-700 dark:text-cyan-300 mt-1">
                   {t.otherProducts.ecommerceBuilder.tagline}
                 </p>
                 <p className="text-slate-600 dark:text-slate-200 text-xs sm:text-sm mt-3 leading-relaxed">
@@ -356,7 +356,7 @@ export const ProductsOverview: React.FC<ProductsOverviewProps> = ({ onNavigate, 
                   <ul className="space-y-1.5 text-xs text-slate-700 dark:text-slate-200">
                     {t.otherProducts.ecommerceBuilder.capabilities.map((cap, i) => (
                       <li key={i} className="flex items-center gap-2">
-                        <span className="w-1.5 h-1.5 rounded-full bg-emerald-600 dark:bg-emerald-400" />
+                        <span className="w-1.5 h-1.5 rounded-full bg-cyan-600 dark:bg-cyan-400" />
                         {cap}
                       </li>
                     ))}
@@ -372,7 +372,7 @@ export const ProductsOverview: React.FC<ProductsOverviewProps> = ({ onNavigate, 
                     e.preventDefault();
                     handleNav('ecommerce-builder-detail');
                   }}
-                  className="w-full py-2.5 px-4 rounded-xl bg-slate-900 hover:bg-slate-800 text-slate-100 font-semibold text-xs sm:text-sm border border-slate-700/80 dark:border-emerald-500/40 hover:dark:border-emerald-400 dark:bg-[#071c12] dark:hover:bg-[#0d2d1d] transition-all flex items-center justify-center gap-2 group-hover:text-emerald-300"
+                  className="w-full py-2.5 px-4 rounded-xl bg-slate-900 hover:bg-slate-800 text-slate-100 font-semibold text-xs sm:text-sm border border-slate-700/80 dark:border-cyan-500/40 hover:dark:border-cyan-400 dark:bg-[#071727] dark:hover:bg-[#0b243d] transition-all flex items-center justify-center gap-2 group-hover:text-cyan-300"
                 >
                   <span>{t.common.viewDetails}</span>
                   <ArrowRight className={`w-3.5 h-3.5 transition-transform ${isRTL ? 'rotate-180 group-hover:-translate-x-1' : 'group-hover:translate-x-1'}`} />

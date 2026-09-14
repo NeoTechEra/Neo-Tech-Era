@@ -17,61 +17,17 @@ export const WhyNabaaTankers: React.FC = () => {
   const { t, isRTL } = useLanguage();
 
   const cardIcons = [Layers, Clock, Truck, Cpu, Tag, Smartphone, Wallet, Monitor];
-  const cardStyles = [
-    {
-      darkCardBg: 'dark:bg-gradient-to-b dark:from-[#092233] dark:to-[#05141f] dark:border-cyan-500/40 hover:dark:border-cyan-300 dark:shadow-lg dark:shadow-cyan-950/40',
-      darkIcon: 'dark:bg-cyan-500/20 dark:border-cyan-400/40 dark:text-cyan-300',
-      darkBadge: 'dark:bg-cyan-950/80 dark:border-cyan-500/40 dark:text-cyan-300',
-      darkCheck: 'dark:text-cyan-400'
-    },
-    {
-      darkCardBg: 'dark:bg-gradient-to-b dark:from-[#0c2045] dark:to-[#061025] dark:border-blue-500/40 hover:dark:border-blue-300 dark:shadow-lg dark:shadow-blue-950/40',
-      darkIcon: 'dark:bg-blue-500/20 dark:border-blue-400/40 dark:text-blue-300',
-      darkBadge: 'dark:bg-blue-950/80 dark:border-blue-500/40 dark:text-blue-300',
-      darkCheck: 'dark:text-blue-400'
-    },
-    {
-      darkCardBg: 'dark:bg-gradient-to-b dark:from-[#09262f] dark:to-[#04141a] dark:border-teal-500/40 hover:dark:border-teal-300 dark:shadow-lg dark:shadow-teal-950/40',
-      darkIcon: 'dark:bg-teal-500/20 dark:border-teal-400/40 dark:text-teal-300',
-      darkBadge: 'dark:bg-teal-950/80 dark:border-teal-500/40 dark:text-teal-300',
-      darkCheck: 'dark:text-teal-400'
-    },
-    {
-      darkCardBg: 'dark:bg-gradient-to-b dark:from-[#1b1642] dark:to-[#0e0c24] dark:border-indigo-500/40 hover:dark:border-indigo-300 dark:shadow-lg dark:shadow-indigo-950/40',
-      darkIcon: 'dark:bg-indigo-500/20 dark:border-indigo-400/40 dark:text-indigo-300',
-      darkBadge: 'dark:bg-indigo-950/80 dark:border-indigo-500/40 dark:text-indigo-300',
-      darkCheck: 'dark:text-indigo-400'
-    },
-    {
-      darkCardBg: 'dark:bg-gradient-to-b dark:from-[#2b0f42] dark:to-[#150621] dark:border-purple-500/40 hover:dark:border-purple-300 dark:shadow-lg dark:shadow-purple-950/40',
-      darkIcon: 'dark:bg-purple-500/20 dark:border-purple-400/40 dark:text-purple-300',
-      darkBadge: 'dark:bg-purple-950/80 dark:border-purple-500/40 dark:text-purple-300',
-      darkCheck: 'dark:text-purple-400'
-    },
-    {
-      darkCardBg: 'dark:bg-gradient-to-b dark:from-[#2d1b09] dark:to-[#170e04] dark:border-amber-500/40 hover:dark:border-amber-300 dark:shadow-lg dark:shadow-amber-950/40',
-      darkIcon: 'dark:bg-amber-500/20 dark:border-amber-400/40 dark:text-amber-300',
-      darkBadge: 'dark:bg-amber-950/80 dark:border-amber-500/40 dark:text-amber-300',
-      darkCheck: 'dark:text-amber-400'
-    },
-    {
-      darkCardBg: 'dark:bg-gradient-to-b dark:from-[#0a291b] dark:to-[#05150d] dark:border-emerald-500/40 hover:dark:border-emerald-300 dark:shadow-lg dark:shadow-emerald-950/40',
-      darkIcon: 'dark:bg-emerald-500/20 dark:border-emerald-400/40 dark:text-emerald-300',
-      darkBadge: 'dark:bg-emerald-950/80 dark:border-emerald-500/40 dark:text-emerald-300',
-      darkCheck: 'dark:text-emerald-400'
-    },
-    {
-      darkCardBg: 'dark:bg-gradient-to-b dark:from-[#0e223d] dark:to-[#071322] dark:border-sky-500/40 hover:dark:border-sky-300 dark:shadow-lg dark:shadow-sky-950/40',
-      darkIcon: 'dark:bg-sky-500/20 dark:border-sky-400/40 dark:text-sky-300',
-      darkBadge: 'dark:bg-sky-950/80 dark:border-sky-500/40 dark:text-sky-300',
-      darkCheck: 'dark:text-sky-400'
-    }
-  ];
+  const unifiedCardStyle = {
+    darkCardBg: 'dark:bg-[#071322] dark:border-cyan-500/30 hover:dark:border-cyan-400 dark:shadow-lg dark:shadow-cyan-950/40',
+    darkIcon: 'dark:bg-cyan-500/20 dark:border-cyan-400/40 dark:text-cyan-300',
+    darkBadge: 'dark:bg-cyan-950/80 dark:border-cyan-500/40 dark:text-cyan-300',
+    darkCheck: 'dark:text-cyan-400'
+  };
 
   const cards = t.whyNabaa.cards.map((c, i) => ({
     ...c,
     icon: cardIcons[i] || Layers,
-    ...cardStyles[i]
+    ...unifiedCardStyle
   }));
 
   return (

@@ -131,7 +131,7 @@ export const PixShieldDetail: React.FC<PixShieldDetailProps> = ({ onBack, onOpen
                 </div>
                 <div className="flex justify-between p-2.5 rounded-xl bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800">
                   <span className="text-slate-500 dark:text-slate-400">{isRTL ? 'سرعة المعالجة:' : 'Processing Speed:'}</span>
-                  <span className="font-mono text-emerald-600 dark:text-emerald-400 font-semibold">{isRTL ? 'أقل من 180ms / صورة' : 'Under 180ms / photo'}</span>
+                  <span className="font-mono text-cyan-600 dark:text-cyan-400 font-semibold">{isRTL ? 'أقل من 180ms / صورة' : 'Under 180ms / photo'}</span>
                 </div>
                 <div className="flex justify-between p-2.5 rounded-xl bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800">
                   <span className="text-slate-500 dark:text-slate-400">{isRTL ? 'المعالجة الدفعية:' : 'Batch Processing:'}</span>

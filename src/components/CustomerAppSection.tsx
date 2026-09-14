@@ -575,7 +575,7 @@ export const CustomerAppSection: React.FC = () => {
                             </div>
                             <div className="flex justify-between">
                               <span className="text-slate-500 dark:text-slate-400">{isRTL ? 'الوقت المتوقع للوصول:' : 'Estimated Arrival:'}</span>
-                              <span className="font-bold text-emerald-600 dark:text-emerald-400">
+                              <span className="font-bold text-cyan-600 dark:text-cyan-400">
                                 {isRTL ? '18 دقيقة' : '18 Minutes'}
                               </span>
                             </div>
@@ -705,8 +705,8 @@ export const CustomerAppSection: React.FC = () => {
                 </div>
 
                 {/* Promo Codes Card */}
-                <div className="p-4 rounded-2xl bg-purple-50 dark:bg-gradient-to-br dark:from-purple-950/90 dark:to-[#220935] border border-purple-200 dark:border-purple-400/50 dark:shadow-md">
-                  <div className="flex items-center gap-2 text-xs font-bold text-purple-800 dark:text-purple-300 uppercase font-mono">
+                <div className="p-4 rounded-2xl bg-cyan-50 dark:bg-[#071322] border border-cyan-200 dark:border-cyan-500/30 dark:shadow-md">
+                  <div className="flex items-center gap-2 text-xs font-bold text-cyan-800 dark:text-cyan-300 uppercase font-mono">
                     <Ticket className="w-4 h-4" /> {isRTL ? 'قسائم أكواد الخصم' : 'Promo Code Vouchers'}
                   </div>
                   <div className="text-sm font-bold text-slate-900 dark:text-white mt-1">
@@ -717,7 +717,7 @@ export const CustomerAppSection: React.FC = () => {
                       ? 'يكتب العميل الكود في خانة الدفع. يتحقق النظام فورياً من الصلاحية وحد الاستخدام.'
                       : 'Customers type valid codes in checkout. System instantly validates expiration and usage limits.'}
                   </div>
-                  <div className="mt-3 text-[11px] font-mono text-purple-700 dark:text-purple-300 font-bold">
+                  <div className="mt-3 text-[11px] font-mono text-cyan-700 dark:text-cyan-300 font-bold">
                     {isRTL ? 'الحالة: تم تطبيق كود الخصم بنجاح' : 'Status: Promo Code Applied Successfully'}
                   </div>
                 </div>

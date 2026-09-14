@@ -21,7 +21,7 @@ export const FinalCTA: React.FC<FinalCTAProps> = ({ onNavigate, onExploreProduct
       
       {/* Background glow radiant sphere */}
       <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[400px] bg-gradient-to-r from-cyan-500/10 via-blue-600/10 to-indigo-600/10 dark:from-cyan-500/25 dark:via-blue-600/20 dark:to-indigo-600/20 rounded-full blur-[130px] animate-water-glow" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[400px] bg-cyan-500/10 dark:bg-cyan-500/20 rounded-full blur-[130px] animate-water-glow" />
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
