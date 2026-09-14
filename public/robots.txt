@@ -1,4 +1,77 @@
+# ==============================================================================
+# Robots.txt for Neo Tech Era (https://neotechera.com)
+# Optimized for Google Search Console, Bing Webmaster, and AI Discovery Engines
+# ==============================================================================
+
+# Global Rules for All Crawlers
 User-agent: *
 Allow: /
+Allow: /en/
+Allow: /ar/
+Allow: /assets/
+Allow: /*.js$
+Allow: /*.css$
+Allow: /*.png$
+Allow: /*.jpg$
+Allow: /*.jpeg$
+Allow: /*.svg$
+Allow: /*.webp$
+Allow: /*.ico$
+Allow: /*.woff2$
+Allow: /sitemap.xml
 
+# Prevent indexing of query strings, tracking tags, and redundant parameter loops
+Disallow: /*?*preview=*
+Disallow: /*?*fbclid=*
+Disallow: /*?*utm_*
+Disallow: /*?*ref=*
+Disallow: /api/
+
+# Googlebot (Web & Mobile)
+User-agent: Googlebot
+Allow: /
+Allow: /en/
+Allow: /ar/
+Allow: /assets/
+Allow: /the-nabaa
+Allow: /products/
+
+# Googlebot-Image
+User-agent: Googlebot-Image
+Allow: /
+Allow: /assets/
+Allow: /*.png$
+Allow: /*.jpg$
+Allow: /*.jpeg$
+Allow: /*.svg$
+Allow: /*.webp$
+
+# Microsoft Bingbot
+User-agent: Bingbot
+Allow: /
+Allow: /en/
+Allow: /ar/
+Allow: /assets/
+
+# Applebot (Spotlight Search & Siri Suggestions)
+User-agent: Applebot
+Allow: /
+Allow: /en/
+Allow: /ar/
+
+# AI Search & Summary Engines (Citations & Direct Knowledge Graphs)
+User-agent: Google-Extended
+Allow: /
+
+User-agent: GPTBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+# Canonical Host & Sitemap Location
 Sitemap: https://neotechera.com/sitemap.xml
+Host: https://neotechera.com
