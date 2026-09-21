@@ -8,20 +8,23 @@ import {
   Mail,
   Sun,
   Moon,
-  Globe
+  Globe,
+  Download
 } from 'lucide-react';
 import { PageView } from '../types';
 import { getViewCanonicalPath } from '../utils/seoRouter';
 import { useLanguage } from '../i18n';
+import { NeoTechLogo } from './NeoTechLogo';
 
 interface FooterProps {
   onNavigate?: (view: PageView) => void;
   onOpenContact?: () => void;
+  onOpenBrandAsset?: () => void;
   theme?: 'light' | 'dark';
   onToggleTheme?: () => void;
 }
 
-export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenContact, theme = 'light', onToggleTheme }) => {
+export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenContact, onOpenBrandAsset, theme = 'light', onToggleTheme }) => {
   const { language, switchLanguage, isRTL, t } = useLanguage();
 
   const scrollToTop = () => {
@@ -48,8 +51,8 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenContact, theme
           {/* Brand Info */}
           <div className="md:col-span-5 space-y-4 text-start">
             <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-xl bg-cyan-500 text-slate-950 font-black text-xl flex items-center justify-center font-mono shadow-md shadow-cyan-500/25">
-                N
+              <div className="w-10 h-10 flex items-center justify-center shrink-0">
+                <NeoTechLogo className="w-10 h-10" />
               </div>
               <span className="text-xl font-extrabold text-white tracking-tight font-display">
                 {t.common.brandName}
@@ -96,6 +99,19 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenContact, theme
                 </button>
               </div>
             </div>
+
+            {/* Brand Assets / Transparent Logo Download Trigger */}
+            {onOpenBrandAsset && (
+              <div className="pt-2">
+                <button
+                  onClick={onOpenBrandAsset}
+                  className="inline-flex items-center gap-2 px-3 py-1.5 rounded-xl bg-slate-900 hover:bg-slate-800 text-cyan-300 hover:text-cyan-200 border border-cyan-500/30 text-xs font-semibold transition-all active:scale-95 shadow-sm"
+                >
+                  <Download className="w-3.5 h-3.5 text-cyan-400" />
+                  <span>{language === 'ar' ? 'تحميل الشعار مفرغ (بدون خلفية)' : 'Download Logo (Without Background)'}</span>
+                </button>
+              </div>
+            )}
           </div>
 
           {/* Navigation Links */}

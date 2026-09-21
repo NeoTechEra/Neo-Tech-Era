@@ -10,6 +10,7 @@ import {
 import { useLanguage } from '../i18n';
 import { PageView } from '../types';
 import { getViewCanonicalPath } from '../utils/seoRouter';
+import { NeoTechLogo } from './NeoTechLogo';
 
 interface CompanySectionProps {
   onNavigate?: (view: PageView) => void;
@@ -91,8 +92,8 @@ export const CompanySection: React.FC<CompanySectionProps> = ({ onNavigate }) =>
           <div className="lg:col-span-5 text-start">
             <div className="p-8 rounded-3xl border border-slate-200 dark:border-cyan-500/40 relative space-y-6 bg-white/90 dark:bg-gradient-to-b dark:from-[#091e33] dark:to-[#040e1a] shadow-md dark:shadow-xl dark:shadow-cyan-950/40">
               <div className="flex items-center gap-3">
-                <div className="w-12 h-12 rounded-2xl bg-cyan-500 flex items-center justify-center text-slate-950 font-black font-mono text-xl shadow-md shrink-0">
-                  N
+                <div className="w-12 h-12 flex items-center justify-center shrink-0">
+                  <NeoTechLogo className="w-12 h-12" />
                 </div>
                 <div>
                   <h3 className="text-xl font-bold text-slate-900 dark:text-white">

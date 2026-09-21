@@ -26,6 +26,7 @@ import { NabaaDetail } from './components/NabaaDetail';
 import { AboutPage } from './components/AboutPage';
 import { ContactPage } from './components/ContactPage';
 import { ContactModal } from './components/ContactModal';
+import { BrandAssetModal } from './components/BrandAssetModal';
 import { ThemeProvider, useTheme } from './styles/theme/ThemeProvider';
 import { LanguageProvider, useLanguage } from './i18n';
 
@@ -41,6 +42,7 @@ function AppContent() {
   });
   const [isContactOpen, setIsContactOpen] = useState<boolean>(false);
   const [contactProduct, setContactProduct] = useState<string>('The Nabaa Tankers (Flagship)');
+  const [isBrandAssetOpen, setIsBrandAssetOpen] = useState<boolean>(false);
   const { theme, toggleTheme } = useTheme();
 
   // Redirect root domain "/" or "" to default language prefix "/en" (or "/ar" if preferred)
@@ -203,6 +205,7 @@ function AppContent() {
       <Footer 
         onNavigate={handleNavigate}
         onOpenContact={() => handleOpenContact()}
+        onOpenBrandAsset={() => setIsBrandAssetOpen(true)}
         theme={theme}
         onToggleTheme={toggleTheme}
       />
@@ -212,6 +215,12 @@ function AppContent() {
         isOpen={isContactOpen}
         onClose={() => setIsContactOpen(false)}
         defaultProduct={contactProduct}
+      />
+
+      {/* Brand Asset / Transparent Logo Download Modal */}
+      <BrandAssetModal 
+        isOpen={isBrandAssetOpen}
+        onClose={() => setIsBrandAssetOpen(false)}
       />
 
     </div>

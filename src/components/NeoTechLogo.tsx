@@ -1,0 +1,226 @@
+import React from 'react';
+
+interface NeoTechLogoProps {
+  className?: string;
+  size?: number | string;
+  showGlow?: boolean;
+  variant?: 'svg' | 'image';
+  id?: string;
+}
+
+/**
+ * NeoTechLogo
+ * Authentic vector representation of the Neo Tech Era Financial Suite 'N' logo
+ * Transparent background, ultra-crisp at any resolution, with 3D depth gradients,
+ * the floating lower-left plate, dynamic chart growth columns, and flowing data ribbon.
+ */
+export const NeoTechLogo: React.FC<NeoTechLogoProps> = ({
+  className = 'w-10 h-10',
+  size,
+  showGlow = true,
+  variant = 'svg',
+  id = 'neo-tech-logo'
+}) => {
+  const style = size ? { width: size, height: size } : undefined;
+
+  if (variant === 'image') {
+    return (
+      <img
+        id={id}
+        src="/neo-tech-logo.png"
+        alt="Neo Tech Era Financial Suite Logo"
+        className={`object-contain select-none ${className}`}
+        style={style}
+        referrerPolicy="no-referrer"
+      />
+    );
+  }
+
+  return (
+    <svg
+      id={id}
+      viewBox="0 0 512 512"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      className={`shrink-0 select-none ${className}`}
+      style={style}
+      aria-label="Neo Tech Era Logo"
+    >
+      <defs>
+        {/* Left Column Gradient */}
+        <linearGradient id="ntl-leftCol" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stopColor="#00BAFF" />
+          <stop offset="35%" stopColor="#0080FF" />
+          <stop offset="75%" stopColor="#0050E6" />
+          <stop offset="100%" stopColor="#0035BD" />
+        </linearGradient>
+
+        {/* Floating Lower-Left Plate Gradient */}
+        <linearGradient id="ntl-floatPlate" x1="10%" y1="0%" x2="90%" y2="100%">
+          <stop offset="0%" stopColor="#00B2FF" />
+          <stop offset="45%" stopColor="#0072FF" />
+          <stop offset="85%" stopColor="#0043D6" />
+          <stop offset="100%" stopColor="#002DB3" />
+        </linearGradient>
+
+        {/* Middle Bar Gradient */}
+        <linearGradient id="ntl-midBar" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stopColor="#00C8FF" />
+          <stop offset="35%" stopColor="#0082FF" />
+          <stop offset="80%" stopColor="#004FE0" />
+          <stop offset="100%" stopColor="#0030B8" />
+        </linearGradient>
+
+        {/* Right Tall Bar Gradient */}
+        <linearGradient id="ntl-tallBar" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stopColor="#00D4FF" />
+          <stop offset="30%" stopColor="#0088FF" />
+          <stop offset="75%" stopColor="#004CE3" />
+          <stop offset="100%" stopColor="#0022A3" />
+        </linearGradient>
+
+        {/* Diagonal Wedge Gradient */}
+        <linearGradient id="ntl-diagWedge" x1="15%" y1="15%" x2="85%" y2="85%">
+          <stop offset="0%" stopColor="#008AFF" />
+          <stop offset="45%" stopColor="#0058F0" />
+          <stop offset="85%" stopColor="#0034CC" />
+          <stop offset="100%" stopColor="#001F99" />
+        </linearGradient>
+
+        {/* 3D Blue Sphere Radial Gradient */}
+        <radialGradient id="ntl-sphere3D" cx="35%" cy="32%" r="68%">
+          <stop offset="0%" stopColor="#8CE8FF" />
+          <stop offset="25%" stopColor="#00B2FF" />
+          <stop offset="65%" stopColor="#0062FF" />
+          <stop offset="90%" stopColor="#0038C7" />
+          <stop offset="100%" stopColor="#001F8F" />
+        </radialGradient>
+
+        {/* Soft Drop Shadow for White Ribbon */}
+        <filter id="ntl-ribbonDropShadow" x="-20%" y="-20%" width="140%" height="140%">
+          <feDropShadow dx="-1" dy="4" stdDeviation="4" floodColor="#001861" floodOpacity="0.45" />
+        </filter>
+
+        {/* Subtle Bevel Highlights */}
+        <linearGradient id="ntl-bevelShine" x1="0%" y1="0%" x2="100%" y2="0%">
+          <stop offset="0%" stopColor="#FFFFFF" stopOpacity="0.8" />
+          <stop offset="100%" stopColor="#60D5FF" stopOpacity="0.2" />
+        </linearGradient>
+
+        {/* Overall Depth Drop Shadow */}
+        {showGlow && (
+          <filter id="ntl-overallShadow" x="-15%" y="-15%" width="130%" height="130%">
+            <feDropShadow dx="0" dy="12" stdDeviation="16" floodColor="#0033B3" floodOpacity="0.32" />
+          </filter>
+        )}
+      </defs>
+
+      <g filter={showGlow ? 'url(#ntl-overallShadow)' : undefined}>
+        {/* 1. FLOATING LOWER-LEFT SLANTED PLATE */}
+        <g>
+          <path
+            d="M 98 370 C 98 360 105 354 114 348 L 180 304 C 188 299 198 304 198 314 L 198 376 C 198 386 191 392 183 397 L 116 442 C 108 447 98 442 98 432 Z"
+            fill="url(#ntl-floatPlate)"
+          />
+          {/* Top Bevel Highlight for Floating Plate */}
+          <path
+            d="M 98 370 L 114 348 L 180 304"
+            stroke="url(#ntl-bevelShine)"
+            strokeWidth="2.5"
+            strokeLinecap="round"
+          />
+        </g>
+
+        {/* 2. MAIN N BODY (Left Column & Central Diagonal) */}
+        {/* Left Column Upper Portion */}
+        <path
+          d="M 90 146 C 90 134 100 126 112 128 L 182 142 C 190 144 196 151 196 160 L 196 304 L 90 338 Z"
+          fill="url(#ntl-leftCol)"
+        />
+        {/* Top Chamfer of Left Column */}
+        <path
+          d="M 90 146 L 112 128 L 182 142 L 168 162 L 102 152 Z"
+          fill="#52CEFF"
+          opacity="0.65"
+        />
+
+        {/* Central Connecting Diagonal Wedge */}
+        <path
+          d="M 196 160 L 416 406 C 423 412 418 424 408 424 L 350 424 C 342 424 334 419 328 412 L 196 268 Z"
+          fill="url(#ntl-diagWedge)"
+        />
+
+        {/* 3. MIDDLE COLUMN (First Financial Growth Bar) */}
+        <g>
+          <path
+            d="M 264 154 C 264 144 271 136 281 132 L 324 114 C 330 111 338 115 338 122 L 338 250 L 264 178 Z"
+            fill="url(#ntl-midBar)"
+          />
+          {/* Mid Column Top Bevel Highlight */}
+          <path
+            d="M 264 154 L 281 132 L 324 114"
+            stroke="url(#ntl-bevelShine)"
+            strokeWidth="2.5"
+            strokeLinecap="round"
+          />
+        </g>
+
+        {/* 4. RIGHT TALL COLUMN (Second Financial Growth Bar) */}
+        <g>
+          <path
+            d="M 346 92 C 346 80 354 72 366 67 L 410 52 C 418 49 426 55 426 64 L 426 406 C 426 414 419 420 411 416 L 346 376 Z"
+            fill="url(#ntl-tallBar)"
+          />
+          {/* Tall Column Top Bevel Highlight */}
+          <path
+            d="M 346 92 L 366 67 L 410 52"
+            stroke="url(#ntl-bevelShine)"
+            strokeWidth="3"
+            strokeLinecap="round"
+          />
+        </g>
+
+        {/* 5. 3D FLOWING WHITE DATA RIBBON */}
+        <g filter="url(#ntl-ribbonDropShadow)">
+          {/* Segment 1: Starting node across left column down to center node */}
+          <path
+            d="M 80 340 C 98 340 114 268 152 242 C 190 216 244 266 312 264"
+            stroke="#FFFFFF"
+            strokeWidth="16"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+
+          {/* Center White Doughnut Ring Collar */}
+          <circle cx="336" cy="248" r="23" fill="#FFFFFF" />
+
+          {/* Segment 2: Rising from center ring to terminal top-right node */}
+          <path
+            d="M 352 238 C 374 204 398 170 426 156"
+            stroke="#FFFFFF"
+            strokeWidth="16"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+        </g>
+
+        {/* 6. 3D BLUE TERMINAL & JUNCTION SPHERES */}
+        {/* Node 1: Bottom-Left Blue Sphere with light reflection */}
+        <g filter="url(#ntl-ribbonDropShadow)">
+          <circle cx="74" cy="340" r="19" fill="url(#ntl-sphere3D)" />
+          <ellipse cx="69" cy="334" rx="6" ry="3" fill="#FFFFFF" opacity="0.65" />
+        </g>
+
+        {/* Node 2: Center Inner Blue Dot inside the White Collar */}
+        <circle cx="336" cy="248" r="13" fill="url(#ntl-sphere3D)" />
+        <ellipse cx="333" cy="244" rx="4" ry="2" fill="#FFFFFF" opacity="0.75" />
+
+        {/* Node 3: Top-Right Blue Sphere attached to Tall Column */}
+        <g filter="url(#ntl-ribbonDropShadow)">
+          <circle cx="428" cy="154" r="19" fill="url(#ntl-sphere3D)" />
+          <ellipse cx="423" cy="148" rx="6" ry="3" fill="#FFFFFF" opacity="0.65" />
+        </g>
+      </g>
+    </svg>
+  );
+};

@@ -16,6 +16,7 @@ import {
 import { PageView } from '../types';
 import { getViewCanonicalPath } from '../utils/seoRouter';
 import { useLanguage } from '../i18n';
+import { NeoTechLogo } from './NeoTechLogo';
 
 interface NavbarProps {
   currentView: PageView;
@@ -89,8 +90,8 @@ export const Navbar: React.FC<NavbarProps> = ({
           }}
           className="flex items-center gap-3 group text-start focus:outline-none"
         >
-          <div className="w-10 h-10 rounded-xl bg-cyan-500 text-slate-950 font-black text-xl flex items-center justify-center font-mono shadow-md shadow-cyan-500/25 group-hover:bg-cyan-400 transition-colors">
-            N
+          <div className="w-10 h-10 flex items-center justify-center transition-transform group-hover:scale-105 shrink-0">
+            <NeoTechLogo className="w-10 h-10" />
           </div>
           <div>
             <div className="flex items-center gap-1.5">

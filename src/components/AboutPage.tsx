@@ -26,6 +26,7 @@ import { useLanguage } from '../i18n';
 import { Breadcrumb } from './Breadcrumb';
 import { PageView } from '../types';
 import { getViewCanonicalPath } from '../utils/seoRouter';
+import { NeoTechLogo } from './NeoTechLogo';
 
 interface AboutPageProps {
   onNavigate: (view: PageView) => void;
@@ -65,19 +66,25 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate, onOpenContact 
         <div className="absolute top-0 right-0 w-96 h-96 bg-cyan-500/10 dark:bg-cyan-500/15 rounded-full blur-3xl pointer-events-none -mr-20 -mt-20"></div>
         <div className="absolute bottom-0 left-0 w-80 h-80 bg-blue-500/10 dark:bg-blue-500/15 rounded-full blur-3xl pointer-events-none -ml-20 -mb-20"></div>
 
-        <div className="relative z-10 max-w-3xl space-y-4">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-100 dark:bg-cyan-500/20 border border-cyan-300 dark:border-cyan-500/30 text-cyan-900 dark:text-cyan-300 text-xs font-mono font-semibold uppercase tracking-wider">
-            <Building2 className="w-3.5 h-3.5" />
-            <span>{t.aboutPage.badge}</span>
+        <div className="relative z-10 flex flex-col md:flex-row md:items-center justify-between gap-8">
+          <div className="max-w-2xl space-y-4">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-100 dark:bg-cyan-500/20 border border-cyan-300 dark:border-cyan-500/30 text-cyan-900 dark:text-cyan-300 text-xs font-mono font-semibold uppercase tracking-wider">
+              <Building2 className="w-3.5 h-3.5" />
+              <span>{t.aboutPage.badge}</span>
+            </div>
+
+            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900 dark:text-white tracking-tight leading-tight font-display">
+              {t.aboutPage.title}
+            </h1>
+
+            <p className="text-base sm:text-lg text-slate-600 dark:text-slate-300 leading-relaxed">
+              {t.aboutPage.subtitle}
+            </p>
           </div>
 
-          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900 dark:text-white tracking-tight leading-tight font-display">
-            {t.aboutPage.title}
-          </h1>
-
-          <p className="text-base sm:text-lg text-slate-600 dark:text-slate-300 leading-relaxed">
-            {t.aboutPage.subtitle}
-          </p>
+          <div className="shrink-0 flex items-center justify-center p-4">
+            <NeoTechLogo className="w-24 h-24 sm:w-28 sm:h-28 drop-shadow-xl hover:scale-105 transition-transform" />
+          </div>
         </div>
 
         {/* AEO Direct Answer Summary Box */}
