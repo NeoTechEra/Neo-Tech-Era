@@ -1,17 +1,5 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
-  "framework": "vite",
-  "buildCommand": "vite build",
-  "outputDirectory": "dist",
-  "cleanUrls": true,
-  "trailingSlash": false,
-  "redirects": [
-    {
-      "source": "/",
-      "destination": "/en",
-      "permanent": true
-    }
-  ],
   "rewrites": [
     {
       "source": "/(.*)",
@@ -29,15 +17,6 @@
       ]
     },
     {
-      "source": "/(.*)\\.(ico|png|jpg|jpeg|svg|webp|woff2)",
-      "headers": [
-        {
-          "key": "Cache-Control",
-          "value": "public, max-age=86400, stale-while-revalidate=604800"
-        }
-      ]
-    },
-    {
       "source": "/(.*)",
       "headers": [
         {
@@ -47,14 +26,6 @@
         {
           "key": "X-Frame-Options",
           "value": "SAMEORIGIN"
-        },
-        {
-          "key": "X-XSS-Protection",
-          "value": "1; mode=block"
-        },
-        {
-          "key": "Referrer-Policy",
-          "value": "strict-origin-when-cross-origin"
         }
       ]
     }
